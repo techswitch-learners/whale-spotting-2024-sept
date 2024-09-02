@@ -49,5 +49,5 @@ dotnet watch run
 ### Inside the `frontend/` directory
 
 ```bash
-npm run dev
+npm start
 ```
