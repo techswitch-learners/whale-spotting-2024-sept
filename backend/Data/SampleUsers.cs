@@ -22,7 +22,7 @@ public static class SampleUsers
     {
         //Here you could create the super admin who will maintain the web app
         var poweruser = new User { UserName = "Admin", Email = "admin@email.com", };
-        string adminPassword = "password123";
+        string adminPassword = "Pa$$word123";
 
         var createPowerUser = await userManager.CreateAsync(poweruser, adminPassword);
         if (createPowerUser.Succeeded)
