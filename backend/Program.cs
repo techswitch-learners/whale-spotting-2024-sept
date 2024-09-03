@@ -1,9 +1,11 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WhaleSpotting;
+using WhaleSpotting.Data;
 using WhaleSpotting.Models.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +55,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+    await SampleUsers.CreateAdminAsync(userManager);
+}
 
 if (app.Environment.IsDevelopment())
 {
