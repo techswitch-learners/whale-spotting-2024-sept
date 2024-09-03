@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace WhaleSpotting.Models.Data;
 
 public class Sighting
-{ 
+{
     [Key]
     public int Id { get; set; }
     public int UserId { get; set; }
