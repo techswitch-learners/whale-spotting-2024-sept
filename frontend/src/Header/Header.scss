@@ -1,0 +1,19 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.custom-navbar {
+  background-color: #e2ebff;
+}
+
+.custom-navbar .nav-link {
+  color: #667cda;
+}
+
+.custom-navbar .btn-outline-success {
+  border-color: #ff89ca;
+  color: #ff89ca;
+}
+
+.custom-navbar .btn-outline-success:hover {
+  background-color: #ff89ca;
+  color: #ffffff;
+}
