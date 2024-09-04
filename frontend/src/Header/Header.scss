@@ -1,19 +1,20 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../colour-variables.scss";
 
 .custom-navbar {
-  background-color: #e2ebff;
+  background-color: $whale-light-blue;
 }
 
 .custom-navbar .nav-link {
-  color: #667cda;
+  color: $whale-main-blue;
 }
 
 .custom-navbar .btn-outline-success {
-  border-color: #ff89ca;
-  color: #ff89ca;
+  border-color: $whale-blush-pink;
+  color: $whale-blush-pink;
 }
 
 .custom-navbar .btn-outline-success:hover {
-  background-color: #ff89ca;
-  color: #ffffff;
+  background-color: $whale-blush-pink;
+  color: white;
 }
