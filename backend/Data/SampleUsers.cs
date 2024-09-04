@@ -9,8 +9,8 @@ public static class SampleUsers
 
     private static readonly IList<IList<string>> DataUsers = new List<IList<string>>
     {
-        new List<string> { "Sam", "White", "user1", "user1@gmail.com", "Pa$$word1" },
-        new List<string> { "Evie", "Brown", "user2", "user2@gmail.com", "Pa$$word2" },
+        new List<string> { "Sam", "White", "sam1", "user1@gmail.com", "Pa$$word1" },
+        new List<string> { "Evie", "Brown", "evie2", "user2@gmail.com", "Pa$$word2" },
     };
 
     public static async Task CreateAdminAsync(UserManager<User> userManager)

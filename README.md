@@ -51,3 +51,10 @@ dotnet watch run
 ```bash
 npm start
 ```
+
+### Admin
+
+The first time you run the program, the user table is seeded with the following admin:
+UserName = "Admin"
+Email = "admin@email.com"
+Password = "Pa$$word123"
