@@ -60,6 +60,7 @@ using (var scope = app.Services.CreateScope())
 {
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
     await SampleUsers.CreateAdminAsync(userManager);
+    await SampleUsers.CreateUsersAsync(userManager);
 }
 
 if (app.Environment.IsDevelopment())

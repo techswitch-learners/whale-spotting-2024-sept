@@ -5,39 +5,50 @@ namespace WhaleSpotting.Data;
 
 public static class SampleUsers
 {
-    public const int NumberOfUsers = 1;
+    public const int NumberOfUsers = 2;
 
-    // private static readonly IList<IList<string>> Data = new List<IList<string>>
-    // {
-    //         //UserName, Email,  PasswordHash, Role(2 for Admin)
-    //          new List<string> { "admin", "admin@gmail.com", "password123","2" },
-    // };
+    private static readonly IList<IList<string>> DataUsers = new List<IList<string>>
+    {
+        new List<string> { "Sam", "White", "user1", "user1@gmail.com", "Pa$$word1" },
+        new List<string> { "Evie", "Brown", "user2", "user2@gmail.com", "Pa$$word2" },
+    };
 
-    //  public static IEnumerable<User> GetUsers(UserManager<User> userManager)
-    // {
-    //         // return Enumerable.Range(0, NumberOfUsers).Select(index => CreateRandomUserAsync(index, userManager));
-    //         return (IEnumerable<User>)CreateRandomUserAsync(0, userManager);
-    // }
     public static async Task CreateAdminAsync(UserManager<User> userManager)
     {
-        //Here you could create the super admin who will maintain the web app
-        var poweruser = new User { UserName = "Admin", Email = "admin@email.com", };
+        var poweruser = new User
+        {
+            FirstName = "John",
+            LastName = "Wick",
+            UserName = "Admin",
+            Email = "admin@email.com",
+        };
         string adminPassword = "Pa$$word123";
 
         var createPowerUser = await userManager.CreateAsync(poweruser, adminPassword);
         if (createPowerUser.Succeeded)
         {
-            //here we tie the new user to the role
             await userManager.AddToRoleAsync(poweruser, "Admin");
-            // return new User
-            // {
-            //     UserName = "Admin",
-            //     Email = "admin@email.com",
-            // };
         }
-        // else
-        // {
-        //     return null;
-        // }
+    }
+
+    public static async Task CreateUsersAsync(UserManager<User> userManager)
+    {
+        foreach (var data in DataUsers)
+        {
+            var user = new User
+            {
+                FirstName = data[0],
+                LastName = data[1],
+                UserName = data[2],
+                Email = data[3],
+            };
+            string userPassword = data[4];
+
+            var createUser = await userManager.CreateAsync(user, userPassword);
+            if (createUser.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, "User");
+            }
+        }
     }
 }
