@@ -16,5 +16,5 @@ public class Sighting
     public string PhotoUrl { get; set; }
     public string? Description { get; set; }
     public DateTime DateTime { get; set; }
-    public bool IsApproved { get; set; }
+    public bool IsApproved { get; set; } = false;
 }
