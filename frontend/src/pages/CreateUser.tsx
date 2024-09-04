@@ -20,9 +20,12 @@ export function CreateUser(): JSX.Element {
       <h1 className="title">Register</h1>
       <form className="createUser-form" onSubmit={handleSubmit}>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">First Name</label>
+          <label htmlFor="firstName" className="col-sm-2 col-form-label">
+            First Name
+          </label>
           <div className="col-sm-3">
             <input
+              id="firstName"
               className="form-control"
               type={"text"}
               value={firstname}
@@ -31,9 +34,12 @@ export function CreateUser(): JSX.Element {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Last Name</label>
+          <label htmlFor="lastName" className="col-sm-2 col-form-label">
+            Last Name
+          </label>
           <div className="col-sm-3">
             <input
+              id="lastName"
               className="form-control"
               type={"text"}
               value={lastname}
@@ -42,9 +48,12 @@ export function CreateUser(): JSX.Element {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Email</label>
+          <label htmlFor="email" className="col-sm-2 col-form-label">
+            Email
+          </label>
           <div className="col-sm-3">
             <input
+              id="email"
               className="form-control"
               type={"text"}
               value={email}
@@ -53,9 +62,12 @@ export function CreateUser(): JSX.Element {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Username</label>
+          <label htmlFor="username" className="col-sm-2 col-form-label">
+            Username
+          </label>
           <div className="col-sm-3">
             <input
+              id="username"
               className="form-control"
               type={"text"}
               value={username}
@@ -65,9 +77,12 @@ export function CreateUser(): JSX.Element {
         </div>
 
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Password</label>
+          <label htmlFor="password" className="col-sm-2 col-form-label">
+            Password
+          </label>
           <div className="col-sm-3">
             <input
+              id="password"
               className="form-control"
               type={"password"}
               value={password}
@@ -77,9 +92,12 @@ export function CreateUser(): JSX.Element {
         </div>
 
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">About Me</label>
+          <label htmlFor="aboutMe" className="col-sm-2 col-form-label">
+            About Me
+          </label>
           <div className="col-sm-3">
             <textarea
+              id="aboutMe"
               className="form-control"
               value={aboutMe}
               onChange={(event) => setAboutMe(event.target.value)}
