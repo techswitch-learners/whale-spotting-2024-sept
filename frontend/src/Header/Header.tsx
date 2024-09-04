@@ -28,11 +28,6 @@ const Header: React.FC = () => {
               Explore
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/record">
-              Record
-            </a>
-          </li>
         </ul>
 
         <button className="btn btn-outline-success px-4" style={{ width: "200px" }} onClick={handleClick}>
