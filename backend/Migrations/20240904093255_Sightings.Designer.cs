@@ -12,7 +12,7 @@ using WhaleSpotting;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(WhaleSpottingContext))]
-    [Migration("20240903124057_Sightings")]
+    [Migration("20240904093255_Sightings")]
     partial class Sightings
     {
         /// <inheritdoc />
@@ -179,18 +179,14 @@ namespace WhaleSpotting.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("ApprovalStatus")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("AreaNameId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
 
                     b.Property<float>("Lattitude")
                         .HasColumnType("real");
