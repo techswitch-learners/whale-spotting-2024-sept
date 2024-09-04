@@ -13,9 +13,8 @@ public class Sighting
     public int WhaleSpeciesId { get; set; }
     public float Lattitude { get; set; }
     public float Longitude { get; set; }
-    public int AreaNameId { get; set; }
     public string PhotoUrl { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; }
     public DateTime DateTime { get; set; }
-    public bool ApprovalStatus { get; set; }
+    public bool IsApproved { get; set; } = false;
 }

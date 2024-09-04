@@ -10,6 +10,8 @@ public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options
 {
     public DbSet<Sighting> Sightings { get; set; }
 
+    public DbSet<Species> Species { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -26,5 +28,11 @@ public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options
             NormalizedName = RoleType.Admin.ToString().ToUpper(),
         };
         builder.Entity<Role>().HasData(userRole, adminRole);
+
+        // Indexing SpeciesName
+        builder.Entity<Species>(builder =>
+        {
+            builder.HasIndex(sp => sp.SpeciesName);
+        });
     }
 }

@@ -26,11 +26,10 @@ namespace WhaleSpotting.Migrations
                     WhaleSpeciesId = table.Column<int>(type: "integer", nullable: false),
                     Lattitude = table.Column<float>(type: "real", nullable: false),
                     Longitude = table.Column<float>(type: "real", nullable: false),
-                    AreaNameId = table.Column<int>(type: "integer", nullable: false),
                     PhotoUrl = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     DateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ApprovalStatus = table.Column<bool>(type: "boolean", nullable: false)
+                    IsApproved = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
