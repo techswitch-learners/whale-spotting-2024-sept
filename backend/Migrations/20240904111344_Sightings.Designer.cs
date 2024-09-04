@@ -12,7 +12,7 @@ using WhaleSpotting;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(WhaleSpottingContext))]
-    [Migration("20240904093255_Sightings")]
+    [Migration("20240904111344_Sightings")]
     partial class Sightings
     {
         /// <inheritdoc />
@@ -217,6 +217,9 @@ namespace WhaleSpotting.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AboutMe")
+                        .HasColumnType("text");
+
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
@@ -230,6 +233,15 @@ namespace WhaleSpotting.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsSuspended")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -256,6 +268,9 @@ namespace WhaleSpotting.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
+
+                    b.Property<int>("TotalPointsEarned")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
