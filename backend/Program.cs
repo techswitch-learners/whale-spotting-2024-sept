@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
+using WhaleSpotting.SeedData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// using (var scope = app.Services.CreateScope())
+// {
+//     var sightingManager = scope.ServiceProvider.GetRequiredService<UserManager<Sighting>>();
+//     await SampleSightings.CreateSightingsAsync(sightingManager);
+
+// }
+//         var services = scope.ServiceProvider;
+//         var context = serviceScope.ServiceProvider.GetService<WhaleSpottingContext>();
+//         SeedData.SampleSightings(context);
 
 if (app.Environment.IsDevelopment())
 {

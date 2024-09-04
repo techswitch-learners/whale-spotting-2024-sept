@@ -1,12 +1,12 @@
 using WhaleSpotting.Models.Data;
 
-namespace WhaleSpotting.Data;
+namespace WhaleSpotting.SeedData;
 
 public static class SampleSightings
 {
     public const int NumberOfSightings = 6;
 
-    private static readonly IList<IList<string>> Data = new List<IList<string>>
+    private static readonly IList<IList<string>> DataSightings = new List<IList<string>>
     {
         new List<string>
         {
@@ -76,6 +76,30 @@ public static class SampleSightings
         },
     };
 
+    // public static async Task CreateSightingsAsync(UserManager<Sighting> userManager)
+    // {
+    //     foreach (var data in DataSightings)
+    //     {
+    //         var sighting = new Sighting
+    //         {
+    //             UserId = int.Parse(data[0]),
+    //             WhaleSpeciesId = int.Parse(data[1]),
+    //             Lattitude = float.Parse(data[2]),
+    //             Longitude = float.Parse(data[3]),
+    //             PhotoUrl= data[4],
+    //             Description = data[5],
+    //             DateTime = DateTime.Parse(data[6]),
+    //             IsApproved = Boolean.Parse(data[7])
+    //         };
+
+
+    //         var createsighting = await userManager.CreateAsync(sighting, userPassword);
+    //         if (createsighting.Succeeded)
+    //         {
+    //             await userManager.AddToRoleAsync(user, "User");
+    //         }
+    //     }
+    // }
     // public static IEnumerable<Sighting> GetSightings()
     // {
     //     return Enumerable.Range(0, NumberOfSightings).Select(CreateRandomSighting);
