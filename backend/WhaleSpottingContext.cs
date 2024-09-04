@@ -8,7 +8,7 @@ namespace WhaleSpotting;
 public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options)
     : IdentityDbContext<User, Role, int>(options)
 {
-    public DbSet<Sighting> Sightings { get; set; 
+    public DbSet<Sighting> Sightings { get; set; }
 
     public DbSet<Species> Species { get; set; }
 
