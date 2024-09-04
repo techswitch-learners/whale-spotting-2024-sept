@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting;
@@ -11,9 +12,11 @@ using WhaleSpotting;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(WhaleSpottingContext))]
-    partial class WhaleSpottingContextModelSnapshot : ModelSnapshot
+    [Migration("20240904111344_Sightings")]
+    partial class Sightings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,7 +171,6 @@ namespace WhaleSpotting.Migrations
                         });
                 });
 
-
             modelBuilder.Entity("WhaleSpotting.Models.Data.Sighting", b =>
                 {
                     b.Property<int>("Id")
@@ -205,40 +207,6 @@ namespace WhaleSpotting.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sightings");
-              });
-            modelBuilder.Entity("WhaleSpotting.Models.Data.Species", b =>
-                {
-                    b.Property<int>("SpeciesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SpeciesId"));
-
-                    b.Property<string>("ExampleLink")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("SpeciesName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TailPictureLink")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("TotalSightings")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("WikiLink")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("SpeciesId");
-
-                    b.HasIndex("SpeciesName");
-
-                    b.ToTable("Species");
-
                 });
 
             modelBuilder.Entity("WhaleSpotting.Models.Data.User", b =>
