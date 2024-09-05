@@ -4,14 +4,16 @@ import Explore from "./pages/Explore"
 import Home from "./pages/Home"
 import "./App.scss"
 import { CreateUser } from "./pages/CreateUser"
+import Header from "./Header/Header"
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Explore" element={<Explore />} />
-        <Route path="/Register" element={<CreateUser />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/register" element={<CreateUser />} />
       </Routes>
     </BrowserRouter>
   )
