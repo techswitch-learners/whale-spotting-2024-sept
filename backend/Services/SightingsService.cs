@@ -2,11 +2,11 @@ using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
 
-public class SightingService
+public class SightingsService
 {
     private readonly WhaleSpottingContext _context;
 
-    public SightingService(WhaleSpottingContext context)
+    public SightingsService(WhaleSpottingContext context)
     {
         _context = context;
     }
