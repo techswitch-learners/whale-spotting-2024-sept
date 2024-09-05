@@ -54,8 +54,8 @@ npm start
 
 ### Seed Data
 
-```bash
-dotnet run --seed
+Data will be seeded in development
+
 ```
 
 ### Admin
@@ -64,3 +64,4 @@ After seeding the data, the user table is seeded with the following admin:
 UserName = "Admin"
 Email = "admin@email.com"
 Password = "Pa$$word123"
+```

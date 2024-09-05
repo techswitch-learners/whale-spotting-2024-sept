@@ -62,17 +62,14 @@ public class Program
 
         if (app.Environment.IsDevelopment())
         {
-            if (args.Contains("--seed"))
+            using (var scope = app.Services.CreateScope())
             {
-                using (var scope = app.Services.CreateScope())
-                {
-                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-                    await SampleUsers.CreateAdminAsync(userManager);
-                    await SampleUsers.CreateUsersAsync(userManager);
-                }
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+                await SampleUsers.CreateAdminAsync(userManager);
+                await SampleUsers.CreateUsersAsync(userManager);
             }
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         app.UseHttpsRedirection();
