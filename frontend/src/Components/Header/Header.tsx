@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top custom-navbar">
+    <nav className="navbar navbar-expand-lg custom-navbar container-fluid">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <a className="navbar-brand" href="/">
           <img src={logo} alt="Whale Whale Whale logo" width="200" />

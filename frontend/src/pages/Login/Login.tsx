@@ -1,20 +1,41 @@
 import "./Login.scss"
-import { FormEvent, useState } from "react"
+import { FormEvent, useState, useContext } from "react"
+import { LoginContext } from "../../Components/LoginManager/LoginManager"
+import { loginUser } from "../../api/backendClient"
 
 const Login = () => {
+  const loginContext = useContext(LoginContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [jwt, setJwt] = useState("")
+  const [error, setError] = useState(null)
 
   function tryLogin(event: FormEvent) {
     event.preventDefault()
-    // call endpoint
-    // JWT tokens?
+    loginUser(username, password)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Login failed")
+        }
+        return response.json()
+      })
+      .then((data) => {
+        setJwt(data.token)
+      })
+      .catch((error) => {
+        setError(error.message)
+      })
+    loginContext.logIn()
+    loginContext.saveJwtToContext(jwt)
+    loginContext.saveUsernameToContext(username)
+    loginContext.savePasswordToContext(password)
   }
 
   return (
-    <div>
+    <div className="mx-auto container">
       <h1 className="title">Log In</h1>
       <form className="login-form" onSubmit={tryLogin}>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <label className="form-label">
           Username
           <input
