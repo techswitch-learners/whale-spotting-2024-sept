@@ -2,7 +2,7 @@ import "./Header.scss"
 import { useNavigate } from "react-router-dom"
 
 const Header: React.FC = () => {
-  const logo = require("../images/Whale3logo.png")
+  const logo = require("../../images/Whale3logo.png")
 
   const navigate = useNavigate()
 

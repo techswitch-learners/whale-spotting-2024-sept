@@ -2,6 +2,7 @@ import "./Login.scss"
 import { FormEvent, useState, useContext } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { loginUser } from "../../api/backendClient"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
   const loginContext = useContext(LoginContext)
@@ -9,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const [jwt, setJwt] = useState("")
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   function tryLogin(event: FormEvent) {
     event.preventDefault()
@@ -29,6 +31,7 @@ const Login = () => {
     loginContext.saveJwtToContext(jwt)
     loginContext.saveUsernameToContext(username)
     loginContext.savePasswordToContext(password)
+    navigate("/")
   }
 
   return (
