@@ -18,3 +18,13 @@
   background-color: $whale-blush-pink;
   color: white;
 }
+
+@media (min-width: 767px) {
+  .show-header {
+    display: fixed;
+  }
+}
+
+.show-header {
+  display: fixed;
+}

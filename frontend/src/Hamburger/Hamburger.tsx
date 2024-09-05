@@ -9,11 +9,10 @@ const Hamburger: React.FC = () => {
 
   const handleClick = () => {
     setIsOpen(!isOpen)
-    console.log("Hamburger menu display options!")
     ;<Menu items={menuItems} />
   }
   return (
-    <div>
+    <div className="show-hamburger">
       <button onClick={handleClick} className="hamburger" data-testid="toggle-button">
         <div className="line" />
         <div className="line" />
