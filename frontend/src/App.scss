@@ -1,4 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./colour-variables.scss";
 
 .App {
   text-align: center;
@@ -37,4 +38,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.btn-outline-success {
+  border-color: $whale-blush-pink;
+  color: $whale-blush-pink;
+}
+
+.btn-outline-success:hover {
+  background-color: $whale-blush-pink;
+  color: white;
+  border: $whale-blush-pink;
 }

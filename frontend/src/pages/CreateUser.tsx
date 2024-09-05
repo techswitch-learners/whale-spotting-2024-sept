@@ -16,8 +16,8 @@ export function CreateUser(): JSX.Element {
   }
 
   return (
-    <>
-      <h1 className="title">Register</h1>
+    <div>
+      <h1 className="title">Sign up</h1>
       <form className="createUser-form" onSubmit={handleSubmit}>
         <div className="form-group row">
           <label htmlFor="firstName" className="col-sm-2 col-form-label">
@@ -107,12 +107,12 @@ export function CreateUser(): JSX.Element {
 
         <div className="form-group row">
           <div className="col-sm-10">
-            <button className="btn btn-primary" type="submit">
-              Register
+            <button className="btn btn-outline-success px-4" style={{ width: "200px" }} onClick={handleSubmit}>
+              Sign up
             </button>
           </div>
         </div>
       </form>
-    </>
+    </div>
   )
 }

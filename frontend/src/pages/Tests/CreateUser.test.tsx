@@ -3,13 +3,13 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import { CreateUser } from "../CreateUser"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 
-test("renders Register button", () => {
+test("renders Sign up button", () => {
   render(
     <MemoryRouter>
       <CreateUser />
     </MemoryRouter>,
   )
-  const button = screen.getByRole("button", { name: "Register" })
+  const button = screen.getByRole("button", { name: "Sign up" })
   expect(button).toBeInTheDocument()
 })
 
@@ -99,17 +99,17 @@ test("change of state of about me", () => {
   expect(aboutMeInput.value).toBe("Hello from Evie")
 })
 
-test("go to home page when click on Register button", () => {
+test("go to home page when click on Sign up button", () => {
   render(
-    <MemoryRouter initialEntries={["/register"]}>
+    <MemoryRouter initialEntries={["/signup"]}>
       <Routes>
-        <Route path="/register" element={<CreateUser />} />
+        <Route path="/signup" element={<CreateUser />} />
         <Route path="/" element={<div>Home</div>} />
       </Routes>
     </MemoryRouter>,
   )
 
-  const button = screen.getByRole("button", { name: "Register" })
+  const button = screen.getByRole("button", { name: "Sign up" })
   fireEvent.click(button)
   expect(screen.getByText(/Home/i)).toBeInTheDocument()
 })
