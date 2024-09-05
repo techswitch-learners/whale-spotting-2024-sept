@@ -6,5 +6,9 @@ namespace WhaleSpotting.Controllers;
 [Route("/sightings")]
 public class SightingsController : Controller
 {
-    
+    [HttpPost("create")]
+    public async Task<IActionResult> Create()
+    {
+        return Ok();
+    }
 }
