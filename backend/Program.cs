@@ -29,6 +29,8 @@ builder.Services.AddDbContext<WhaleSpottingContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
 });
 
+builder.Services.AddTransient<SeedSightings>();
+
 builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
 
 builder
@@ -55,18 +57,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// using (var scope = app.Services.CreateScope())
-// {
-//     var sightingManager = scope.ServiceProvider.GetRequiredService<UserManager<Sighting>>();
-//     await SampleSightings.CreateSightingsAsync(sightingManager);
-
-// }
-//         var services = scope.ServiceProvider;
-//         var context = serviceScope.ServiceProvider.GetService<WhaleSpottingContext>();
-//         SeedData.SampleSightings(context);
-
 if (app.Environment.IsDevelopment())
 {
+    if (args.Contains("--seed"))
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var seeder = scope.ServiceProvider.GetService<SeedSightings>();
+            seeder.SeedSighting();
+        }
+    }
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
