@@ -101,9 +101,9 @@ test("change of state of about me", () => {
 
 test("go to home page when click on Register button", () => {
   render(
-    <MemoryRouter initialEntries={["/Register"]}>
+    <MemoryRouter initialEntries={["/register"]}>
       <Routes>
-        <Route path="/Register" element={<CreateUser />} />
+        <Route path="/register" element={<CreateUser />} />
         <Route path="/" element={<div>Home</div>} />
       </Routes>
     </MemoryRouter>,
