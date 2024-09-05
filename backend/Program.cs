@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
+using WhaleSpotting.SeedData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ builder.Services.AddDbContext<WhaleSpottingContext>(options =>
 });
 
 builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
+
+builder.Services.AddTransient<SeedSpecies>();
 
 builder
     .Services.AddAuthentication(options =>
@@ -56,7 +59,14 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    
+    if (args.Contains("--seed"))
+            {
+                using (var scope = app.Services.CreateScope())
+                {
+                    var seeder = scope.ServiceProvider.GetService<SeedSpecies>();
+                    seeder.Seed();
+                }
+            }
 
     app.UseSwagger();
     app.UseSwaggerUI();
