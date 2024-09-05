@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using WhaleSpotting.Models.Data;
 
-namespace WhaleSpotting.Data;
+namespace WhaleSpotting.SeedData;
 
 public static class SampleUsers
 {
@@ -15,7 +15,7 @@ public static class SampleUsers
 
     public static async Task CreateAdminAsync(UserManager<User> userManager)
     {
-        var poweruser = new User
+        var adminUser = new User
         {
             FirstName = "John",
             LastName = "Wick",
@@ -24,10 +24,10 @@ public static class SampleUsers
         };
         string adminPassword = "Pa$$word123";
 
-        var createPowerUser = await userManager.CreateAsync(poweruser, adminPassword);
-        if (createPowerUser.Succeeded)
+        var createAdminUser = await userManager.CreateAsync(adminUser, adminPassword);
+        if (createAdminUser.Succeeded)
         {
-            await userManager.AddToRoleAsync(poweruser, "Admin");
+            await userManager.AddToRoleAsync(adminUser, "Admin");
         }
     }
 
