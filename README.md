@@ -51,3 +51,8 @@ dotnet watch run
 ```bash
 npm start
 ```
+
+### Seeding data
+You can find the seeding data files in the `/backend/SeedData` folder.
+
+These files contain the sample data and methods that are called in Program.cs (inside the `if (app.Environment.IsDevelopment())` statement) to populate the database accordingly.
