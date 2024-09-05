@@ -52,9 +52,17 @@ dotnet watch run
 npm start
 ```
 
+### Seed Data
+
+Data will be seeded in development
+
 ### Admin
 
-The first time you run the program, the user table is seeded with the following admin:
+After seeding the data, the user table is seeded with the following admin:
 UserName = "Admin"
 Email = "admin@email.com"
 Password = "Pa$$word123"
+
+```
+
+```

@@ -60,7 +60,14 @@ public class AuthController(UserManager<User> userManager, RoleManager<Role> rol
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterUserRequest registerUserRequest)
     {
-        var newUser = new User { UserName = registerUserRequest.UserName };
+        var newUser = new User
+        {
+            FirstName = registerUserRequest.FirstName,
+            LastName = registerUserRequest.LastName,
+            Email = registerUserRequest.Email,
+            UserName = registerUserRequest.UserName,
+            AboutMe = registerUserRequest.AboutMe
+        };
         var result = await _userManager.CreateAsync(newUser, registerUserRequest.Password);
         if (!result.Succeeded)
         {
