@@ -4,13 +4,18 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace WhaleSpotting.SeedData {
-    public static class SeedSpecies
+    public class SeedSpecies
     {
 
+        private readonly WhaleSpottingContext _context;
 
-        private static readonly IList<Species> SeedSpeciesData = new List<Species>
+        public SeedSpecies(WhaleSpottingContext context)
         {
+            _context = context;
+        }
 
+        private readonly IList<Species> seedSpeciesData = new List<Species>
+        {
             new Species() {SpeciesId = 1, SpeciesName = "Antarctic Minke Whale", ExampleLink = "https://static.inaturalist.org/photos/221755875/medium.jpg", TailPictureLink = "https://static.inaturalist.org/photos/11895045/large.jpg", WikiLink = "https://en.wikipedia.org/wiki/Humpback_whale", TotalSightings = 0},
             new Species() {SpeciesId = 2, SpeciesName = "Arnoux's Beaked Whale", ExampleLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/2075454/medium.jpg", TailPictureLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Berardius_arnuxii_2.jpg/2880px-Berardius_arnuxii_2.jpg", WikiLink = "https://en.wikipedia.org/wiki/Arnoux%27s_beaked_whale", TotalSightings = 0},
             new Species() {SpeciesId = 3, SpeciesName = "Atlantic Humpback Dolphin", ExampleLink = "https://static.inaturalist.org/photos/290804055/large.jpg", TailPictureLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/92845087/large.jpeg", WikiLink = "https://en.wikipedia.org/wiki/Atlantic_humpback_dolphin", TotalSightings = 0},
@@ -101,8 +106,15 @@ namespace WhaleSpotting.SeedData {
             new Species() {SpeciesId = 88, SpeciesName = "Vaquita", ExampleLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/209711467/medium.jpg", TailPictureLink = "https://u4d2z7k9.rocketcdn.me/wp-content/uploads/2022/04/Untitled-design-2022-04-12T161151.368.jpg", WikiLink = "https://en.wikipedia.org/wiki/Vaquita", TotalSightings = 0},
             new Species() {SpeciesId = 89, SpeciesName = "White-beaked Dolphin", ExampleLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/146341190/medium.jpg", TailPictureLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/245196519/medium.jpg", WikiLink = "https://en.wikipedia.org/wiki/White-beaked_dolphin", TotalSightings = 0},
             new Species() {SpeciesId = 90, SpeciesName = "Yangtze Finless Porpoise", ExampleLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/162435290/medium.jpg", TailPictureLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Yangtze_finless_porpoise%2C_10_November_2006.jpg/440px-Yangtze_finless_porpoise%2C_10_November_2006.jpg", WikiLink = "https://en.wikipedia.org/wiki/Yangtze_finless_porpoise", TotalSightings = 0},
-            
         };
         
+        public void Seed()
+        {
+            if (!_context.Species.Any())
+            {
+                _context.Species.AddRange(seedSpeciesData);
+                _context.SaveChanges();
+            }
+        }
     }
 }
