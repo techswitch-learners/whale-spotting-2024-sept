@@ -20,7 +20,7 @@ namespace WhaleSpotting.SeedData
                 Id = 1,
                 UserId = 1,
                 WhaleSpeciesId = 1,
-                Lattitude = 64.0123F,
+                Latitude = 64.0123F,
                 Longitude = -74.0122F,
                 PhotoUrl =
                     "https://media.istockphoto.com/id/1436921059/photo/closeup-shot-of-a-humpback-whale-under-the-sea.jpg?s=2048x2048&w=is&k=20&c=vl4PFMO_hcVjZZeIq4MxGosri9aUll1nMAbndOxhm8E=",
@@ -33,7 +33,7 @@ namespace WhaleSpotting.SeedData
                 Id = 2,
                 UserId = 2,
                 WhaleSpeciesId = 1,
-                Lattitude = 54.012354f,
+                Latitude = 54.012354f,
                 Longitude = -94.012267f,
                 PhotoUrl =
                     "https://media.istockphoto.com/id/1299555061/photo/close-up-of-humpback-whale-breaching-and-surface-activity.jpg?s=2048x2048&w=is&k=20&c=9ielo4BxhF6DCYi2BQXhIbP-obrHhiCU1Pla4mS_mhM=",
@@ -46,7 +46,7 @@ namespace WhaleSpotting.SeedData
                 Id = 3,
                 UserId = 2,
                 WhaleSpeciesId = 1,
-                Lattitude = 4.012354F,
+                Latitude = 4.012354F,
                 Longitude = 44.012267F,
                 PhotoUrl =
                     "https://images.unsplash.com/photo-1531739419660-bd4a79e4deca?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -59,7 +59,7 @@ namespace WhaleSpotting.SeedData
                 Id = 4,
                 UserId = 2,
                 WhaleSpeciesId = 1,
-                Lattitude = 54.012354F,
+                Latitude = 54.012354F,
                 Longitude = -94.012267F,
                 PhotoUrl =
                     "https://images.unsplash.com/photo-1520646924857-261be3037bc7?q=80&w=3069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -72,7 +72,7 @@ namespace WhaleSpotting.SeedData
                 Id = 5,
                 UserId = 2,
                 WhaleSpeciesId = 1,
-                Lattitude = 54.012354F,
+                Latitude = 54.012354F,
                 Longitude = -94.012267F,
                 PhotoUrl =
                     "https://images.unsplash.com/photo-1723246619553-fd5685fb559f?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -85,7 +85,7 @@ namespace WhaleSpotting.SeedData
                 Id = 6,
                 UserId = 2,
                 WhaleSpeciesId = 1,
-                Lattitude = 54.012354F,
+                Latitude = 54.012354F,
                 Longitude = -94.012267F,
                 PhotoUrl =
                     "https://images.unsplash.com/photo-1570913179118-f3d24be1d1f7?q=80&w=3943&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
