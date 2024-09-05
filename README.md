@@ -52,7 +52,18 @@ dotnet watch run
 npm start
 ```
 
-### Seeding data
+### Seeding Data
+
+Data will be seeded in development.
+
 You can find the seeding data files in the `/backend/SeedData` folder.
 
 These files contain the sample data and methods that are called in Program.cs (inside the `if (app.Environment.IsDevelopment())` statement) to populate the database accordingly.
+
+
+### Admin
+
+After seeding the data, the user table is seeded with the following admin:
+UserName = "Admin"
+Email = "admin@email.com"
+Password = "Pa$$word123"
