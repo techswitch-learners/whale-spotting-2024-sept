@@ -69,6 +69,7 @@ public class Program
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
+                
                 var seeder = scope.ServiceProvider.GetService<SeedSpecies>();
                 seeder.Seed();
             }
