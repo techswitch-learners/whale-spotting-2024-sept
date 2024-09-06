@@ -1,27 +1,20 @@
 import React from "react"
 import "./Menu.scss"
+import { useNavigate } from "react-router-dom"
+import MenuItems from "./MenuItems"
+import Hamburger from "../Hamburger/Hamburger"
 
-interface MenuItem {
-  label: string
-  link: string
-}
 
-interface MenuProps {
-  items: MenuItem[]
-}
 
-const Menu: React.FC<MenuProps> = ({ items }) => {
+
+const Menu: React.FC = () => {
+
   return (
     <div>
+      {/* <button type="button" className="btn-close" aria-label="Close"></button> */}
       <h1>Menu</h1>
       <nav>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>
-              <a href={item.link}>{item.label}</a>
-            </li>
-          ))}
-        </ul>
+        <MenuItems />
       </nav>
     </div>
   )

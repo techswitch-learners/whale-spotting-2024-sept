@@ -7,6 +7,9 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  position : fixed;
+  right :0;
+  z-index: 1000; 
 }
 
 .line {
@@ -18,10 +21,6 @@
 
 .show-hamburger {
   display: none;
-  position: fixed; 
-  right: 20px; 
-  top: 20px; 
-  z-index: 1000; 
 }
 
 @media (max-width: 767px) {
