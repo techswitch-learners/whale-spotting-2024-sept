@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-const MenuItems: React.FC = () => {
+const NavItems: React.FC = () => {
 
   const navigate = useNavigate()
 
@@ -27,4 +27,4 @@ const MenuItems: React.FC = () => {
   )
 }
 
-export default MenuItems
+export default NavItems
