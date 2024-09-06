@@ -63,6 +63,12 @@ UserName = "Admin"
 Email = "admin@email.com"
 Password = "Pa$$word123"
 
-```
+## pre-commit hooks
 
+When committing changes a pre-commit hook will run that includes runs a linter and the tests for both frontedn and backend.
+
+If you need to commit without the pre-commit hook running you can used the `--no-verify` flag when making your commit
+
+```bash
+git commit --no-verify -m "your commit message here"
 ```

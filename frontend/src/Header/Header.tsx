@@ -1,4 +1,5 @@
 import "./Header.scss"
+import "../App.scss"
 import { useNavigate } from "react-router-dom"
 import MenuItems from "../Menu/MenuItems"
 
