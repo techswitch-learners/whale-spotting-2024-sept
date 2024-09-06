@@ -5,10 +5,10 @@ import { loginUser } from "../../api/backendClient"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const loginContext = useContext(LoginContext)
+  const { logIn, saveUsernameToContext, savePasswordToContext, saveJwtToContext } = useContext(LoginContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [jwt, setJwt] = useState("")
+  const [, setJwt] = useState("")
   const [error, setError] = useState(null)
   const navigate = useNavigate()
 
@@ -17,21 +17,21 @@ const Login = () => {
     loginUser(username, password)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Login failed")
+          throw new Error("Incorrect username and/or password.")
         }
         return response.json()
       })
       .then((data) => {
         setJwt(data.token)
+        saveJwtToContext(data.token)
+        saveUsernameToContext(username)
+        savePasswordToContext(password)
+        logIn()
+        navigate("/")
       })
       .catch((error) => {
         setError(error.message)
       })
-    loginContext.logIn()
-    loginContext.saveJwtToContext(jwt)
-    loginContext.saveUsernameToContext(username)
-    loginContext.savePasswordToContext(password)
-    navigate("/")
   }
 
   return (

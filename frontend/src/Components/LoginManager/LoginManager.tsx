@@ -18,7 +18,7 @@ interface LoginManagerProps {
 }
 
 export function LoginManager(props: LoginManagerProps): JSX.Element {
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const [contextUsername, setContextUsername] = useState("")
   const [contextPassword, setContextPassword] = useState("")
@@ -47,14 +47,14 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
   const context = {
     isLoggedIn: loggedIn,
     isAdmin: loggedIn,
-    logIn: logIn,
-    logOut: logOut,
+    logIn,
+    logOut,
     username: contextUsername,
     password: contextPassword,
     jwt: contextJwt,
-    saveUsernameToContext: saveUsernameToContext,
-    savePasswordToContext: savePasswordToContext,
-    saveJwtToContext: saveJwtToContext,
+    saveUsernameToContext,
+    savePasswordToContext,
+    saveJwtToContext,
   }
 
   return <LoginContext.Provider value={context}>{props.children}</LoginContext.Provider>
