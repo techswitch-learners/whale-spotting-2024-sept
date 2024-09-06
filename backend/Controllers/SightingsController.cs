@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Request;
+using WhaleSpotting.Models.Response;
+using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
 
@@ -7,9 +9,9 @@ namespace WhaleSpotting.Controllers;
 [Route("/sightings")]
 public class SightingsController : Controller
 {
-    private readonly SightingsService _service;
+    private readonly ISightingsService _service;
 
-    public SightingsController(SightingsService service)
+    public SightingsController(ISightingsService service)
     {
         _service = service;
     }
@@ -17,9 +19,15 @@ public class SightingsController : Controller
     [HttpPost("create")]
     public async Task<IActionResult> Create(SightingsRequest sightingRequest)
     {
-        _service.CreateSighting(sightingRequest);
-        return Ok();
-
-        //implement different responses
+        try
+        {
+            await _service.CreateSighting(sightingRequest);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
+
 }

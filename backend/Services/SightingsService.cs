@@ -1,8 +1,9 @@
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
+using WhaleSpotting.Services;
 
-public class SightingsService
+public class SightingsService : ISightingsService
 {
     private readonly WhaleSpottingContext _context;
 
@@ -11,7 +12,7 @@ public class SightingsService
         _context = context;
     }
 
-    public void CreateSighting(SightingsRequest sightingsRequest)
+    public async Task CreateSighting(SightingsRequest sightingsRequest)
     {
 
         Sighting sighting = new Sighting()
@@ -26,7 +27,7 @@ public class SightingsService
             IsApproved = false
         };
 
-        _context.Add(sighting);
-        _context.SaveChanges();
+        await _context.AddAsync(sighting);
+        await _context.SaveChangesAsync();
     }
 }
