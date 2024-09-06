@@ -70,8 +70,8 @@ public class Program
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
                 
-                var seeder = scope.ServiceProvider.GetService<SeedSpecies>();
-                seeder.Seed();
+                var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
+                speciesSeeder.Seed();
             }
 
             app.UseSwagger();
