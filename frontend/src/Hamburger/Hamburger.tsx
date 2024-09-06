@@ -10,7 +10,7 @@ const Hamburger: React.FC = () => {
     setIsOpen(!isOpen);
   }
   return (
-    <div className="-showhamburger">
+    <div className="show-hamburger">
       <button onClick={handleClick} className="hamburger" data-testid="toggle-button">
         <div className="line" />
         <div className="line" />
