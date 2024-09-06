@@ -8,8 +8,7 @@ const Hamburger: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
-    setIsOpen(!isOpen)
-    ;<Menu items={menuItems} />
+    setIsOpen(!isOpen);
   }
   return (
     <div className="show-hamburger">
@@ -20,7 +19,7 @@ const Hamburger: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="menu" data-testid="menu">
+        <div className="menu" data-testid="menu" onClick={handleClick}>
           <Menu items={menuItems} />
         </div>
       )}

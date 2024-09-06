@@ -16,12 +16,18 @@
   transition: all 0.3s ease;
 }
 
+.show-hamburger {
+  display: none;
+  position: fixed; 
+  right: 20px; 
+  top: 20px; 
+  z-index: 1000; 
+}
+
 @media (max-width: 767px) {
   .show-hamburger {
-    display: fixed;
+    display: block;
   }
 }
 
-.show-hamburger {
-  display: none;
-}
+

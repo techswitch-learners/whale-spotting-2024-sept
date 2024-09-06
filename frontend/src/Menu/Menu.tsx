@@ -1,4 +1,5 @@
 import React from "react"
+import "./Menu.scss"
 
 interface MenuItem {
   label: string

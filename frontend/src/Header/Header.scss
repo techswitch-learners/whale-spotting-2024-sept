@@ -19,12 +19,12 @@
   color: white;
 }
 
-@media (min-width: 767px) {
-  .show-header {
-    display: fixed;
-  }
+.show-header {
+  display: none;
 }
 
-.show-header {
-  display: fixed;
+@media (min-width: 767px) {
+  .show-header {
+    display: block;
+  }
 }
