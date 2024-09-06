@@ -6,7 +6,11 @@ const Header: React.FC = () => {
 
   const navigate = useNavigate()
 
-  const handleClick = () => {
+  const handleClickSignUp = () => {
+    navigate("/signup")
+  }
+
+  const handleClickLogIn = () => {
     navigate("/login")
   }
 
@@ -29,9 +33,19 @@ const Header: React.FC = () => {
             </a>
           </li>
         </ul>
-
-        <button className="btn btn-outline-success px-4" style={{ width: "200px" }} onClick={handleClick}>
-          Log in / Sign up
+        <button
+          className="btn btn-outline-success px-3"
+          style={{ width: "120px", marginRight: "10px" }}
+          onClick={handleClickSignUp}
+        >
+          Sign up
+        </button>
+        <button
+          className="btn btn-outline-success px-3"
+          style={{ width: "120px", marginRight: "10px" }}
+          onClick={handleClickLogIn}
+        >
+          Log in
         </button>
       </div>
     </nav>

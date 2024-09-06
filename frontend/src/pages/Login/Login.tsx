@@ -8,7 +8,6 @@ const Login = () => {
   const { logIn, saveUsernameToContext, savePasswordToContext, saveJwtToContext } = useContext(LoginContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [, setJwt] = useState("")
   const [error, setError] = useState(null)
   const navigate = useNavigate()
 
@@ -22,7 +21,6 @@ const Login = () => {
         return response.json()
       })
       .then((data) => {
-        setJwt(data.token)
         saveJwtToContext(data.token)
         saveUsernameToContext(username)
         savePasswordToContext(password)
