@@ -25,7 +25,6 @@ public class UserController(UserManager<User> userManager) : Controller
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] string id)
     {
-        //id should be passed as a string
         var user = await _userManager.FindByIdAsync(id);
 
         if (user == null)
@@ -41,13 +40,12 @@ public class UserController(UserManager<User> userManager) : Controller
             var generalErrors = new List<string>();
             foreach (var error in result.Errors)
             {
-                generalErrors.add(error.Description);
+                generalErrors.Add(error.Description);
             }
             errorResponse.Errors["General"] = generalErrors;
             return BadRequest(errorResponse);
         }
 
-        //return RedirectToAction("ListUsers");
         return Ok();
     }
 }
