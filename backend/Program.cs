@@ -37,7 +37,10 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
         });
 
-        builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
+        builder
+            .Services.AddIdentity<User, Role>()
+            .AddEntityFrameworkStores<WhaleSpottingContext>()
+            .AddDefaultTokenProviders();
 
         builder.Services.AddTransient<SeedSpecies>();
 
@@ -72,7 +75,7 @@ public class Program
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
-                
+
                 var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
                 speciesSeeder.Seed();
             }
