@@ -1,6 +1,6 @@
 import "./Header.scss"
 import "../App.scss"
-import NavItems from "../NavItems/NavItems"
+import NavigationLinks from "../NavigationLinks/NavigationLinks"
 
 const Header: React.FC = () => {
   const logo = require("../images/Whale3logo.png")
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
           <a className="navbar-brand" href="/">
             <img src={logo} alt="Whale Whale Whale logo" width="200" />
           </a>
-          <NavItems />
+          <NavigationLinks />
         </div>
       </nav>
     </div>

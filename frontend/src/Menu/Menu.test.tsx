@@ -39,8 +39,8 @@ describe("Menu contains all the navigation items", () => {
             </MemoryRouter>
         )
 
-        const navItems = screen.getByTestId("navItems");
-        expect(navItems).toBeInTheDocument();
+        const navigationLinks = screen.getByTestId("navigationLinks");
+        expect(navigationLinks).toBeInTheDocument();
     });
 
     test("menu has home link", () => {

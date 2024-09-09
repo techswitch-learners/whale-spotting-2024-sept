@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-const NavItems: React.FC = () => {
+const NavigationLinks: React.FC = () => {
 
   const navigate = useNavigate()
 
@@ -9,7 +9,7 @@ const NavItems: React.FC = () => {
   }
 
   return (
-    <ul className="navbar-nav mb-2 mb-lg-0 d-flex w-100 justify-content-around" data-testid="navItems">
+    <ul className="navbar-nav mb-2 mb-lg-0 d-flex w-100 justify-content-around" data-testid="navigationLinks">
       <li className="nav-item">
         <a className="nav-link active" aria-current="page" href="/">
           Home
@@ -27,4 +27,4 @@ const NavItems: React.FC = () => {
   )
 }
 
-export default NavItems
+export default NavigationLinks

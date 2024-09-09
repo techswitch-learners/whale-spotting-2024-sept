@@ -1,13 +1,13 @@
 import React from "react"
 import "./Menu.scss"
-import NavItems from "../NavItems/NavItems"
+import NavigationLinks from "../NavigationLinks/NavigationLinks"
 
 const Menu: React.FC = () => {
   return (
     <div>
       <h1>Menu</h1>
       <nav>
-        <NavItems />
+        <NavigationLinks />
       </nav>
     </div>
   )
