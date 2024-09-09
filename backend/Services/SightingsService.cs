@@ -40,9 +40,17 @@ public class SightingsService : ISightingsService
 
     public async Task DeleteSighting(string id)
     {
+        int sightingId = Convert.ToInt32(id);
 
-        // check if sighting exists
-        // if not, throw exception
+        Sighting sighting = _context.Sightings.FirstOrDefault(sighting => sighting.Id == sightingId);
+        
+        if (sighting == null) {
+            throw new Exception();
+        }
+
+        if (sighting.UserId !== Identity user) {
+            throw new UnauthorizedAccessException("");
+        }
         // check if user id of the sighting matches with user id in identity
         // if not, throw exception
         // try to delete the record from database and save changes
