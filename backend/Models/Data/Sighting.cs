@@ -9,7 +9,10 @@ public class Sighting
 {
     [Key]
     public int Id { get; set; }
+
+    [ForeignKey("User")]
     public int UserId { get; set; }
+    public User User { get; set; } = null!;
     public int WhaleSpeciesId { get; set; }
     public float Latitude { get; set; }
     public float Longitude { get; set; }

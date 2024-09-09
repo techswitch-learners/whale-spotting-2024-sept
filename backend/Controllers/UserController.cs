@@ -3,15 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
 using WhaleSpotting.Models.Response;
+using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
 
 [ApiController]
 [Route("/users")]
-public class UserController(UserManager<User> userManager, WhaleSpottingContext context) : Controller
+public class UserController(UserManager<User> userManager, IUserService userService) : Controller
 {
     private readonly UserManager<User> _userManager = userManager;
-    private readonly WhaleSpottingContext _context = context;
+
+    // private readonly WhaleSpottingContext _context = context;
+
 
     [HttpGet("{userName}")]
     public async Task<IActionResult> GetByUserName([FromRoute] string userName)
@@ -24,21 +27,10 @@ public class UserController(UserManager<User> userManager, WhaleSpottingContext 
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName!, });
     }
 
-    [HttpGet("GetUserId/{userId}")]
-    public async Task<User?> GetByUserId([FromRoute] string userId)
+    [HttpPost("/{userId}/update")]
+    public async Task<IActionResult> UpdateUser([FromRoute] string userId, UpdateUserRequest userRequest)
     {
-        var matchingUser = await _userManager.FindByIdAsync(userId);
-        if (matchingUser == null)
-        {
-            return null;
-        }
-        return matchingUser;
-    }
-
-    [HttpPost("UpdateUser")]
-    public async Task<IActionResult> UpdateUser(UpdateUserRequest userRequest)
-    {
-        User? user = await GetByUserId(userRequest.Id.ToString());
+        User? user = await _userManager.FindByIdAsync(userId);
         var errorResponse = new ErrorResponse();
         var generalErrors = new List<string>();
 
@@ -66,8 +58,8 @@ public class UserController(UserManager<User> userManager, WhaleSpottingContext 
             user.AboutMe = userRequest.AboutMe;
         }
 
-        _context.Users.Update(user);
-        await _context.SaveChangesAsync();
+        await userService.Update(user);
+
         return Ok(
             new UpdateUserResponse
             {

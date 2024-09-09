@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.SeedData;
+using WhaleSpotting.Services;
 
 public class Program
 {
@@ -37,6 +38,7 @@ public class Program
         builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
 
         builder.Services.AddTransient<SeedSpecies>();
+        builder.Services.AddTransient<IUserService, UserService>();
 
         builder
             .Services.AddAuthentication(options =>
@@ -69,7 +71,7 @@ public class Program
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
-                
+
                 var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
                 speciesSeeder.Seed();
             }
