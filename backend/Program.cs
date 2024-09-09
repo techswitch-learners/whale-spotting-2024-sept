@@ -36,6 +36,8 @@ public class Program
 
         builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
 
+        builder.Services.AddTransient<SeedSpecies>();
+
         builder
             .Services.AddAuthentication(options =>
             {
@@ -67,7 +69,11 @@ public class Program
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
+                
+                var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
+                speciesSeeder.Seed();
             }
+
             app.UseSwagger();
             app.UseSwaggerUI();
         }
