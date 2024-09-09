@@ -30,6 +30,8 @@ public class Program
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
+        builder.Services.AddTransient<ISightingsService, SightingsService>();
+
         builder.Services.AddDbContext<WhaleSpottingContext>(options =>
         {
             options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
