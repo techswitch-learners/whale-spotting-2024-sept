@@ -29,10 +29,10 @@ public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options
         };
         builder.Entity<Role>().HasData(userRole, adminRole);
 
-        // Indexing SpeciesName
         builder.Entity<Species>(builder =>
         {
             builder.HasIndex(sp => sp.SpeciesName);
+            
             builder.HasMany(e => e.Sightings)
             .WithOne(e => e.Species)
             .HasForeignKey(e => e.SpeciesId)
