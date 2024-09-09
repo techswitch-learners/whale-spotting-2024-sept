@@ -1,82 +1,95 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.SeedData;
 
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddCors(options =>
+public class Program
 {
-    options.AddDefaultPolicy(policy =>
+    public static async Task Main(string[] args)
     {
-        policy.WithOrigins(builder.Configuration["Cors:Frontend"]!).AllowAnyMethod().AllowAnyHeader();
-    });
-});
+        var builder = WebApplication.CreateBuilder(args);
 
-builder
-    .Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    });
-
-builder.Services.AddDbContext<WhaleSpottingContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
-});
-
-builder.Services.AddTransient<SeedSightings>();
-
-builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
-
-builder
-    .Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
+        builder.Services.AddCors(options =>
         {
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.Default.GetBytes(builder.Configuration["Jwt:Secret"]!)
-            ),
-        };
-    });
+            options.AddDefaultPolicy(policy =>
+            {
+                policy.WithOrigins(builder.Configuration["Cors:Frontend"]!).AllowAnyMethod().AllowAnyHeader();
+            });
+        });
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+        builder
+            .Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    if (args.Contains("--seed"))
-    {
-        using (var scope = app.Services.CreateScope())
+        builder.Services.AddDbContext<WhaleSpottingContext>(options =>
         {
-            var seeder = scope.ServiceProvider.GetService<SeedSightings>();
-            seeder.SeedSighting();
+            options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
+        });
+
+        builder.Services.AddTransient<SeedSightings>();
+
+        builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
+
+        builder.Services.AddTransient<SeedSpecies>();
+
+        builder
+            .Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.Default.GetBytes(builder.Configuration["Jwt:Secret"]!)
+                    ),
+                };
+            });
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        var app = builder.Build();
+
+        if (app.Environment.IsDevelopment())
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+                await SampleUsers.CreateAdminAsync(userManager);
+                await SampleUsers.CreateUsersAsync(userManager);
+
+                var seeder = scope.ServiceProvider.GetService<SeedSightings>();
+                seeder.SeedSighting();
+
+                var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
+                speciesSeeder.Seed();
+            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseHttpsRedirection();
+        app.UseCors();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
     }
-
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-app.UseCors();
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

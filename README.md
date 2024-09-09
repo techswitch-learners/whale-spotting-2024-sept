@@ -53,3 +53,28 @@ dotnet watch run
 ```bash
 npm start
 ```
+
+### Seeding Data
+
+Data will be seeded in development.
+
+You can find the seeding data files in the `/backend/SeedData` folder.
+
+These files contain the sample data and methods that are called in Program.cs (inside the `if (app.Environment.IsDevelopment())` statement) to populate the database accordingly.
+
+### Admin
+
+After seeding the data, the user table is seeded with the following admin:
+UserName = "Admin"
+Email = "admin@email.com"
+Password = "Pa$$word123"
+
+## pre-commit hooks
+
+When committing changes a pre-commit hook will run that includes runs a linter and the tests for both frontedn and backend.
+
+If you need to commit without the pre-commit hook running you can used the `--no-verify` flag when making your commit
+
+```bash
+git commit --no-verify -m "your commit message here"
+```
