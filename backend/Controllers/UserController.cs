@@ -21,4 +21,30 @@ public class UserController(UserManager<User> userManager) : Controller
         }
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName!, });
     }
+
+    public async Task<IActionResult> Delete([FromRoute] string id)
+    {
+        //id should be passed as a string
+        var user = await _userManager.FindByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        else
+        {
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                //return RedirectToAction("ListUsers");
+                return Ok();
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    // return
+                }
+            }
+        }
+    }
 }
