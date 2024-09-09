@@ -33,33 +33,46 @@ const Login = () => {
   }
 
   return (
-    <div className="mx-auto container">
-      <h1 className="title">Log In</h1>
+    <div>
+      <h1 className="title">Log in</h1>
       <form className="login-form" onSubmit={tryLogin}>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <label className="form-label">
-          Username
-          <input
-            className="form-input"
-            type={"text"}
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+        <div className="form-group row">
+          <label htmlFor="username" className="col-sm-2 col-form-label">
+            Username
+          </label>
+          <div className="col-sm-3">
+            <input
+              id="username"
+              className="form-input"
+              type={"text"}
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label htmlFor="password" className="col-sm-2 col-form-label">
+            Password
+          </label>
+          <div className="col-sm-3">
+            <input
+              id="password"
+              className="form-input"
+              type={"password"}
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+        </div>
 
-        <label className="form-label">
-          Password
-          <input
-            className="form-input"
-            type={"password"}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-
-        <button className="submit-button" type="submit">
-          Log In
-        </button>
+        <div className="form-group row">
+          <div className="col-sm-10">
+            <button className="btn btn-outline-success px-4" style={{ width: "200px" }} type="submit">
+              Log in
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   )
