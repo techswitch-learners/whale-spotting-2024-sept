@@ -21,6 +21,13 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
