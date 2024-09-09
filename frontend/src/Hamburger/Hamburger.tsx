@@ -20,8 +20,8 @@ const Hamburger: React.FC = () => {
 
       {
         isOpen ? 
-        <div className="menu menu-open"><Menu/></div> : 
-        <div className="menu menu-hidden"><Menu/></div>
+        <div className="menu menu-open" data-testid="menu"><Menu/></div> : 
+        <div className="menu menu-hidden" data-testid="menu"><Menu/></div>
       }
       
     </div>
