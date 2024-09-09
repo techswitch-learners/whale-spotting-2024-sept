@@ -2,14 +2,22 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Response;
+using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
 
 [ApiController]
 [Route("/users")]
-public class UserController(UserManager<User> userManager) : Controller
+public class UserController : Controller
 {
-    private readonly UserManager<User> _userManager = userManager;
+    private readonly UserManager<User> _userManager;
+    private readonly IUserService _service;
+
+    public UserController(UserManager<User> userManager, IUserService service)
+    {
+        _userManager = userManager;
+        _service = service;
+    }
 
     [HttpGet("{userName}")]
     public async Task<IActionResult> GetByUserName([FromRoute] string userName)
