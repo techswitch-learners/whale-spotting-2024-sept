@@ -1,19 +1,24 @@
+using Microsoft.AspNetCore.Identity;
 using WhaleSpotting.Models.Data;
 
 namespace WhaleSpotting.Services;
 
+public interface IUserService
+{
+    public Task Update(User user);
+}
+
 public class UserService : IUserService
 {
-    private readonly WhaleSpottingContext _context;
+    private readonly UserManager<User> _userManager;
 
-    public UserService(WhaleSpottingContext context)
+    public UserService(UserManager<User> userManager)
     {
-        _context = context;
+        _userManager = userManager;
     }
 
     public async Task Update(User user)
     {
-        _context.Users.Update(user);
-        await _context.SaveChangesAsync();
+        await _userManager.UpdateAsync(user);
     }
 }

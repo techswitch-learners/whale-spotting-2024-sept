@@ -13,12 +13,10 @@ public class UserController(UserManager<User> userManager, IUserService userServ
 {
     private readonly UserManager<User> _userManager = userManager;
 
-    // private readonly WhaleSpottingContext _context = context;
-
-
     [HttpGet("{userName}")]
     public async Task<IActionResult> GetByUserName([FromRoute] string userName)
     {
+        // TODO: WS 6 User Delete Endpoint  - implement user service GetByUserName on next line
         var matchingUser = await _userManager.FindByNameAsync(userName);
         if (matchingUser == null)
         {
@@ -30,6 +28,7 @@ public class UserController(UserManager<User> userManager, IUserService userServ
     [HttpPost("/{userId}/update")]
     public async Task<IActionResult> UpdateUser([FromRoute] string userId, UpdateUserRequest userRequest)
     {
+        // TODO WS 6 Users Delete Endpoint - implement user service GetByUserId on next line
         User? user = await _userManager.FindByIdAsync(userId);
         var errorResponse = new ErrorResponse();
         var generalErrors = new List<string>();
