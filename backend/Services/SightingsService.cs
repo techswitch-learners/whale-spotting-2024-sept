@@ -6,6 +6,8 @@ namespace WhaleSpotting.Services;
 public interface ISightingsService
 {
     public Task CreateSighting(SightingsRequest sightingsRequest);
+    public Task DeleteSighting(string id);
+    
 }
 
 public class SightingsService : ISightingsService
@@ -23,7 +25,7 @@ public class SightingsService : ISightingsService
         Sighting sighting = new Sighting()
         {
             UserId = sightingsRequest.UserId,
-            WhaleSpeciesId = sightingsRequest.WhaleSpeciesId,
+            SpeciesId = sightingsRequest.SpeciesId,
             Latitude = sightingsRequest.Latitude,
             Longitude = sightingsRequest.Longitude,
             PhotoUrl = sightingsRequest.PhotoUrl,
@@ -34,5 +36,16 @@ public class SightingsService : ISightingsService
 
         await _context.AddAsync(sighting);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteSighting(string id)
+    {
+
+        // check if sighting exists
+        // if not, throw exception
+        // check if user id of the sighting matches with user id in identity
+        // if not, throw exception
+        // try to delete the record from database and save changes
+        // catch exceptions if deletion failed
     }
 }
