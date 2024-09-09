@@ -22,29 +22,32 @@ public class UserController(UserManager<User> userManager) : Controller
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName!, });
     }
 
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] string id)
     {
         //id should be passed as a string
         var user = await _userManager.FindByIdAsync(id);
+
         if (user == null)
         {
             return NotFound();
         }
-        else
+
+        var result = await _userManager.DeleteAsync(user);
+
+        if (!result.Succeeded)
         {
-            var result = await _userManager.DeleteAsync(user);
-            if (result.Succeeded)
+            var errorResponse = new ErrorResponse();
+            var generalErrors = new List<string>();
+            foreach (var error in result.Errors)
             {
-                //return RedirectToAction("ListUsers");
-                return Ok();
+                generalErrors.add(error.Description);
             }
-            else
-            {
-                foreach (var error in result.Errors)
-                {
-                    // return
-                }
-            }
+            errorResponse.Errors["General"] = generalErrors;
+            return BadRequest(errorResponse);
         }
+
+        //return RedirectToAction("ListUsers");
+        return Ok();
     }
 }
