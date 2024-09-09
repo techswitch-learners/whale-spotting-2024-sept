@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.SeedData;
+using WhaleSpotting.Services;
 
 public class Program
 {
@@ -28,6 +29,8 @@ public class Program
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
+
+        builder.Services.AddTransient<ISightingsService, SightingsService>();
 
         builder.Services.AddDbContext<WhaleSpottingContext>(options =>
         {
