@@ -43,6 +43,7 @@ public class Program
             .AddDefaultTokenProviders();
 
         builder.Services.AddTransient<SeedSpecies>();
+        builder.Services.AddTransient<IUserService, UserService>();
 
         builder
             .Services.AddAuthentication(options =>
