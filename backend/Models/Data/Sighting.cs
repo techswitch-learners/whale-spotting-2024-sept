@@ -9,6 +9,8 @@ public class Sighting
 {
     [Key]
     public int Id { get; set; }
+
+    [ForeignKey("FK_Sightings_User_Sighting")]
     public int UserId { get; set; }
     public int WhaleSpeciesId { get; set; }
     public float Latitude { get; set; }
