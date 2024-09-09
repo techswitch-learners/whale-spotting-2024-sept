@@ -1,7 +1,12 @@
-using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
-using WhaleSpotting.Services;
+
+namespace WhaleSpotting.Services;
+
+public interface ISightingsService
+{
+    public Task CreateSighting(SightingsRequest sightingsRequest);
+}
 
 public class SightingsService : ISightingsService
 {

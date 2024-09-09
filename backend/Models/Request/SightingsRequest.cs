@@ -4,7 +4,6 @@ namespace WhaleSpotting.Models.Request;
 
 public class SightingsRequest
 {
-    // public class Request : BadRequest, IRequest
     public int UserId { get; set; }
     public int WhaleSpeciesId { get; set; }
     public float Latitude { get; set; }
