@@ -46,28 +46,36 @@ public class UserController(UserManager<User> userManager, WhaleSpottingContext 
         {
             return NotFound();
         }
-        else if (user.IsSuspended)
+
+        if (user.IsSuspended)
         {
             errorResponse.Errors["User is suspended"] = generalErrors;
             return BadRequest(errorResponse);
-            ;
         }
-        else
+
+        if (userRequest.FirstName != null)
         {
             user.FirstName = userRequest.FirstName;
-            user.LastName = userRequest.LastName;
-            user.AboutMe = userRequest.AboutMe;
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
-            return Ok(
-                new UpdateUserResponse
-                {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    AboutMe = user.AboutMe
-                }
-            );
         }
+        if (userRequest.LastName != null)
+        {
+            user.LastName = userRequest.LastName;
+        }
+        if (userRequest.AboutMe != null)
+        {
+            user.AboutMe = userRequest.AboutMe;
+        }
+
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+        return Ok(
+            new UpdateUserResponse
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                AboutMe = user.AboutMe
+            }
+        );
     }
 }
