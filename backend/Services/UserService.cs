@@ -5,6 +5,7 @@ namespace WhaleSpotting.Services;
 
 public interface IUserService
 {
+    public Task<User> FindByName(string userName);
     public Task Update(User user);
 }
 
@@ -15,6 +16,11 @@ public class UserService : IUserService
     public UserService(UserManager<User> userManager)
     {
         _userManager = userManager;
+    }
+
+    public async Task<User> FindByName(string userName)
+    {
+        return await _userManager.FindByNameAsync(userName);
     }
 
     public async Task Update(User user)

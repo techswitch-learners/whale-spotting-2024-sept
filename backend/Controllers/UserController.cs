@@ -12,18 +12,17 @@ namespace WhaleSpotting.Controllers;
 public class UserController(UserManager<User> userManager, IUserService userService) : Controller
 {
     private readonly UserManager<User> _userManager = userManager;
-    private readonly IUserService _service = userService;
+    private readonly IUserService _userService = userService;
 
     [HttpGet("{userName}")]
-    public async Task<IActionResult> GetByUserName([FromRoute] string userName)
+    public IActionResult GetByUserName([FromRoute] string userName)
     {
-        // TODO: WS 6 User Delete Endpoint  - implement user service GetByUserName on next line
-        var matchingUser = await _userManager.FindByNameAsync(userName);
+        var matchingUser = _userService.FindByName(userName);
         if (matchingUser == null)
         {
             return NotFound();
         }
-        return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName!, });
+        return Ok(new UserResponse { Id = matchingUser.Result.Id, UserName = matchingUser.Result.UserName, });
     }
 
     [HttpPost("/{userId}/update")]
