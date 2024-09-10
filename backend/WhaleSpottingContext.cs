@@ -32,13 +32,8 @@ public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options
         builder.Entity<Species>(builder =>
         {
             builder.HasIndex(sp => sp.SpeciesName);
-            
-            builder.HasMany(e => e.Sightings)
-            .WithOne(e => e.Species)
-            .HasForeignKey(e => e.SpeciesId)
-            .IsRequired();
+
+            builder.HasMany(e => e.Sightings).WithOne(e => e.Species).HasForeignKey(e => e.WhaleSpeciesId).IsRequired();
         });
-
     }
-
 }
