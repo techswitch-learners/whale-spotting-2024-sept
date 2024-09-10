@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
 
@@ -6,8 +7,8 @@ namespace WhaleSpotting.Services;
 public interface ISightingsService
 {
     public Task CreateSighting(SightingsRequest sightingsRequest);
-    public Task DeleteSighting(string id);
-    
+    public Task<Sighting> GetSightingById(int sightingId);
+    public Task DeleteSighting(int sightingId, int userId);
 }
 
 public class SightingsService : ISightingsService
@@ -38,22 +39,36 @@ public class SightingsService : ISightingsService
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteSighting(string id)
+    public async Task<Sighting> GetSightingById(int sightingId)
     {
-        int sightingId = Convert.ToInt32(id);
+        try
+        {
+            Sighting sighting = _context.Sightings.Single(sighting => sighting.Id == sightingId);
+            return sighting;
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} not found");
+        }
+    }
 
-        Sighting sighting = _context.Sightings.FirstOrDefault(sighting => sighting.Id == sightingId);
-        
-        if (sighting == null) {
-            throw new Exception();
+    public async Task DeleteSighting(int sightingId, int userId)
+    {
+
+        Sighting sighting = await GetSightingById(sightingId);
+
+        if (sighting.UserId != userId) {
+            throw new UnauthorizedAccessException($"User ID {userId} is not authorised to delete sighting {sightingId}");
         }
 
-        if (sighting.UserId !== Identity user) {
-            throw new UnauthorizedAccessException("");
+        try
+        {
+            _context.Sightings.Remove(sighting);
+            _context.SaveChanges();
         }
-        // check if user id of the sighting matches with user id in identity
-        // if not, throw exception
-        // try to delete the record from database and save changes
-        // catch exceptions if deletion failed
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be deleted");
+        }
     }
 }

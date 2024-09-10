@@ -31,13 +31,12 @@ public class SightingsController : Controller
         }
     }
 
-    [HttpDelete("{id}/delete")]
-    public async Task<IActionResult> Delete([FromRoute] string id)
+    [HttpDelete("sighting={sightingId}&user={userId}/delete")]
+    public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
     {
-
         try
         {
-            await _service.DeleteSighting(id);
+            await _service.DeleteSighting(sightingId, userId);
             return Ok();
         }
         catch (UnauthorizedAccessException ex)
