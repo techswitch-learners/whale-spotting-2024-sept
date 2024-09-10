@@ -50,4 +50,23 @@ public class SightingsController : Controller
 
     }
 
+    [HttpPut("sighting={sightingId}&user={userId}/update")]
+    public async Task<IActionResult> Update(SightingsRequest sightingRequest, [FromRoute] int sightingId, int userId)
+    {
+        try
+        {
+            await _service.UpdateSighting(sightingRequest, sightingId, userId);
+            return Ok();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+    }
+
 }
