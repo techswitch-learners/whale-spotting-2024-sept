@@ -32,12 +32,12 @@ const NavigationLinks: React.FC = () => {
         </a>
       </li>
       <div>
-      <button id="log-in-button" data-testid="log-in-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
-        Log In
-      </button>
-      <button id="sign-up-button" data-testid="sign-up-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
-        Sign Up
-      </button>
+        <button id="log-in-button" data-testid="log-in-button" className="btn btn-outline-success px-2" style={{ width: "100px", margin: "5px" }} onClick={handleClick}>
+          Log In
+        </button>
+        <button id="sign-up-button" data-testid="sign-up-button" className="btn btn-outline-success px-2" style={{ width: "100px", margin: "5px" }} onClick={handleClick}>
+          Sign Up
+        </button>
       </div>
     </ul>
   )
