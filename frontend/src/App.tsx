@@ -7,6 +7,7 @@ import { CreateUser } from "./pages/CreateUser"
 import Header from "./Header/Header"
 import Hamburger from "./Hamburger/Hamburger"
 import Menu from "./Menu/Menu"
+import { AddSighting } from "./pages/AddSighting"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/signup" element={<CreateUser />} />
+        <Route path="/addsighting" element={<AddSighting/>} />
       </Routes>
     </BrowserRouter>
   )
