@@ -4,7 +4,7 @@ const NavigationLinks: React.FC = () => {
 
   const navigate = useNavigate()
 
-  const handleClick = (event: { currentTarget: { id: any; }; }) => {
+  const handleClick = (event: { currentTarget: { id: string; }; }) => {
     const buttonId = event.currentTarget.id;
     switch (buttonId)
     {
@@ -31,12 +31,14 @@ const NavigationLinks: React.FC = () => {
           Explore
         </a>
       </li>
-      <button id="log-in-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
+      <div>
+      <button id="log-in-button" data-testid="log-in-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
         Log In
       </button>
-      <button id="sign-up-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
+      <button id="sign-up-button" data-testid="sign-up-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
         Sign Up
       </button>
+      </div>
     </ul>
   )
 }
