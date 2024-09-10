@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting;
@@ -11,9 +12,11 @@ using WhaleSpotting;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(WhaleSpottingContext))]
-    partial class WhaleSpottingContextModelSnapshot : ModelSnapshot
+    [Migration("20240909133821_AddRelationOneToManySpeciesSightings")]
+    partial class AddRelationOneToManySpeciesSightings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,8 +208,6 @@ namespace WhaleSpotting.Migrations
 
                     b.HasIndex("SpeciesId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Sightings");
                 });
 
@@ -375,6 +376,22 @@ namespace WhaleSpotting.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WhaleSpotting.Models.Data.Sighting", b =>
+                {
+                    b.HasOne("WhaleSpotting.Models.Data.Species", "Species")
+                        .WithMany("Sightings")
+                        .HasForeignKey("SpeciesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Species");
+                });
+
+            modelBuilder.Entity("WhaleSpotting.Models.Data.Species", b =>
+                {
+                    b.Navigation("Sightings");
                 });
 #pragma warning restore 612, 618
         }
