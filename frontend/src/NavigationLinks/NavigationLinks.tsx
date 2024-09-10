@@ -4,8 +4,19 @@ const NavigationLinks: React.FC = () => {
 
   const navigate = useNavigate()
 
-  const handleClick = () => {
-    navigate("/login")
+  const handleClick = (event: { currentTarget: { id: any; }; }) => {
+    const buttonId = event.currentTarget.id;
+    switch (buttonId)
+    {
+      case "log-in-button":
+        navigate("/login");
+        break;
+      case "sign-up-button":
+          navigate("/signup");
+          break;
+      default:
+          break;
+    }
   }
 
   return (
@@ -20,8 +31,11 @@ const NavigationLinks: React.FC = () => {
           Explore
         </a>
       </li>
-      <button className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
-        Log in / Sign up
+      <button id="log-in-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
+        Log In
+      </button>
+      <button id="sign-up-button" className="btn btn-outline-success px-2" style={{ width: "100px" }} onClick={handleClick}>
+        Sign Up
       </button>
     </ul>
   )
