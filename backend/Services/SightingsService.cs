@@ -19,11 +19,10 @@ public class SightingsService : ISightingsService
 
     public async Task CreateSighting(SightingsRequest sightingsRequest)
     {
-
         Sighting sighting = new Sighting()
         {
             UserId = sightingsRequest.UserId,
-            WhaleSpeciesId = sightingsRequest.WhaleSpeciesId,
+            SpeciesId = sightingsRequest.SpeciesId,
             Latitude = sightingsRequest.Latitude,
             Longitude = sightingsRequest.Longitude,
             PhotoUrl = sightingsRequest.PhotoUrl,

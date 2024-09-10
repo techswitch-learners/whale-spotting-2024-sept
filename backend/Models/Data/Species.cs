@@ -9,4 +9,5 @@ public class Species
     public string WikiLink { get; set; } = string.Empty;
     public int TotalSightings { get; set; } = 0;
 
+    public ICollection<Sighting> Sightings { get; } = new List<Sighting>();
 }
