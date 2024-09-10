@@ -9,7 +9,7 @@ public interface ISightingsService
     public Task CreateSighting(SightingsRequest sightingsRequest);
     public Task<Sighting> GetSightingById(int sightingId);
     public Task DeleteSighting(int sightingId, int userId);
-    public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
+    public Task UpdateSighting(UpdateSightingsRequest sightingsRequest, int sightingId, int userId);
 }
 
 public class SightingsService : ISightingsService
@@ -73,7 +73,7 @@ public class SightingsService : ISightingsService
         }
     }
 
-    public async Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId)
+    public async Task UpdateSighting(UpdateSightingsRequest sightingsRequest, int sightingId, int userId)
     {
 
         Sighting sighting = await GetSightingById(sightingId);
@@ -82,7 +82,6 @@ public class SightingsService : ISightingsService
             throw new UnauthorizedAccessException($"User ID {userId} is not authorised to delete sighting {sightingId}");
         }
 
-        sighting.UserId = sightingsRequest.UserId;
         sighting.SpeciesId = sightingsRequest.SpeciesId;
         sighting.Latitude = sightingsRequest.Latitude;
         sighting.Longitude = sightingsRequest.Longitude;

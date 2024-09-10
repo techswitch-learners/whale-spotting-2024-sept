@@ -51,7 +51,7 @@ public class SightingsController : Controller
     }
 
     [HttpPut("sighting={sightingId}&user={userId}/update")]
-    public async Task<IActionResult> Update(SightingsRequest sightingRequest, [FromRoute] int sightingId, int userId)
+    public async Task<IActionResult> Update(UpdateSightingsRequest sightingRequest, [FromRoute] int sightingId, int userId)
     {
         try
         {
