@@ -31,7 +31,7 @@ public class SightingsController : Controller
         }
     }
 
-    [HttpDelete("sighting={sightingId}&user={userId}/delete")]
+    [HttpDelete("sighting={sightingId}&user={userId}")]
     public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
     {
         try
