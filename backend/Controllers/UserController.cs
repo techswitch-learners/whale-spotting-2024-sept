@@ -9,27 +9,25 @@ namespace WhaleSpotting.Controllers;
 
 [ApiController]
 [Route("/users")]
-public class UserController(UserManager<User> userManager, IUserService userService) : Controller
+public class UserController(IUserService userService) : Controller
 {
-    private readonly UserManager<User> _userManager = userManager;
     private readonly IUserService _userService = userService;
 
     [HttpGet("{userName}")]
     public IActionResult GetByUserName([FromRoute] string userName)
     {
-        var matchingUser = _userService.FindByName(userName);
+        User? matchingUser = _userService.FindByName(userName).Result;
         if (matchingUser == null)
         {
             return NotFound();
         }
-        return Ok(new UserResponse { Id = matchingUser.Result.Id, UserName = matchingUser.Result.UserName, });
+        return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
 
     [HttpPost("/{userId}/update")]
     public async Task<IActionResult> UpdateUser([FromRoute] string userId, UpdateUserRequest userRequest)
     {
-        // TODO WS 6 Users Delete Endpoint - implement user service GetByUserId on next line
-        User? user = await _userManager.FindByIdAsync(userId);
+        User? user = _userService.FindById(userId).Result;
         var errorResponse = new ErrorResponse();
         var generalErrors = new List<string>();
 
@@ -57,7 +55,7 @@ public class UserController(UserManager<User> userManager, IUserService userServ
             user.AboutMe = userRequest.AboutMe;
         }
 
-        await userService.Update(user);
+        await _userService.Update(user);
 
         return Ok(
             new UpdateUserResponse
@@ -70,17 +68,17 @@ public class UserController(UserManager<User> userManager, IUserService userServ
         );
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete([FromRoute] string id)
+    [HttpDelete("{userId}")]
+    public async Task<IActionResult> Delete([FromRoute] string userId)
     {
-        var user = await _userManager.FindByIdAsync(id);
+        User? user = _userService.FindById(userId).Result;
 
         if (user == null)
         {
             return NotFound();
         }
 
-        var result = await _userManager.DeleteAsync(user);
+        IdentityResult result = _userService.Delete(user).Result;
 
         if (!result.Succeeded)
         {
