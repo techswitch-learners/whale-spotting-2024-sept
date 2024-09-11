@@ -23,7 +23,6 @@ public class SightingsService : ISightingsService
 
     public async Task CreateSighting(SightingsRequest sightingsRequest)
     {
-
         Sighting sighting = new Sighting()
         {
             UserId = sightingsRequest.UserId,
