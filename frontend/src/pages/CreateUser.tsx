@@ -144,7 +144,7 @@ export function CreateUser(): JSX.Element {
             </button>
           </div>
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}> {error}</p>}
       </form>
     </div>
   )
