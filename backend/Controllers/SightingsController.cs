@@ -45,4 +45,22 @@ public class SightingsController : Controller
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpDelete("sighting={sightingId}&user={userId}")]
+    public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
+    {
+        try
+        {
+            await _sightingService.DeleteSighting(sightingId, userId);
+            return Ok();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }
