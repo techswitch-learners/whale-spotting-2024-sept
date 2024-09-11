@@ -376,6 +376,22 @@ namespace WhaleSpotting.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+                
+            modelBuilder.Entity("WhaleSpotting.Models.Data.Sighting", b =>
+                {
+                    b.HasOne("WhaleSpotting.Models.Data.Species", "Species")
+                        .WithMany("Sightings")
+                        .HasForeignKey("SpeciesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Species");
+                });
+
+            modelBuilder.Entity("WhaleSpotting.Models.Data.Species", b =>
+                {
+                    b.Navigation("Sightings");
+                });
 #pragma warning restore 612, 618
         }
     }
