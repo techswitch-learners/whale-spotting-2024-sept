@@ -18,4 +18,7 @@ public class User : IdentityUser<int>
 
     [PersonalData]
     public bool IsSuspended { get; set; }
+
+    [PersonalData]
+    public List<Sighting>? Sightings { get; set; }
 }

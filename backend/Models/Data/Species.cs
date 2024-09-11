@@ -8,6 +8,6 @@ public class Species
     public string TailPictureLink { get; set; } = string.Empty;
     public string WikiLink { get; set; } = string.Empty;
     public int TotalSightings { get; set; } = 0;
-    
+
     public ICollection<Sighting> Sightings { get; } = new List<Sighting>();
 }

@@ -1,42 +1,15 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
-import Hamburger from "../Hamburger/Hamburger"
+import Header from "../Header/Header"
 import { CreateUser } from "../pages/CreateUser"
 import Home from "../pages/Home"
 import Explore from "../pages/Explore"
 
-describe("Menu toggles on/off when hamburger button clicked", () => {
-  test("menu class is menu menu-open when hamburger button is clicked", () => {
+describe("Header contains all the navigation items", () => {
+  test("header has navigation items bar", () => {
     render(
       <MemoryRouter>
-        <Hamburger />
-      </MemoryRouter>,
-    )
-
-    const button = screen.getByTestId("toggle-button")
-    fireEvent.click(button)
-
-    const menu = screen.getByTestId("menu")
-    expect(menu).toHaveClass("menu menu-open")
-  })
-
-  test("menu class is menu menu-hidden when hamburger button is not clicked", () => {
-    render(
-      <MemoryRouter>
-        <Hamburger />
-      </MemoryRouter>,
-    )
-
-    const menu = screen.getByTestId("menu")
-    expect(menu).toHaveClass("menu menu-hidden")
-  })
-})
-
-describe("Menu contains all the navigation items", () => {
-  test("menu has navigation items bar", () => {
-    render(
-      <MemoryRouter>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 
@@ -44,10 +17,10 @@ describe("Menu contains all the navigation items", () => {
     expect(navigationLinks).toBeInTheDocument()
   })
 
-  test("menu has home link", () => {
+  test("header has home link", () => {
     render(
       <MemoryRouter>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 
@@ -57,10 +30,10 @@ describe("Menu contains all the navigation items", () => {
     expect(home).toHaveAttribute("href", "/")
   })
 
-  test("menu has explore link", () => {
+  test("header has explore link", () => {
     render(
       <MemoryRouter>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 
@@ -69,10 +42,10 @@ describe("Menu contains all the navigation items", () => {
     expect(explore).toHaveAttribute("href", "/explore")
   })
 
-  test("menu has log in button", () => {
+  test("header has log in button", () => {
     render(
       <MemoryRouter>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 
@@ -80,10 +53,10 @@ describe("Menu contains all the navigation items", () => {
     expect(button).toBeInTheDocument()
   })
 
-  test("menu has sign up button", () => {
+  test("header has sign up button", () => {
     render(
       <MemoryRouter>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 
@@ -102,7 +75,7 @@ describe("Buttons go to correct pages", () => {
           <Route path="/login" element={<h1>Log in</h1>} />
           <Route path="/signup" element={<CreateUser />} />
         </Routes>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 
@@ -121,7 +94,7 @@ describe("Buttons go to correct pages", () => {
           <Route path="/login" element={<h1>Log in</h1>} />
           <Route path="/signup" element={<CreateUser />} />
         </Routes>
-        <Hamburger />
+        <Header />
       </MemoryRouter>,
     )
 

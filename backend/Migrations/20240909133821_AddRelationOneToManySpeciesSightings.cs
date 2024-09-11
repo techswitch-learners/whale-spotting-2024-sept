@@ -10,15 +10,9 @@ namespace WhaleSpotting.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "WhaleSpeciesId",
-                table: "Sightings",
-                newName: "SpeciesId");
+            migrationBuilder.RenameColumn(name: "WhaleSpeciesId", table: "Sightings", newName: "SpeciesId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Sightings_SpeciesId",
-                table: "Sightings",
-                column: "SpeciesId");
+            migrationBuilder.CreateIndex(name: "IX_Sightings_SpeciesId", table: "Sightings", column: "SpeciesId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Sightings_Species_SpeciesId",
@@ -26,24 +20,18 @@ namespace WhaleSpotting.Migrations
                 column: "SpeciesId",
                 principalTable: "Species",
                 principalColumn: "SpeciesId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Sightings_Species_SpeciesId",
-                table: "Sightings");
+            migrationBuilder.DropForeignKey(name: "FK_Sightings_Species_SpeciesId", table: "Sightings");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Sightings_SpeciesId",
-                table: "Sightings");
+            migrationBuilder.DropIndex(name: "IX_Sightings_SpeciesId", table: "Sightings");
 
-            migrationBuilder.RenameColumn(
-                name: "SpeciesId",
-                table: "Sightings",
-                newName: "WhaleSpeciesId");
+            migrationBuilder.RenameColumn(name: "SpeciesId", table: "Sightings", newName: "WhaleSpeciesId");
         }
     }
 }
