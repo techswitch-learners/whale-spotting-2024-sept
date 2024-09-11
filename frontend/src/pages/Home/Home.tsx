@@ -1,3 +1,4 @@
+import "./Home.scss"
 import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
@@ -21,13 +22,15 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <img id="homepage-top-img" src="https://hips.hearstapps.com/hmg-prod/images/breaching-humpback-whale-cabo-san-lucas-baja-california-1531325454.jpg" />
-        <button id="register-sighting-button" data-testid="register-sighting-button" className="btn btn-outline-success px-2" style={{ width: "200px", margin: "5px" }} onClick={handleClick}>
+    <div className="background-container">
+      {/* <img id="homepage-top-img" src="https://hips.hearstapps.com/hmg-prod/images/breaching-humpback-whale-cabo-san-lucas-baja-california-1531325454.jpg" /> */}
+        <button id="register-sighting-button" data-testid="register-sighting-button" className="btn btn-primary btn-lg" style={{ width: "300px", margin: "10px" }} onClick={handleClick}>
           Register a Sighting
         </button>
-        <button id="explore-button" data-testid="explore-button" className="btn btn-outline-success px-2" style={{ width: "200px", margin: "5px" }} onClick={handleClick}>
+        <button id="explore-button" data-testid="explore-button" className="btn btn-primary btn-lg" style={{ width: "300px", margin: "10px" }} onClick={handleClick}>
           Explore
         </button>
+    </div>
     </>
   )
 }

@@ -2,3 +2,13 @@
     margin: 0 0 0 0;
     
 }
+
+.background-container {
+    background-image: url("https://hips.hearstapps.com/hmg-prod/images/breaching-humpback-whale-cabo-san-lucas-baja-california-1531325454.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

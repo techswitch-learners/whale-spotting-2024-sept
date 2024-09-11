@@ -56,9 +56,21 @@ body {
 }
 
 .btn-outline-success:hover {
-  background-color: $whale-blush-pink;
+  background-color: $whale-main-blue;
   color: white;
-  border: $whale-blush-pink;
+  border: $whale-main-blue;
+}
+
+.btn-primary {
+  background-color: $whale-main-blue;
+  color: white;
+  border: $whale-main-blue;
+}
+
+.btn-primary:hover {
+  background-color: $whale-light-blue;
+  color: $whale-main-blue;
+  border: $whale-light-blue;
 }
 
 .sign-up-page {
