@@ -35,9 +35,16 @@ public class SightingsController : Controller
     [HttpGet("")]
     public ActionResult<SightingListResponse> GetApproved()
     {
-        List<Sighting> sightings = _sightingService.GetApproved();
-        SightingListResponse sightingListResponse = new SightingListResponse();
-        sightingListResponse.SetList(sightings);
-        return Ok(sightingListResponse);
+        try
+        {
+            List<Sighting> sightings = _sightingService.GetApproved();
+            SightingListResponse sightingListResponse = new SightingListResponse();
+            sightingListResponse.SetList(sightings);
+            return Ok(sightingListResponse);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
