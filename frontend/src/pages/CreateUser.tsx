@@ -16,7 +16,7 @@ export function CreateUser(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="sign-up-page">
       <h1 className="title">Sign up</h1>
       <form className="createUser-form" onSubmit={handleSubmit}>
         <div className="form-group row">

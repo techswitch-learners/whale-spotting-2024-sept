@@ -2,8 +2,7 @@
 @import "./colour-variables.scss";
 
 body {
-  padding-top: 100px;
-  padding-left: 20px;
+  padding-top: 13vh;
 }
 
 .App {
@@ -23,8 +22,7 @@ body {
 
 @media (max-width: 767px) {
   body {
-    padding-top: 10px;
-    padding-left: 20px;
+    padding: 0 0 0 0;
   }
 }
 
@@ -61,4 +59,8 @@ body {
   background-color: $whale-blush-pink;
   color: white;
   border: $whale-blush-pink;
+}
+
+.sign-up-page {
+  padding-left: 2vw;
 }
