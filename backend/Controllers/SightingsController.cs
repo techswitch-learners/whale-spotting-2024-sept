@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
 using WhaleSpotting.Models.Response;
@@ -12,11 +13,11 @@ namespace WhaleSpotting.Controllers;
 [Route("/sightings")]
 public class SightingsController : Controller
 {
-    private readonly ISightingsService _service;
+    private readonly ISightingsService _sightingService;
 
-    public SightingsController(ISightingsService service)
+    public SightingsController(ISightingsService sightingService)
     {
-        _service = service;
+        _sightingService = sightingService;
     }
 
     [HttpPost("create")]
@@ -24,8 +25,22 @@ public class SightingsController : Controller
     {
         try
         {
-            await _service.CreateSighting(sightingRequest);
+            await _sightingService.CreateSighting(sightingRequest);
             return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("")]
+    public ActionResult<SightingListResponse> GetApproved()
+    {
+        try
+        {
+            SightingListResponse sightings = _sightingService.GetApproved();
+            return Ok(sightings);
         }
         catch (Exception ex)
         {
@@ -38,7 +53,7 @@ public class SightingsController : Controller
     {
         try
         {
-            await _service.DeleteSighting(sightingId, userId);
+            await _sightingService.DeleteSighting(sightingId, userId);
             return Ok();
         }
         catch (UnauthorizedAccessException ex)
