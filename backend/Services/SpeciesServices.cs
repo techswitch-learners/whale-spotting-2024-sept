@@ -5,7 +5,7 @@ namespace WhaleSpotting.Services;
 
 public interface ISpeciesServices
 {
-    public Task<List<Species>> GetAllSpecies();
+    public List<Species> GetAllSpecies();
 }
 
 public class SpeciesServices : ISpeciesServices
@@ -17,8 +17,8 @@ public class SpeciesServices : ISpeciesServices
         _context = context;
     }
 
-    public async Task<List<Species>> GetAllSpecies()
+    public List<Species> GetAllSpecies()
     {
-        return await _context.Species.ToList();
+        return _context.Species.ToList();
     }
 }

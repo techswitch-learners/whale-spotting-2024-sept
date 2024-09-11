@@ -18,7 +18,7 @@ public class SpeciesController : Controller
     }
 
     [HttpGet("/")]
-    public async Task<IActionResult> GetAllSpecies()
+    public Task<IActionResult> GetAllSpecies()
     {
         try
         {
