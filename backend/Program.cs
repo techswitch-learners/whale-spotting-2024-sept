@@ -37,7 +37,7 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
         });
 
-        builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
+        builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();  
 
         builder.Services.AddTransient<SeedSpecies>();
         builder.Services.AddTransient<IUserService, UserService>();

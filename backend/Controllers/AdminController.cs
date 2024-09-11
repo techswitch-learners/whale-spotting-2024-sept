@@ -10,7 +10,7 @@ public class AdminController(ISightingsService sightingsService) : Controller
 {
     private readonly ISightingsService _sightingsService = sightingsService;
 
-    [HttpPut("approve/sighting={sightingId}"), Authorize("Roles=Admin")]
+    [HttpPut("approve/sighting={sightingId}"), Authorize(Roles="Admin")]
     public async Task<IActionResult> ApproveSighting([FromRoute] int sightingId)
     {
         try
