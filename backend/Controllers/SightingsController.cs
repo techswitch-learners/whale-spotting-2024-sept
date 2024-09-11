@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
 using WhaleSpotting.Models.Response;
 using WhaleSpotting.Services;
@@ -28,6 +29,25 @@ public class SightingsController : Controller
         {
             return BadRequest(ex.Message);
         }
+    }
+
+    [HttpDelete("sighting={sightingId}&user={userId}")]
+    public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
+    {
+        try
+        {
+            await _service.DeleteSighting(sightingId, userId);
+            return Ok();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
     }
 
 }

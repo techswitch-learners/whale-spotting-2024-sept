@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
 
@@ -6,6 +7,8 @@ namespace WhaleSpotting.Services;
 public interface ISightingsService
 {
     public Task CreateSighting(SightingsRequest sightingsRequest);
+    public Task<Sighting> GetSightingById(int sightingId);
+    public Task DeleteSighting(int sightingId, int userId);
 }
 
 public class SightingsService : ISightingsService
@@ -33,5 +36,38 @@ public class SightingsService : ISightingsService
 
         await _context.AddAsync(sighting);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<Sighting> GetSightingById(int sightingId)
+    {
+        try
+        {
+            Sighting sighting = _context.Sightings.Single(sighting => sighting.Id == sightingId);
+            return sighting;
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} not found");
+        }
+    }
+
+    public async Task DeleteSighting(int sightingId, int userId)
+    {
+
+        Sighting sighting = await GetSightingById(sightingId);
+
+        if (sighting.UserId != userId) {
+            throw new UnauthorizedAccessException($"User ID {userId} is not authorised to delete sighting {sightingId}");
+        }
+
+        try
+        {
+            _context.Sightings.Remove(sighting);
+            _context.SaveChanges();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be deleted");
+        }
     }
 }
