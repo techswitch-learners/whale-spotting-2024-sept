@@ -41,6 +41,7 @@ public class Program
 
         builder.Services.AddTransient<SeedSpecies>();
         builder.Services.AddTransient<IUserService, UserService>();
+        builder.Services.AddTransient<ISpeciesServices, SpeciesServices>();
 
         builder
             .Services.AddAuthentication(options =>

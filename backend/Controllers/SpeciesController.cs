@@ -17,13 +17,13 @@ public class SpeciesController : Controller
         _service = service;
     }
 
-    [HttpGet("/")]
-    public Task<IActionResult> GetAllSpecies()
+    [HttpGet("")]
+    public IActionResult GetAllSpecies()
     {
         try
         {
             List<Species> listOfSpecies = _service.GetAllSpecies();
-            return Ok(new SpeciesResponse { });
+            return Ok(new SpeciesResponse { ListOfSpecies = listOfSpecies, Count = listOfSpecies.Count });
         }
         catch (Exception ex)
         {
