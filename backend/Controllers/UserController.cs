@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Data;
@@ -7,6 +8,7 @@ using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("/users")]
 public class UserController(IUserService userService) : Controller

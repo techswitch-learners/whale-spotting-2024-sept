@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
@@ -6,6 +7,7 @@ using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("/sightings")]
 public class SightingsController : Controller
@@ -47,7 +49,5 @@ public class SightingsController : Controller
         {
             return BadRequest(ex.Message);
         }
-
     }
-
 }
