@@ -29,6 +29,7 @@ public class AuthController(UserManager<User> userManager, RoleManager<Role> rol
             var matchingUserRoles = await _userManager.GetRolesAsync(matchingUser);
             var authClaims = new List<Claim>
             {
+                new(ClaimTypes.NameIdentifier, matchingUser.Id.ToString()),
                 new(ClaimTypes.Name, matchingUser.UserName!),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
