@@ -10,9 +10,9 @@ namespace WhaleSpotting.Controllers;
 [Route("/species")]
 public class SpeciesController : Controller
 {
-    private readonly ISpeciesServices _service;
+    private readonly ISpeciesService _service;
 
-    public SpeciesController(ISpeciesServices service)
+    public SpeciesController(ISpeciesService service)
     {
         _service = service;
     }
@@ -22,8 +22,8 @@ public class SpeciesController : Controller
     {
         try
         {
-            List<Species> listOfSpecies = _service.GetAllSpecies();
-            return Ok(new SpeciesResponse { ListOfSpecies = listOfSpecies, Count = listOfSpecies.Count });
+            SpeciesResponse speciesResponse = _service.GetAllSpecies();
+            return Ok(speciesResponse);
         }
         catch (Exception ex)
         {
