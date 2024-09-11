@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpotting;
@@ -11,9 +12,11 @@ using WhaleSpotting;
 namespace WhaleSpotting.Migrations
 {
     [DbContext(typeof(WhaleSpottingContext))]
-    partial class WhaleSpottingContextModelSnapshot : ModelSnapshot
+    [Migration("20240909133627_Adding-Foreign-Key-To-Sightings")]
+    partial class AddingForeignKeyToSightings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,15 +198,13 @@ namespace WhaleSpotting.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("SpeciesId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<int>("WhaleSpeciesId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("SpeciesId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -376,19 +377,17 @@ namespace WhaleSpotting.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
-                
+
             modelBuilder.Entity("WhaleSpotting.Models.Data.Sighting", b =>
                 {
-                    b.HasOne("WhaleSpotting.Models.Data.Species", "Species")
+                    b.HasOne("WhaleSpotting.Models.Data.User", null)
                         .WithMany("Sightings")
-                        .HasForeignKey("SpeciesId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Species");
                 });
 
-            modelBuilder.Entity("WhaleSpotting.Models.Data.Species", b =>
+            modelBuilder.Entity("WhaleSpotting.Models.Data.User", b =>
                 {
                     b.Navigation("Sightings");
                 });
