@@ -11,11 +11,11 @@ namespace WhaleSpotting.Controllers;
 [Route("/sightings")]
 public class SightingsController : Controller
 {
-    private readonly ISightingsService _service;
+    private readonly ISightingsService _sightingService;
 
-    public SightingsController(ISightingsService service)
+    public SightingsController(ISightingsService sightingService)
     {
-        _service = service;
+        _sightingService = sightingService;
     }
 
     [HttpPost("create")]
@@ -23,7 +23,7 @@ public class SightingsController : Controller
     {
         try
         {
-            await _service.CreateSighting(sightingRequest);
+            await _sightingService.CreateSighting(sightingRequest);
             return Ok();
         }
         catch (Exception ex)
@@ -33,26 +33,11 @@ public class SightingsController : Controller
     }
 
     [HttpGet("")]
-    public ActionResult<List<SightingResponse>> GetAll()
+    public ActionResult<SightingListResponse> GetApproved()
     {
-        List<Sighting> sightings = _service.GetAll();
-
-        List<SightingResponse> sightingList = new List<SightingResponse>();
-
-        foreach (var sighting in sightings)
-        {
-            SightingResponse sightingResponse = new SightingResponse()
-            {
-                UserId = sighting.UserId,
-                WhaleSpeciesId = sighting.WhaleSpeciesId,
-                Latitude = sighting.Latitude,
-                Longitude = sighting.Longitude,
-                PhotoUrl = sighting.PhotoUrl,
-                Description = sighting.Description,
-                DateTime = sighting.DateTime
-            };
-            sightingList.Add(sightingResponse);
-        }
-        return Ok(sightingList);
+        List<Sighting> sightings = _sightingService.GetApproved();
+        SightingListResponse sightingListResponse = new SightingListResponse();
+        sightingListResponse.SetList(sightings);
+        return Ok(sightingListResponse);
     }
 }

@@ -6,7 +6,7 @@ namespace WhaleSpotting.Services;
 public interface ISightingsService
 {
     public Task CreateSighting(SightingsRequest sightingsRequest);
-    public List<Sighting> GetAll();
+    public List<Sighting> GetApproved();
 }
 
 public class SightingsService : ISightingsService
@@ -36,7 +36,7 @@ public class SightingsService : ISightingsService
         await _context.SaveChangesAsync();
     }
 
-    public List<Sighting> GetAll()
+    public List<Sighting> GetApproved()
     {
         return _context.Sightings.Where(s => s.IsApproved).ToList();
     }
