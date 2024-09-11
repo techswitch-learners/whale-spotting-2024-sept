@@ -6,7 +6,6 @@ import "./App.scss"
 import { CreateUser } from "./pages/CreateUser"
 import Header from "./Header/Header"
 import Hamburger from "./Hamburger/Hamburger"
-import Menu from "./Menu/Menu"
 
 function App() {
   return (
