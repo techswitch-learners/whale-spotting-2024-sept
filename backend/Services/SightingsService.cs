@@ -1,12 +1,13 @@
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
+using WhaleSpotting.Models.Response;
 
 namespace WhaleSpotting.Services;
 
 public interface ISightingsService
 {
     public Task CreateSighting(SightingsRequest sightingsRequest);
-    public List<Sighting> GetApproved();
+    public SightingListResponse GetApproved();
 }
 
 public class SightingsService : ISightingsService
@@ -23,7 +24,7 @@ public class SightingsService : ISightingsService
         Sighting sighting = new Sighting()
         {
             UserId = sightingsRequest.UserId,
-            WhaleSpeciesId = sightingsRequest.WhaleSpeciesId,
+            SpeciesId = sightingsRequest.SpeciesId,
             Latitude = sightingsRequest.Latitude,
             Longitude = sightingsRequest.Longitude,
             PhotoUrl = sightingsRequest.PhotoUrl,
@@ -36,8 +37,11 @@ public class SightingsService : ISightingsService
         await _context.SaveChangesAsync();
     }
 
-    public List<Sighting> GetApproved()
+    public SightingListResponse GetApproved()
     {
-        return _context.Sightings.Where(s => s.IsApproved).ToList();
+        List<Sighting> sightings = _context.Sightings.Where(s => s.IsApproved).ToList();
+        SightingListResponse sightingListResponse = new SightingListResponse();
+        sightingListResponse.SetList(sightings);
+        return sightingListResponse;
     }
 }

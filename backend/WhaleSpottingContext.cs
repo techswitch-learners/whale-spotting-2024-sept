@@ -33,7 +33,7 @@ public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options
         {
             builder.HasIndex(sp => sp.SpeciesName);
 
-            builder.HasMany(e => e.Sightings).WithOne(e => e.Species).HasForeignKey(e => e.WhaleSpeciesId).IsRequired();
+            builder.HasMany(e => e.Sightings).WithOne(e => e.Species).HasForeignKey(e => e.SpeciesId).IsRequired();
         });
     }
 }

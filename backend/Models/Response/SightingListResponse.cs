@@ -16,7 +16,7 @@ public class SightingListResponse()
             SightingResponse sightingResponse = new SightingResponse()
             {
                 UserId = sighting.UserId,
-                WhaleSpeciesId = sighting.WhaleSpeciesId,
+                SpeciesId = sighting.SpeciesId,
                 Latitude = sighting.Latitude,
                 Longitude = sighting.Longitude,
                 PhotoUrl = sighting.PhotoUrl,

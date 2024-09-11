@@ -37,10 +37,8 @@ public class SightingsController : Controller
     {
         try
         {
-            List<Sighting> sightings = _sightingService.GetApproved();
-            SightingListResponse sightingListResponse = new SightingListResponse();
-            sightingListResponse.SetList(sightings);
-            return Ok(sightingListResponse);
+            SightingListResponse sightings = _sightingService.GetApproved();
+            return Ok(sightings);
         }
         catch (Exception ex)
         {
