@@ -15,8 +15,12 @@ namespace WhaleSpotting.Migrations
                 name: "Species",
                 columns: table => new
                 {
-                    SpeciesId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SpeciesId = table
+                        .Column<int>(type: "integer", nullable: false)
+                        .Annotation(
+                            "Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn
+                        ),
                     SpeciesName = table.Column<string>(type: "text", nullable: false),
                     ExampleLink = table.Column<string>(type: "text", nullable: false),
                     TailPictureLink = table.Column<string>(type: "text", nullable: false),
@@ -26,19 +30,16 @@ namespace WhaleSpotting.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Species", x => x.SpeciesId);
-                });
+                }
+            );
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Species_SpeciesName",
-                table: "Species",
-                column: "SpeciesName");
+            migrationBuilder.CreateIndex(name: "IX_Species_SpeciesName", table: "Species", column: "SpeciesName");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Species");
+            migrationBuilder.DropTable(name: "Species");
         }
     }
 }
