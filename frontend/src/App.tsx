@@ -7,7 +7,7 @@ import { CreateUser } from "./pages/CreateUser"
 import Header from "./Header/Header"
 import Hamburger from "./Hamburger/Hamburger"
 import Login from "./pages/Login/Login"
-import { LoginManager } from "./Components/LoginManager/LoginManager"
+import { LoginManager } from "./components/LoginManager/LoginManager"
 
 function App() {
   return (
