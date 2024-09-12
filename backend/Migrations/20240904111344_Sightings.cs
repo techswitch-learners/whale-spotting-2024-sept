@@ -24,7 +24,7 @@ namespace WhaleSpotting.Migrations
                         ),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     WhaleSpeciesId = table.Column<int>(type: "integer", nullable: false),
-                    Lattitude = table.Column<float>(type: "real", nullable: false),
+                    Latitude = table.Column<float>(type: "real", nullable: false),
                     Longitude = table.Column<float>(type: "real", nullable: false),
                     PhotoUrl = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),

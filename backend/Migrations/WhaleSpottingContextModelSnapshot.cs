@@ -205,6 +205,8 @@ namespace WhaleSpotting.Migrations
 
                     b.HasIndex("SpeciesId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Sightings");
                 });
 
@@ -374,7 +376,7 @@ namespace WhaleSpotting.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
-
+                
             modelBuilder.Entity("WhaleSpotting.Models.Data.Sighting", b =>
                 {
                     b.HasOne("WhaleSpotting.Models.Data.Species", "Species")

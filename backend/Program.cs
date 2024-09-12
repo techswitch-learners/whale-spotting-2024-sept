@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using WhaleSpotting;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.SeedData;
@@ -37,10 +38,18 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
         });
 
-        builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<WhaleSpottingContext>();
+        builder
+            .Services.AddIdentity<User, Role>()
+            .AddEntityFrameworkStores<WhaleSpottingContext>()
+            .AddDefaultTokenProviders();
 
         builder.Services.AddTransient<SeedSpecies>();
         builder.Services.AddTransient<IUserService, UserService>();
+<<<<<<< WS2.8-add-sighting-seed-data
+        builder.Services.AddTransient<SeedSightings>();
+=======
+        builder.Services.AddTransient<ISpeciesService, SpeciesService>();
+>>>>>>> main
 
         builder
             .Services.AddAuthentication(options =>
@@ -62,7 +71,36 @@ public class Program
             });
 
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "JWTToken_Auth_API", Version = "v1" });
+            c.AddSecurityDefinition(
+                "Bearer",
+                new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description =
+                        "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
+                }
+            );
+            c.AddSecurityRequirement(
+                new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                        },
+                        new string[] { }
+                    }
+                }
+            );
+            c.OperationFilter<AuthorizationOperationFilter>();
+        });
 
         var app = builder.Build();
 
@@ -76,14 +114,17 @@ public class Program
 
                 var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
                 speciesSeeder.Seed();
+
+                var sightingsSeeder = scope.ServiceProvider.GetService<SeedSightings>();
+                sightingsSeeder.SeedSighting();
             }
 
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
         app.UseCors();
+        app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
 
