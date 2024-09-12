@@ -12,6 +12,7 @@ public interface ISightingsService
     public Task<Sighting> GetSightingById(int sightingId);
     public Task DeleteSighting(int sightingId, int userId);
     public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
+    public Task ApproveSighting(int sightingId);
 }
 
 public class SightingsService : ISightingsService
@@ -109,6 +110,24 @@ public class SightingsService : ISightingsService
         catch
         {
             throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be updated");
+        }
+    }
+
+    public async Task ApproveSighting(int sightingId)
+    {
+
+        Sighting sighting = await GetSightingById(sightingId);
+
+        sighting.IsApproved = true;
+
+        try
+        {
+            _context.Sightings.Update(sighting);
+            _context.SaveChanges();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be approved");
         }
     }
 }
