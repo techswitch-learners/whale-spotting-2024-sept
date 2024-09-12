@@ -1,3 +1,4 @@
+import { act } from "react";
 import { fireEvent, render, screen } from "@testing-library/react"
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Hamburger from "../Hamburger/Hamburger";

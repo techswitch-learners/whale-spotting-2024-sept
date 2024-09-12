@@ -23,12 +23,12 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="background-container">
+      <div data-testid="background-container" className="background-container">
         <div className="logo">
           <img src={logo} alt="Whale Whale Whale logo" width="200" />
         </div>
         <div className="top-buttons">
-          <button id="register-sighting-button" data-testid="register-sighting-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
+          <button id="submit-button" data-testid="submit-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
             Submit
           </button>
           <button id="explore-button" data-testid="explore-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
