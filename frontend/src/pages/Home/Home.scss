@@ -1,14 +1,48 @@
-#homepage-top-img {
-    margin: 0 0 0 0;
-    
-}
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./../../colour-variables.scss";
 
 .background-container {
-    background-image: url("https://hips.hearstapps.com/hmg-prod/images/breaching-humpback-whale-cabo-san-lucas-baja-california-1531325454.jpg");
+    background-image: url("https://blog.cwf-fcf.org/wp-content/uploads/2020/07/humpback-whale-breaching-590268314.jpg");
     background-size: cover;
     background-position: center;
     height: 80vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: end;
     align-items: center;
+}
+
+.top-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10vw;
+    padding-bottom: 9vh;
+}
+
+.btn-primary {
+    background-color: $whale-logo-yellow;
+    color: $whale-main-blue;
+    border: $whale-logo-yellow;
+  }
+
+
+.btn-primary:hover {
+    background-color: $whale-light-blue;
+    color: $whale-main-blue;
+    border: $whale-light-blue;
+}
+
+.logo {
+    display: none;  
+}
+
+@media (max-width: 767px) {
+
+    .logo {
+        display: block;
+    }
+
+    .background-container {
+        gap: 80vw;
+    }
 }
