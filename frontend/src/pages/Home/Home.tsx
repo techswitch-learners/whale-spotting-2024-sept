@@ -28,10 +28,10 @@ const Home: React.FC = () => {
           <img src={logo} alt="Whale Whale Whale logo" width="200" />
         </div>
         <div className="top-buttons">
-          <button id="register-sighting-button" data-testid="register-sighting-button" className="btn btn-primary btn-lg" style={{ width: "30vw", height: "8vh", margin: "10px" }} onClick={handleClick}>
+          <button id="register-sighting-button" data-testid="register-sighting-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
             Submit
           </button>
-          <button id="explore-button" data-testid="explore-button" className="btn btn-primary btn-lg" style={{ width: "30vw", height: "8vh", margin: "10px" }} onClick={handleClick}>
+          <button id="explore-button" data-testid="explore-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
             Explore
           </button>
         </div>
