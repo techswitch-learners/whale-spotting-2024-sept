@@ -19,7 +19,7 @@ namespace WhaleSpotting.SeedData
             {
                 Id = 1,
                 UserId = 1,
-                WhaleSpeciesId = 1,
+                SpeciesId = 1,
                 Latitude = 64.0123F,
                 Longitude = -74.0122F,
                 PhotoUrl =
@@ -32,7 +32,7 @@ namespace WhaleSpotting.SeedData
             {
                 Id = 2,
                 UserId = 2,
-                WhaleSpeciesId = 1,
+                SpeciesId = 1,
                 Latitude = 54.012354f,
                 Longitude = -94.012267f,
                 PhotoUrl =
@@ -45,7 +45,7 @@ namespace WhaleSpotting.SeedData
             {
                 Id = 3,
                 UserId = 2,
-                WhaleSpeciesId = 1,
+                SpeciesId = 1,
                 Latitude = 4.012354F,
                 Longitude = 44.012267F,
                 PhotoUrl =
@@ -58,7 +58,7 @@ namespace WhaleSpotting.SeedData
             {
                 Id = 4,
                 UserId = 2,
-                WhaleSpeciesId = 1,
+                SpeciesId = 1,
                 Latitude = 54.012354F,
                 Longitude = -94.012267F,
                 PhotoUrl =
@@ -71,7 +71,7 @@ namespace WhaleSpotting.SeedData
             {
                 Id = 5,
                 UserId = 2,
-                WhaleSpeciesId = 1,
+                SpeciesId = 1,
                 Latitude = 54.012354F,
                 Longitude = -94.012267F,
                 PhotoUrl =
@@ -84,7 +84,7 @@ namespace WhaleSpotting.SeedData
             {
                 Id = 6,
                 UserId = 2,
-                WhaleSpeciesId = 1,
+                SpeciesId = 1,
                 Latitude = 54.012354F,
                 Longitude = -94.012267F,
                 PhotoUrl =
