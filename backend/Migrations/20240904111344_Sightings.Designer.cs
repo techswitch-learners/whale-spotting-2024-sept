@@ -188,7 +188,7 @@ namespace WhaleSpotting.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("boolean");
 
-                    b.Property<float>("Lattitude")
+                    b.Property<float>("Latitude")
                         .HasColumnType("real");
 
                     b.Property<float>("Longitude")

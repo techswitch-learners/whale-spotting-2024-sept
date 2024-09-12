@@ -11,6 +11,7 @@ public interface ISightingsService
     public SightingListResponse GetApproved();
     public Task<Sighting> GetSightingById(int sightingId);
     public Task DeleteSighting(int sightingId, int userId);
+    public Task UpdateSighting(UpdateSightingsRequest sightingsRequest, int sightingId, int userId);
 }
 
 public class SightingsService : ISightingsService
@@ -80,6 +81,36 @@ public class SightingsService : ISightingsService
         catch
         {
             throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be deleted");
+        }
+    }
+
+    public async Task UpdateSighting(UpdateSightingsRequest sightingsRequest, int sightingId, int userId)
+    {
+        Sighting sighting = await GetSightingById(sightingId);
+
+        if (sighting.UserId != userId)
+        {
+            throw new UnauthorizedAccessException(
+                $"User ID {userId} is not authorised to delete sighting {sightingId}"
+            );
+        }
+
+        sighting.SpeciesId = sightingsRequest.SpeciesId;
+        sighting.Latitude = sightingsRequest.Latitude;
+        sighting.Longitude = sightingsRequest.Longitude;
+        sighting.PhotoUrl = sightingsRequest.PhotoUrl;
+        sighting.Description = sightingsRequest.Description;
+        sighting.DateTime = sightingsRequest.DateTime;
+        sighting.IsApproved = false;
+
+        try
+        {
+            _context.Sightings.Update(sighting);
+            _context.SaveChanges();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be updated");
         }
     }
 }

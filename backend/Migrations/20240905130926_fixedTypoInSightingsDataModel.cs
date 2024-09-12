@@ -10,19 +10,13 @@ namespace WhaleSpotting.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Lattitude",
-                table: "Sightings",
-                newName: "Latitude");
+            migrationBuilder.RenameColumn(name: "Lattitude", table: "Sightings", newName: "Latitude");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Latitude",
-                table: "Sightings",
-                newName: "Lattitude");
+            migrationBuilder.RenameColumn(name: "Latitude", table: "Sightings", newName: "Lattitude");
         }
     }
 }

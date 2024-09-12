@@ -28,6 +28,8 @@ npm install
 ```bash
 dotnet restore
 dotnet dotnet-ef database update
+dotnet run --seed (will add seed data)
+
 ```
 
 ### Inside the `frontend/` directory
