@@ -27,7 +27,7 @@ public class UserController(IUserService userService) : Controller
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
 
-    [HttpPost("/update")]
+    [HttpPut("/update")]
     public async Task<IActionResult> UpdateUser(UpdateUserRequest userRequest)
     {
         try
