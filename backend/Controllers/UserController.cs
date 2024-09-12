@@ -26,7 +26,7 @@ public class UserController(IUserService userService) : Controller
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
 
-    [HttpPost("/{userId}/update")]
+    [HttpPut("/{userId}/update")]
     public async Task<IActionResult> UpdateUser([FromRoute] string userId, UpdateUserRequest userRequest)
     {
         User? user = _userService.FindById(userId).Result;
