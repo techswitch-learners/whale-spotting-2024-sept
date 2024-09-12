@@ -7,7 +7,7 @@ const Admin = () => {
   if (roleType === "Admin") {
     return (
       <div>
-        <h1>Admin Page</h1>
+        <h1 data-testid="adminTitle">Admin Page</h1>
       </div>
     )
   } else {
