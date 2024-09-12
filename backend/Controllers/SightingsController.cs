@@ -48,7 +48,7 @@ public class SightingsController : Controller
         }
     }
 
-    [HttpDelete("sighting={sightingId}&user={userId}")]
+    [HttpDelete("{sightingId}/delete&user={userId}")]
     public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
     {
         try
@@ -71,7 +71,7 @@ public class SightingsController : Controller
     {
         try
         {
-            await _service.UpdateSighting(sightingRequest, sightingId, userId);
+            await _sightingService.UpdateSighting(sightingRequest, sightingId, userId);
             return Ok();
         }
         catch (UnauthorizedAccessException ex)
