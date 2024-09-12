@@ -45,11 +45,9 @@ public class Program
 
         builder.Services.AddTransient<SeedSpecies>();
         builder.Services.AddTransient<IUserService, UserService>();
-<<<<<<< WS2.8-add-sighting-seed-data
-        builder.Services.AddTransient<SeedSightings>();
-=======
+
         builder.Services.AddTransient<ISpeciesService, SpeciesService>();
->>>>>>> main
+        builder.Services.AddTransient<SeedSightings>();
 
         builder
             .Services.AddAuthentication(options =>
