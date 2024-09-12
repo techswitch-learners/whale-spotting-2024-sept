@@ -72,8 +72,8 @@ public class Program
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
 
-                var seeder = scope.ServiceProvider.GetService<SeedSightings>();
-                seeder.SeedSighting();
+                var sightingsSeeder = scope.ServiceProvider.GetService<SeedSightings>();
+                sightingsSeeder.SeedSighting();
 
                 var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
                 speciesSeeder.Seed();
