@@ -8,3 +8,13 @@
 .custom-navbar .nav-link {
   color: $whale-main-blue;
 }
+
+.show-header {
+  display: none;
+}
+
+@media (min-width: 767px) {
+  .show-header {
+    display: block;
+  }
+}
