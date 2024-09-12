@@ -7,9 +7,9 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  position : fixed;
-  right :0;
-  z-index: 1000; 
+  position: fixed;
+  right: 0;
+  z-index: 1000;
 }
 
 .line {
@@ -23,7 +23,6 @@
   display: none;
 }
 
-
 @media (max-width: 767px) {
   .show-hamburger {
     display: block;
@@ -32,5 +31,3 @@
     transition: all 1s ease;
   }
 }
-
-
