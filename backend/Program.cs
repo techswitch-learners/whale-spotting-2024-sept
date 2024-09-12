@@ -45,7 +45,11 @@ public class Program
 
         builder.Services.AddTransient<SeedSpecies>();
         builder.Services.AddTransient<IUserService, UserService>();
+<<<<<<< WS2.8-add-sighting-seed-data
+        builder.Services.AddTransient<SeedSightings>();
+=======
         builder.Services.AddTransient<ISpeciesService, SpeciesService>();
+>>>>>>> main
 
         builder
             .Services.AddAuthentication(options =>
@@ -110,6 +114,9 @@ public class Program
 
                 var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
                 speciesSeeder.Seed();
+
+                var sightingsSeeder = scope.ServiceProvider.GetService<SeedSightings>();
+                sightingsSeeder.SeedSighting();
             }
 
             app.UseSwagger();
