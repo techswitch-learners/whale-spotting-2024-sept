@@ -26,6 +26,8 @@ export function AddSighting(): JSX.Element {
     const [submitStatus, setSubmitStatus] = useState(false);
 
     useEffect(() => {
+        // TODO: This fetch I think will need to be added into another
+        //       function...
         fetch("http://localhost:5280/species", {
             method: "GET",
             headers: {
@@ -37,7 +39,7 @@ export function AddSighting(): JSX.Element {
             setSpecies(data.listOfSpecies);
         });
         // .then(data => console.log(data.listOfSpecies));
-    },);
+    },[species]);
 
 
 
