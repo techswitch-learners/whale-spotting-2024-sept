@@ -34,7 +34,7 @@ const NavigationLinks: React.FC = () => {
       </li>
       {roleType === "Admin" && (
         <div>
-          <li className="nav-item">
+          <li className="nav-item" data-testid="adminLink">
             <Link to="/admin" className="nav-link">
               Admin
             </Link>
