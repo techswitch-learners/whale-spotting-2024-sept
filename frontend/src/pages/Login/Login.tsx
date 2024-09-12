@@ -1,11 +1,12 @@
 import "./Login.scss"
 import { FormEvent, useState, useContext } from "react"
-import { LoginContext } from "../../components/LoginManager/LoginManager"
+import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { loginUser } from "../../api/backendClient"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const { logIn, saveUsernameToContext, savePasswordToContext, saveJwtToContext } = useContext(LoginContext)
+  const { logIn, saveUsernameToContext, savePasswordToContext, saveJwtToContext, saveRoleTypeToContext } =
+    useContext(LoginContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState(null)
@@ -24,6 +25,7 @@ const Login = () => {
         saveJwtToContext(data.token)
         saveUsernameToContext(username)
         savePasswordToContext(password)
+        saveRoleTypeToContext(data.roleType)
         logIn()
         navigate("/")
       })
