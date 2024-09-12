@@ -1,17 +1,8 @@
-import { FormEvent, useState, useContext } from "react"
+import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { registerUser } from "../api/backendClient"
-import { UserSignUpContext } from "../Components/UserManager/UserSignUpManager"
 
 export function CreateUser(): JSX.Element {
-  const {
-    saveUsernameToContext,
-    savePasswordToContext,
-    saveEmailToContext,
-    saveFirstnameToContext,
-    saveLastnameToContext,
-    saveAboutmeToContext,
-  } = useContext(UserSignUpContext)
   const [firstname, setFirstName] = useState("")
   const [lastname, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -34,12 +25,6 @@ export function CreateUser(): JSX.Element {
         return response.json()
       })
       .then((data) => {
-        saveFirstnameToContext(firstname)
-        saveLastnameToContext(lastname)
-        saveEmailToContext(email)
-        saveUsernameToContext(username)
-        savePasswordToContext(password)
-        saveAboutmeToContext(aboutme)
         navigate("/")
       })
       .catch((error) => {
