@@ -23,7 +23,7 @@
     background-color: $whale-logo-yellow;
     color: $whale-main-blue;
     border: $whale-logo-yellow;
-  }
+}
 
 
 .btn-primary:hover {
@@ -33,16 +33,31 @@
 }
 
 .logo {
-    display: none;  
+    display: none;
 }
 
 @media (max-width: 767px) {
+    
+    .background-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
 
     .logo {
         display: block;
+        grid-area: 1 / 1 / 2 / 3;
+        padding-left: 5vw;
+        padding-top: 1vh;
     }
 
-    .background-container {
-        gap: 80vw;
+    .top-buttons {
+        grid-area: 5 / 2 / 6 / 5;
+        gap: 5vw;
+        justify-self: center;
+        align-self: end;
     }
+
 }
