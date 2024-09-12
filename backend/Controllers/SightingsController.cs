@@ -48,7 +48,7 @@ public class SightingsController : Controller
         }
     }
 
-    [HttpDelete("sighting={sightingId}&user={userId}")]
+    [HttpDelete("{sightingId}/delete&user={userId}")]
     public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
     {
         try
@@ -65,4 +65,24 @@ public class SightingsController : Controller
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpPut("{sightingId}/update&user={userId}")]
+    public async Task<IActionResult> Update(UpdateSightingsRequest sightingRequest, [FromRoute] int sightingId, int userId)
+    {
+        try
+        {
+            await _sightingService.UpdateSighting(sightingRequest, sightingId, userId);
+            return Ok();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+    }
+
 }
