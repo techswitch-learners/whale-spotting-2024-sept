@@ -1,21 +1,19 @@
 import { useNavigate } from "react-router-dom"
 
 const NavigationLinks: React.FC = () => {
-
   const navigate = useNavigate()
 
-  const handleClick = (event: { currentTarget: { id: string; }; }) => {
-    const buttonId = event.currentTarget.id;
-    switch (buttonId)
-    {
+  const handleClick = (event: { currentTarget: { id: string } }) => {
+    const buttonId = event.currentTarget.id
+    switch (buttonId) {
       case "log-in-button":
-        navigate("/login");
-        break;
+        navigate("/login")
+        break
       case "sign-up-button":
-          navigate("/signup");
-          break;
+        navigate("/signup")
+        break
       default:
-          break;
+        break
     }
   }
 
@@ -32,10 +30,22 @@ const NavigationLinks: React.FC = () => {
         </a>
       </li>
       <div>
-        <button id="log-in-button" data-testid="log-in-button" className="btn btn-outline-success px-2" style={{ width: "100px", margin: "5px" }} onClick={handleClick}>
+        <button
+          id="log-in-button"
+          data-testid="log-in-button"
+          className="btn btn-outline-success px-2"
+          style={{ width: "100px", margin: "5px" }}
+          onClick={handleClick}
+        >
           Log In
         </button>
-        <button id="sign-up-button" data-testid="sign-up-button" className="btn btn-outline-success px-2" style={{ width: "100px", margin: "5px" }} onClick={handleClick}>
+        <button
+          id="sign-up-button"
+          data-testid="sign-up-button"
+          className="btn btn-outline-success px-2"
+          style={{ width: "100px", margin: "5px" }}
+          onClick={handleClick}
+        >
           Sign Up
         </button>
       </div>
