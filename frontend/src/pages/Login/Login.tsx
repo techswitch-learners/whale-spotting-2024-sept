@@ -1,6 +1,6 @@
 import "./Login.scss"
 import { FormEvent, useState, useContext } from "react"
-import { LoginContext } from "../../Components/LoginManager/LoginManager"
+import { LoginContext } from "../../components/LoginManager/LoginManager"
 import { loginUser } from "../../api/backendClient"
 import { useNavigate } from "react-router-dom"
 
