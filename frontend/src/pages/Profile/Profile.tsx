@@ -16,12 +16,12 @@ export function Profile(): JSX.Element {
 
   return (
     <div>
-      <div className="username">{user.username}</div>
-      <div className="first-name">{user.firstName}</div>
-      <div className="last-name">{user.lastName}</div>
-      <div className="email">{user.email}</div>
-      <div className="points-earned">{user.pointsEarned}</div>
-      <div className="about-me">{user.aboutMe}</div>
+      <div className="username">Username: {user.username}</div>
+      <div className="first-name">First name: {user.firstName}</div>
+      <div className="last-name">Last name: {user.lastName}</div>
+      <div className="email">Email: {user.email}</div>
+      <div className="points-earned">Points earned: {user.pointsEarned}</div>
+      <div className="about-me">About me: {user.aboutMe}</div>
     </div>
   )
 }
