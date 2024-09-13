@@ -3,6 +3,7 @@ import { LoginContext } from "../Components/LoginManager/LoginManager"
 import { useContext } from "react"
 
 const NavigationLinks: React.FC = () => {
+  const { isLoggedIn } = useContext(LoginContext)
   const navigate = useNavigate()
   const { isLoggedIn } = useContext(LoginContext)
 
