@@ -1,47 +1,18 @@
 import React, { FormEvent } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { SpeciesDropdown } from '../Components/SpeciesDropdown/SpeciesDropdown';
 
 export function AddSighting(): JSX.Element {
-    // Todo: get a list of species from backend
-    // fetch("GET", "/")
-    // const species = [
-    //     {speciesId: 0, speciesName: "Dolphin"},
-    //     {speciesId: 1, speciesName: "Whale"},
-    //     {speciesId: 2, speciesName: "Porpoise"},
-    // ];
-
-    // const response = await fetch("/species",{
-    //     method: "GET",
-    // });
     
     const [userId, setUserId] = useState(0);
-    const [speciesId, setSpeciesId] = useState(0);
     const [latitude, setLatitude] = useState("0.0");
     const [longitude, setLongitude] = useState("0.0");
     const [photoUrl, setPhotoUrl] = useState("");
     const [description, setDescription] = useState("");
     const [dateTime, setDateTime] = useState(""); // Todo
-    const [species, setSpecies] = useState([]);
+    const [speciesId, setSpeciesId] = useState(0);
 
     const [submitStatus, setSubmitStatus] = useState(false);
-
-    useEffect(() => {
-        // TODO: This fetch I think will need to be added into another
-        //       function...
-        fetch("http://localhost:5280/species", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            setSpecies(data.listOfSpecies);
-        });
-        // .then(data => console.log(data.listOfSpecies));
-    },[species]);
-
-
 
     async function submitSighting(event: FormEvent) {
         event.preventDefault();
@@ -75,12 +46,7 @@ export function AddSighting(): JSX.Element {
             <form method="post" onSubmit={submitSighting}>
                 <label htmlFor="species">
                     Species:
-                    {/* <SpeciesDropdown /> */}
-                    {/* <select id="species" value={speciesId} onChange={(event) => setSpeciesId(species[event.target.selectedIndex].speciesId)}>
-                        {species.map(option =>( 
-                            <option value={option.speciesId}>{option.speciesName}</option>
-                        ))}
-                    </select> */}
+                    <SpeciesDropdown />
                 </label><br />
                 <label htmlFor="latitude">
                     Latitude:
