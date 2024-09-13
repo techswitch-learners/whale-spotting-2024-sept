@@ -1,8 +1,11 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useContext } from 'react';
 import { useState } from 'react';
 import { SpeciesDropdown } from '../Components/SpeciesDropdown/SpeciesDropdown';
+import { LoginContext } from '../Components/LoginManager/LoginManager';
 
 export function AddSighting(): JSX.Element {
+
+    const context = useContext(LoginContext);
     
     const [userId, setUserId] = useState(0);
     const [latitude, setLatitude] = useState("0.0");
@@ -22,7 +25,7 @@ export function AddSighting(): JSX.Element {
             const response = await fetch("/sightings/create", {
                 method: "post",
                 body: JSON.stringify({
-                    // UserId : ,
+                    UserId : context.jwt,
                     SpeciesId: speciesId,
                     Latitude: parseFloat(latitude),
                     Longitude: parseFloat(longitude),
