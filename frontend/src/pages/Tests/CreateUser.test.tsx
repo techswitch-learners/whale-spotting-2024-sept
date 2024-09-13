@@ -1,7 +1,8 @@
 import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { CreateUser } from "../CreateUser"
-import { MemoryRouter, Route, Routes } from "react-router-dom"
+import { MemoryRouter } from "react-router-dom"
+import { registerUser } from "../../api/backendClient"
 
 test("renders Sign up button", () => {
   render(
@@ -99,17 +100,30 @@ test("change of state of about me", () => {
   expect(aboutMeInput.value).toBe("Hello from Evie")
 })
 
-test("go to home page when click on Sign up button", () => {
+jest.mock("../../api/backendClient", () => ({
+  registerUser: jest.fn(),
+}))
+
+test("mandatory parameters are passed into registerUser method", async () => {
   render(
-    <MemoryRouter initialEntries={["/signup"]}>
-      <Routes>
-        <Route path="/signup" element={<CreateUser />} />
-        <Route path="/" element={<div>Home</div>} />
-      </Routes>
+    <MemoryRouter>
+      <CreateUser />
     </MemoryRouter>,
   )
 
-  const button = screen.getByRole("button", { name: "Sign up" })
-  fireEvent.click(button)
-  expect(screen.getByText(/Home/i)).toBeInTheDocument()
+  const mockRegisterUser = registerUser as jest.Mock
+  mockRegisterUser.mockResolvedValue({ ok: true })
+
+  const usernameInput = screen.getByLabelText(/username/i, { exact: false }) as HTMLInputElement
+  fireEvent.change(usernameInput, { target: { value: "testing" } })
+
+  const passwordInput = screen.getByLabelText(/password/i, { exact: false }) as HTMLInputElement
+  fireEvent.change(passwordInput, { target: { value: "Testpass1)" } })
+
+  const emailInput = screen.getByLabelText(/email/i, { exact: false }) as HTMLInputElement
+  fireEvent.change(emailInput, { target: { value: "user1@email.com" } })
+
+  fireEvent.click(screen.getByRole("button", { name: "Sign up" }))
+
+  expect(mockRegisterUser).toHaveBeenCalledWith("", "", "user1@email.com", "testing", "Testpass1)", "")
 })

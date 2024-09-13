@@ -7,11 +7,12 @@ namespace WhaleSpotting.Services;
 
 public interface ISightingsService
 {
-    public Task CreateSighting(SightingsRequest sightingsRequest);
+    public Task CreateSighting(SightingsRequest sightingsRequest, int userId);
     public SightingListResponse GetApproved();
     public Task<Sighting> GetSightingById(int sightingId);
     public Task DeleteSighting(int sightingId, int userId);
-    public Task UpdateSighting(UpdateSightingsRequest sightingsRequest, int sightingId, int userId);
+    public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
+    public Task ApproveSighting(int sightingId);
 }
 
 public class SightingsService : ISightingsService
@@ -23,11 +24,11 @@ public class SightingsService : ISightingsService
         _context = context;
     }
 
-    public async Task CreateSighting(SightingsRequest sightingsRequest)
+    public async Task CreateSighting(SightingsRequest sightingsRequest, int userId)
     {
         Sighting sighting = new Sighting()
         {
-            UserId = sightingsRequest.UserId,
+            UserId = userId,
             SpeciesId = sightingsRequest.SpeciesId,
             Latitude = sightingsRequest.Latitude,
             Longitude = sightingsRequest.Longitude,
@@ -84,13 +85,15 @@ public class SightingsService : ISightingsService
         }
     }
 
-    public async Task UpdateSighting(UpdateSightingsRequest sightingsRequest, int sightingId, int userId)
+    public async Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId)
     {
-
         Sighting sighting = await GetSightingById(sightingId);
 
-        if (sighting.UserId != userId) {
-            throw new UnauthorizedAccessException($"User ID {userId} is not authorised to delete sighting {sightingId}");
+        if (sighting.UserId != userId)
+        {
+            throw new UnauthorizedAccessException(
+                $"User ID {userId} is not authorised to delete sighting {sightingId}"
+            );
         }
 
         sighting.SpeciesId = sightingsRequest.SpeciesId;
@@ -109,6 +112,24 @@ public class SightingsService : ISightingsService
         catch
         {
             throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be updated");
+        }
+    }
+
+    public async Task ApproveSighting(int sightingId)
+    {
+
+        Sighting sighting = await GetSightingById(sightingId);
+
+        sighting.IsApproved = true;
+
+        try
+        {
+            _context.Sightings.Update(sighting);
+            _context.SaveChanges();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be approved");
         }
     }
 }
