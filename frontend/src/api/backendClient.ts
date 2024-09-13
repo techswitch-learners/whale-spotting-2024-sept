@@ -3,7 +3,7 @@ export interface User {
   firstName: string
   lastName: string
   email: string
-  pointsEarned: number
+  totalPointsEarned: number
   aboutMe: string
 }
 

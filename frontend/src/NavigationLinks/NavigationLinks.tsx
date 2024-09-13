@@ -5,7 +5,6 @@ import { useContext } from "react"
 const NavigationLinks: React.FC = () => {
   const { isLoggedIn } = useContext(LoginContext)
   const navigate = useNavigate()
-  const { isLoggedIn } = useContext(LoginContext)
 
   const handleClick = (event: { currentTarget: { id: string } }) => {
     const buttonId = event.currentTarget.id

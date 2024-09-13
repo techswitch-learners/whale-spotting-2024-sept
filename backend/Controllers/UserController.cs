@@ -27,6 +27,28 @@ public class UserController(IUserService userService) : Controller
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
 
+    [HttpGet("/profile")]
+    public IActionResult GetUserProfile()
+    {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        User? user = _userService.FindById(userId).Result;
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return Ok(
+            new ProfileResponse
+            {
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                TotalPointsEarned = user.TotalPointsEarned,
+                AboutMe = user.AboutMe
+            }
+        );
+    }
+
     [HttpPut("/update")]
     public async Task<IActionResult> UpdateUser(UpdateUserRequest userRequest)
     {
@@ -81,7 +103,6 @@ public class UserController(IUserService userService) : Controller
         {
             return BadRequest(ex.Message);
         }
-
     }
 
     [HttpDelete("")]
@@ -122,5 +143,4 @@ public class UserController(IUserService userService) : Controller
             return BadRequest(ex.Message);
         }
     }
-
 }
