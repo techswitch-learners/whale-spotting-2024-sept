@@ -52,6 +52,7 @@ public class AuthController(UserManager<User> userManager, RoleManager<Role> rol
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     Expiration = token.ValidTo,
+                    RoleType = token.Claims.ElementAt(3).Value
                 }
             );
         }
