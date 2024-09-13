@@ -98,7 +98,5 @@ public class SightingsController : Controller
         {
             return BadRequest(ex.Message);
         }
-
     }
-
 }
