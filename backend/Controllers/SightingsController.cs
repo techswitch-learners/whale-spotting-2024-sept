@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -25,8 +26,13 @@ public class SightingsController : Controller
     {
         try
         {
-            await _sightingService.CreateSighting(sightingRequest);
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            await _sightingService.CreateSighting(sightingRequest, userId);
             return Ok();
+        }
+        catch(NullReferenceException ex)
+        {
+            return BadRequest($"User identifier not found. {ex.Message}");
         }
         catch (Exception ex)
         {
@@ -48,13 +54,18 @@ public class SightingsController : Controller
         }
     }
 
-    [HttpDelete("{sightingId}/delete&user={userId}")]
-    public async Task<IActionResult> Delete([FromRoute] int sightingId, int userId)
+    [HttpDelete("{sightingId}/delete")]
+    public async Task<IActionResult> Delete([FromRoute] int sightingId)
     {
         try
         {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             await _sightingService.DeleteSighting(sightingId, userId);
             return Ok();
+        }
+        catch (NullReferenceException ex)
+        {
+            return BadRequest($"User identifier not found. {ex.Message}");
         }
         catch (UnauthorizedAccessException ex)
         {
@@ -66,17 +77,18 @@ public class SightingsController : Controller
         }
     }
 
-    [HttpPut("{sightingId}/update&user={userId}")]
-    public async Task<IActionResult> Update(
-        UpdateSightingsRequest sightingRequest,
-        [FromRoute] int sightingId,
-        int userId
-    )
+    [HttpPut("{sightingId}/update")]
+    public async Task<IActionResult> Update(SightingsRequest sightingRequest, [FromRoute] int sightingId)
     {
         try
         {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             await _sightingService.UpdateSighting(sightingRequest, sightingId, userId);
             return Ok();
+        }
+        catch(NullReferenceException ex)
+        {
+            return BadRequest($"User identifier not found. {ex.Message}");
         }
         catch (UnauthorizedAccessException ex)
         {
