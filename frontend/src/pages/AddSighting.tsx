@@ -1,11 +1,8 @@
 import React, { FormEvent, useContext } from 'react';
 import { useState } from 'react';
 import { SpeciesDropdown } from '../Components/SpeciesDropdown/SpeciesDropdown';
-import { LoginContext } from '../Components/LoginManager/LoginManager';
 
 export function AddSighting(): JSX.Element {
-
-    const context = useContext(LoginContext);
     
     const [userId, setUserId] = useState(0);
     const [latitude, setLatitude] = useState("0.0");
@@ -14,18 +11,15 @@ export function AddSighting(): JSX.Element {
     const [description, setDescription] = useState("");
     const [dateTime, setDateTime] = useState(""); // Todo
     const [speciesId, setSpeciesId] = useState(0);
-
-    const [submitStatus, setSubmitStatus] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     async function submitSighting(event: FormEvent) {
         event.preventDefault();
-        setSubmitStatus(true);
 
         try {
-            const response = await fetch("/sightings/create", {
+            const response = await fetch("http://localhost:5280/sightings/create", {
                 method: "post",
                 body: JSON.stringify({
-                    UserId : context.jwt,
                     SpeciesId: speciesId,
                     Latitude: parseFloat(latitude),
                     Longitude: parseFloat(longitude),
@@ -35,17 +29,18 @@ export function AddSighting(): JSX.Element {
                 })
             });
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                setErrorMessage('Error: Sighting not submitted');
             }
             // redirect to sighting
         } catch (err) {
-            // redirect to error page
+            setErrorMessage("Error: Sighting not submitted!");
         };
     }
 
     return (
         <div>
-            <h1>Add Sighting</h1>
+            <h1>Add a Sighting</h1>
+            <p>{errorMessage}</p>
             <form method="post" onSubmit={submitSighting}>
                 <label htmlFor="species">
                     Species:
@@ -72,7 +67,6 @@ export function AddSighting(): JSX.Element {
                     <input type='datetime-local' id="dateTime" value={dateTime} onChange={(event) => setDateTime(event.target.value)}/>
                 </label><br />
                 <button type="submit">Submit</button>
-                {submitStatus ? <p>Sighting Submitted</p> : null}
             </form>
         </div>
     )
