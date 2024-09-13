@@ -16,7 +16,7 @@ export function Profile(): JSX.Element {
 
   return (
     <div>
-      <div className="username">Username: {user.username}</div>
+      <div className="username">Username: {user.userName}</div>
       <div className="first-name">First name: {user.firstName}</div>
       <div className="last-name">Last name: {user.lastName}</div>
       <div className="email">Email: {user.email}</div>

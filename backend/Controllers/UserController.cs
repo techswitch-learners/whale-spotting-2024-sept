@@ -27,7 +27,7 @@ public class UserController(IUserService userService) : Controller
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
 
-    [HttpGet("/profile")]
+    [HttpGet("profile")]
     public IActionResult GetUserProfile()
     {
         string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
