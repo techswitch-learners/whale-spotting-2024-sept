@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const NavigationLinks: React.FC = () => {
   const navigate = useNavigate()
@@ -29,6 +29,15 @@ const NavigationLinks: React.FC = () => {
           Explore
         </a>
       </li>
+      {/* {roleType === "User" && ( */}
+      <div>
+        <li className="nav-item" data-testid="profileLink">
+          <Link to="/profile" className="nav-link">
+            Profile
+          </Link>
+        </li>
+      </div>
+      {/* )} */}
       <div>
         <button
           id="log-in-button"
