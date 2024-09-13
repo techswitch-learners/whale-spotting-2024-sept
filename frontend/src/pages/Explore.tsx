@@ -11,7 +11,8 @@ function Explore(): JSX.Element {
     async function fetchSightings() {
       try
       {
-        console.log('login context', jwt); //test code, jwt is blank currently for unknown reasons
+        console.log('login context', loginContext); //test code, loginContext is blank currently for unknown reasons
+        console.log('jwt', jwt); //test code, jwt is blank currently for unknown reasons
         const response = await getSightings(jwt);
         if (!response.ok)
         {
@@ -26,7 +27,7 @@ function Explore(): JSX.Element {
     }
 
     fetchSightings();
-  }, [jwt]);
+  }, []);
 
   return (<>
     <h1>Explore</h1>
