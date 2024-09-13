@@ -81,7 +81,28 @@ public class UserController(IUserService userService) : Controller
         {
             return BadRequest(ex.Message);
         }
+    }
 
+    [HttpPut("/AddPoint")]
+    public async Task<IActionResult> UpdatePointToUser(string userId)
+    {
+        try
+        {
+            //string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            User? user = _userService.FindById(userId).Result;
+            //User? sightingUser = _userService.FindById(userId).Result;
+            //User sightingUser = await _userservice.FindById(sighting.UserId.ToString());
+            await _userService.AddPoint(user);
+            return Ok();
+        }
+        catch (NullReferenceException ex)
+        {
+            return BadRequest($"User identifier not found. {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpDelete("")]
@@ -122,5 +143,4 @@ public class UserController(IUserService userService) : Controller
             return BadRequest(ex.Message);
         }
     }
-
 }

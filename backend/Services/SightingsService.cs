@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
@@ -22,6 +23,13 @@ public class SightingsService : ISightingsService
     public SightingsService(WhaleSpottingContext context)
     {
         _context = context;
+    }
+
+    private readonly UserService _userservice;
+
+    public SightingsService(UserService userservice)
+    {
+        _userservice = userservice;
     }
 
     public async Task CreateSighting(SightingsRequest sightingsRequest, int userId)
@@ -117,19 +125,24 @@ public class SightingsService : ISightingsService
 
     public async Task ApproveSighting(int sightingId)
     {
-
         Sighting sighting = await GetSightingById(sightingId);
 
         sighting.IsApproved = true;
+        Console.Write(sighting.UserId + "---------------------");
+        User sightingUser = await _userservice.FindById(sighting.UserId.ToString());
 
         try
         {
             _context.Sightings.Update(sighting);
             _context.SaveChanges();
+
+            await _userservice.AddPoint(sightingUser);
         }
         catch
         {
-            throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be approved");
+            throw new InvalidOperationException(
+                $"Sighting with ID {sightingId} user: {sighting.UserId} {sightingUser.FirstName} points: {sightingUser.TotalPointsEarned} cannot be approved"
+            );
         }
     }
 }
