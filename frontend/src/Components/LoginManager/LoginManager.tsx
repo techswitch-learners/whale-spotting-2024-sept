@@ -3,7 +3,6 @@ import React, { createContext, ReactNode, useState } from "react"
 export const LoginContext = createContext({
   isLoggedIn: false,
   isAdmin: false,
-  roleType: "",
   logIn: () => {},
   logOut: () => {},
   username: "",
@@ -12,7 +11,6 @@ export const LoginContext = createContext({
   saveUsernameToContext: (username: string) => {},
   savePasswordToContext: (password: string) => {},
   saveJwtToContext: (jwt: string) => {},
-  saveRoleTypeToContext: (roleType: string) => {},
 })
 
 interface LoginManagerProps {
@@ -25,7 +23,6 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
   const [contextUsername, setContextUsername] = useState("")
   const [contextPassword, setContextPassword] = useState("")
   const [contextJwt, setContextJwt] = useState("")
-  const [roleType, setRoleType] = useState("")
 
   function logIn() {
     setLoggedIn(true)
@@ -47,14 +44,9 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
     setContextJwt(jwt)
   }
 
-  function saveRoleTypeToContext(roleType: string) {
-    setRoleType(roleType)
-  }
-
   const context = {
     isLoggedIn: loggedIn,
     isAdmin: loggedIn,
-    roleType: roleType,
     logIn,
     logOut,
     username: contextUsername,
@@ -63,7 +55,6 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
     saveUsernameToContext,
     savePasswordToContext,
     saveJwtToContext,
-    saveRoleTypeToContext,
   }
 
   return <LoginContext.Provider value={context}>{props.children}</LoginContext.Provider>
