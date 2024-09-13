@@ -46,7 +46,7 @@ const Login = () => {
           <div className="col-sm-3">
             <input
               id="username"
-              className="form-input"
+              className="form-control"
               type={"text"}
               value={username}
               onChange={(event) => setUsername(event.target.value)}
@@ -60,7 +60,7 @@ const Login = () => {
           <div className="col-sm-3">
             <input
               id="password"
-              className="form-input"
+              className="form-control"
               type={"password"}
               value={password}
               onChange={(event) => setPassword(event.target.value)}

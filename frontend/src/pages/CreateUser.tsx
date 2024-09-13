@@ -1,24 +1,41 @@
 import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { registerUser } from "../api/backendClient"
+
 export function CreateUser(): JSX.Element {
   const [firstname, setFirstName] = useState("")
   const [lastname, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [aboutMe, setAboutMe] = useState("")
+  const [aboutme, setAboutMe] = useState("")
+  const [error, setError] = useState(null)
 
   const navigate = useNavigate()
 
-  function handleSubmit(event: FormEvent) {
+  function tryRegister(event: FormEvent) {
     event.preventDefault()
-    navigate("/")
+    registerUser(firstname, lastname, email, username, password, aboutme)
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((errorData) => {
+            throw new Error(JSON.stringify(errorData.errors))
+          })
+        }
+        return response.json()
+      })
+      .then((data) => {
+        navigate("/")
+      })
+      .catch((error) => {
+        setError(error.message)
+      })
   }
 
   return (
     <div>
       <h1 className="title">Sign up</h1>
-      <form className="createUser-form" onSubmit={handleSubmit}>
+      <form className="createUser-form" onSubmit={tryRegister}>
         <div className="form-group row">
           <label htmlFor="firstName" className="col-sm-2 col-form-label">
             First Name
@@ -99,7 +116,7 @@ export function CreateUser(): JSX.Element {
             <textarea
               id="aboutMe"
               className="form-control"
-              value={aboutMe}
+              value={aboutme}
               onChange={(event) => setAboutMe(event.target.value)}
             ></textarea>
           </div>
@@ -107,11 +124,12 @@ export function CreateUser(): JSX.Element {
 
         <div className="form-group row">
           <div className="col-sm-10">
-            <button className="btn btn-outline-success px-4" style={{ width: "200px" }} onClick={handleSubmit}>
+            <button className="btn btn-outline-success px-4" style={{ width: "200px" }} onClick={tryRegister}>
               Sign up
             </button>
           </div>
         </div>
+        {error && <p style={{ color: "red" }}> {error}</p>}
       </form>
     </div>
   )
