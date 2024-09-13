@@ -35,6 +35,16 @@ export const registerUser = async (
   })
 }
 
+export const getSightings = async (header: string) => {
+  return await fetch(`http://localhost:5280/sightings`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${header}`
+    },
+  })
+}
+
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:
 // In the .tsx file where the fetch request is being called:
 // 1) import the login context to access the value of the JWT token
