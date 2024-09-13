@@ -87,11 +87,13 @@ public class SightingsService : ISightingsService
 
     public async Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId)
     {
-
         Sighting sighting = await GetSightingById(sightingId);
 
-        if (sighting.UserId != userId) {
-            throw new UnauthorizedAccessException($"User ID {userId} is not authorised to delete sighting {sightingId}");
+        if (sighting.UserId != userId)
+        {
+            throw new UnauthorizedAccessException(
+                $"User ID {userId} is not authorised to delete sighting {sightingId}"
+            );
         }
 
         sighting.SpeciesId = sightingsRequest.SpeciesId;

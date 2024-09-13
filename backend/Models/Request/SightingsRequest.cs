@@ -8,4 +8,4 @@ public class SightingsRequest
     public string PhotoUrl { get; set; }
     public string? Description { get; set; }
     public DateTime DateTime { get; set; }
-} 
+}
