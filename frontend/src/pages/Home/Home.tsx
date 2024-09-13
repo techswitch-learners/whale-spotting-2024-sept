@@ -10,8 +10,8 @@ const Home: React.FC = () => {
   const handleClick = (event: { currentTarget: { id: string; }; }) => {
     const buttonId = event.currentTarget.id;
     switch (buttonId) {
-      case "register-sighting-button":
-        navigate("/");
+      case "submit-button":
+        navigate("/submit-sighting");
         break;
       case "explore-button":
         navigate("/explore");
