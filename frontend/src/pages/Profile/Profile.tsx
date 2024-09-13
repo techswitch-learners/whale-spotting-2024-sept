@@ -20,7 +20,7 @@ export function Profile(): JSX.Element {
       <div className="first-name">First name: {user.firstName}</div>
       <div className="last-name">Last name: {user.lastName}</div>
       <div className="email">Email: {user.email}</div>
-      <div className="points-earned">Points earned: {user.pointsEarned}</div>
+      <div className="points-earned">Points earned: {user.totalPointsEarned}</div>
       <div className="about-me">About me: {user.aboutMe}</div>
     </div>
   )
