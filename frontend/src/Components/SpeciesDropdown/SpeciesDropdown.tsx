@@ -31,7 +31,9 @@ export function SpeciesDropdown({getSpeciesIdFromDropdown} : {getSpeciesIdFromDr
         return <div>Loading...</div>
     } else {
         return (
-            <select id="species" onChange={(event) => getSpeciesIdFromDropdown(species[event.target.selectedIndex].speciesId)}>
+            <select id="species"
+            className="form-control"
+            onChange={(event) => getSpeciesIdFromDropdown(species[event.target.selectedIndex].speciesId)}>
                 {species.map(option => (
                     <option value={option.speciesId}>{option.speciesName}</option>
                 ))}
