@@ -12,7 +12,7 @@ export function Profile(): JSX.Element {
   }, [loginContext.jwt])
 
   if (!user) {
-    return <section>Loading...</section>
+    return <section>You are not authorized to view this page</section>
   }
 
   return (
