@@ -117,7 +117,6 @@ public class SightingsService : ISightingsService
 
     public async Task ApproveSighting(int sightingId)
     {
-
         Sighting sighting = await GetSightingById(sightingId);
 
         sighting.IsApproved = true;
