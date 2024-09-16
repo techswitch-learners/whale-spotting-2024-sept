@@ -19,7 +19,7 @@ function App() {
         <Hamburger />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/submit-sighting" element={<AddSighting />} />
+          <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<CreateUser />} />

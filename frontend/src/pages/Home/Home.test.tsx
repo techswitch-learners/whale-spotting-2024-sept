@@ -46,7 +46,7 @@ describe("Buttons go to correct pages", () => {
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/submit-sighting" element={<AddSighting />} />
+          <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </MemoryRouter>,
@@ -63,7 +63,7 @@ describe("Buttons go to correct pages", () => {
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/submit-sighting" element={<AddSighting />} />
+          <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </MemoryRouter>,
