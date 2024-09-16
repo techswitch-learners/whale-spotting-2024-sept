@@ -69,6 +69,17 @@ export async function fetchUnapprovedSightings(header: string): Promise<Sighting
   return await response.json()
 }
 
+export async function approveSighting(header: string, sightingId: number) {
+  const response = await fetch(`http://localhost:5280/admin/approve/sighting=${sightingId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    method: "PUT",
+  })
+  return await response
+}
+
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:
 // In the .tsx file where the fetch request is being called:
 // 1) import the login context to access the value of the JWT token

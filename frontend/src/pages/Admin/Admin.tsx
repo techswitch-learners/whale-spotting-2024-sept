@@ -1,16 +1,23 @@
 import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
-import { fetchUnapprovedSightings, Sightings } from "../../api/backendClient"
+import { approveSighting, fetchUnapprovedSightings, Sightings } from "../../api/backendClient"
 
 const Admin = () => {
   const loginContext = useContext(LoginContext)
   const [sightings, setSightings] = useState<Sightings | null>(null)
+  const [approvals, setApprovals] = useState(0)
 
   useEffect(() => {
     fetchUnapprovedSightings(loginContext.jwt).then((response) => setSightings(response))
-  }, [loginContext.jwt])
+  }, [loginContext.jwt, approvals])
 
-  console.log(sightings)
+  const handleClick = (header: string, id: number) => {
+    approveSighting(header, id).then((response) => {
+      if (response.ok) {
+        setApprovals(approvals + 1)
+      }
+    })
+  }
 
   if (loginContext.roleType === "Admin") {
     return (
@@ -27,7 +34,7 @@ const Admin = () => {
               <td>{sighting.description}</td>
               <td>{sighting.dateTime}</td>
               <td>
-                <button>Approve</button>
+                <button onClick={() => handleClick(loginContext.jwt, sighting.id)}>Approve</button>
               </td>
             </tr>
           ))}
