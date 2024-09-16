@@ -19,17 +19,12 @@ public interface ISightingsService
 public class SightingsService : ISightingsService
 {
     private readonly WhaleSpottingContext _context;
+    private readonly IUserService _userservice;
 
-    public SightingsService(WhaleSpottingContext context)
+    public SightingsService(WhaleSpottingContext context, IUserService userService)
     {
         _context = context;
-    }
-
-    private readonly UserService _userservice;
-
-    public SightingsService(UserService userservice)
-    {
-        _userservice = userservice;
+        _userservice = userService;
     }
 
     public async Task CreateSighting(SightingsRequest sightingsRequest, int userId)
@@ -127,22 +122,35 @@ public class SightingsService : ISightingsService
     {
         Sighting sighting = await GetSightingById(sightingId);
 
-        sighting.IsApproved = true;
-        Console.Write(sighting.UserId + "---------------------");
-        User sightingUser = await _userservice.FindById(sighting.UserId.ToString());
-
-        try
+        if (!sighting.IsApproved)
         {
-            _context.Sightings.Update(sighting);
-            _context.SaveChanges();
+            sighting.IsApproved = true;
 
-            await _userservice.AddPoint(sightingUser);
+            try
+            {
+                _context.Sightings.Update(sighting);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Sighting with ID {sightingId} cannot be approved");
+            }
+
+            try
+            {
+                await _userservice.AddPoint(sighting.UserId.ToString());
+            }
+            catch
+            {
+                throw new InvalidOperationException(
+                    $"Point could not be added to user {sighting.UserId} for approved sighting {sightingId}"
+                );
+            }
         }
-        catch
+        else
         {
-            throw new InvalidOperationException(
-                $"Sighting with ID {sightingId} user: {sighting.UserId} {sightingUser.FirstName} points: {sightingUser.TotalPointsEarned} cannot be approved"
-            );
+            throw new InvalidOperationException($"Sighting with ID {sightingId} already approved");
         }
+        ;
     }
 }

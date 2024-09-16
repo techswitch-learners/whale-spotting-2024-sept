@@ -9,7 +9,7 @@ public interface IUserService
     public Task<User> FindById(string userId);
     public Task Update(User user);
     public Task<IdentityResult> Delete(User user);
-    public Task AddPoint(User user);
+    public Task AddPoint(string userId);
 }
 
 public class UserService : IUserService
@@ -36,8 +36,9 @@ public class UserService : IUserService
         await _userManager.UpdateAsync(user);
     }
 
-    public async Task AddPoint(User user)
+    public async Task AddPoint(string userId)
     {
+        User? user = await _userManager.FindByIdAsync(userId);
         user.TotalPointsEarned += 1;
         await _userManager.UpdateAsync(user);
     }
