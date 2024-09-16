@@ -1,6 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
+import { LoginContext } from "../Components/LoginManager/LoginManager"
+import { useContext } from "react"
 
 const NavigationLinks: React.FC = () => {
+  const { roleType } = useContext(LoginContext)
   const navigate = useNavigate()
 
   const handleClick = (event: { currentTarget: { id: string } }) => {
@@ -20,15 +23,24 @@ const NavigationLinks: React.FC = () => {
   return (
     <ul className="navbar-nav mb-2 mb-lg-0 d-flex w-100 justify-content-around" data-testid="navigationLinks">
       <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="/">
+        <Link to="/" className="nav-link" data-testid="homeLink">
           Home
-        </a>
+        </Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="/explore">
+        <Link to="/explore" className="nav-link">
           Explore
-        </a>
+        </Link>
       </li>
+      {roleType === "Admin" && (
+        <div>
+          <li className="nav-item" data-testid="adminLink">
+            <Link to="/admin" className="nav-link">
+              Admin
+            </Link>
+          </li>
+        </div>
+      )}
       <div>
         <button
           id="log-in-button"
