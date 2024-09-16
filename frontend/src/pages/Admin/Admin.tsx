@@ -1,10 +1,18 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
+import { fetchUnapprovedSightings, Sightings } from "../../api/backendClient"
 
 const Admin = () => {
-  const { roleType } = useContext(LoginContext)
+  const loginContext = useContext(LoginContext)
+  const [sightings, setSightings] = useState<Sightings | null>(null)
 
-  if (roleType === "Admin") {
+  useEffect(() => {
+    fetchUnapprovedSightings(loginContext.jwt).then((response) => setSightings(response))
+  }, [loginContext.jwt])
+
+  console.log(sightings)
+
+  if (loginContext.roleType === "Admin") {
     return (
       <div>
         <h1 data-testid="adminTitle">Admin Page</h1>
