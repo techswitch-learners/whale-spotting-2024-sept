@@ -11,7 +11,7 @@ const Home: React.FC = () => {
     const buttonId = event.currentTarget.id;
     switch (buttonId) {
       case "submit-button":
-        navigate("/submit-sighting");
+        navigate("/addsighting");
         break;
       case "explore-button":
         navigate("/explore");
