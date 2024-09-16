@@ -17,7 +17,6 @@ namespace WhaleSpotting.SeedData
         {
             new Sighting()
             {
-                Id = 1,
                 UserId = 1,
                 SpeciesId = 1,
                 Latitude = 64.0123F,
@@ -30,7 +29,6 @@ namespace WhaleSpotting.SeedData
             },
             new Sighting()
             {
-                Id = 2,
                 UserId = 2,
                 SpeciesId = 1,
                 Latitude = 54.012354f,
@@ -43,7 +41,6 @@ namespace WhaleSpotting.SeedData
             },
             new Sighting()
             {
-                Id = 3,
                 UserId = 2,
                 SpeciesId = 1,
                 Latitude = 4.012354F,
@@ -56,7 +53,6 @@ namespace WhaleSpotting.SeedData
             },
             new Sighting()
             {
-                Id = 4,
                 UserId = 2,
                 SpeciesId = 1,
                 Latitude = 54.012354F,
@@ -69,7 +65,6 @@ namespace WhaleSpotting.SeedData
             },
             new Sighting()
             {
-                Id = 5,
                 UserId = 2,
                 SpeciesId = 1,
                 Latitude = 54.012354F,
@@ -82,7 +77,6 @@ namespace WhaleSpotting.SeedData
             },
             new Sighting()
             {
-                Id = 6,
                 UserId = 2,
                 SpeciesId = 1,
                 Latitude = 54.012354F,
