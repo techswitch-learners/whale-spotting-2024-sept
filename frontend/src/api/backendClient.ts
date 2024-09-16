@@ -1,10 +1,10 @@
 export interface User {
   userName: string
-  firstName: string
-  lastName: string
+  firstName?: string
+  lastName?: string
   email: string
   totalPointsEarned: number
-  aboutMe: string
+  aboutMe?: string
 }
 
 export const loginUser = async (username: string, password: string) => {
