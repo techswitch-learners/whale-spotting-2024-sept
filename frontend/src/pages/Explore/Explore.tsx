@@ -7,31 +7,29 @@ function Explore(): JSX.Element {
   const loginContext = useContext(LoginContext);
   const jwt = loginContext.jwt;
 
-  getSightings(jwt)
-  .then(data => setSightings(data))
-
-  // useEffect(() => {
-  //   async function fetchSightings() {
-  //     try {
+  useEffect(() => {
+    async function fetchSightings() {
+      try {
     
-  //       const response = await getSightings(jwt);
-  //       if (!response.ok) {
-  //         throw new Error('Network response failed');
-  //       }
-  //       const result = await response.json();
-  //       setSightings(result);
-  //     }
-  //     catch (error) {
-  //       console.error('Error fetching sightings:', error);
-  //     }
-  //   }
+        const response = await getSightings(jwt);
+        if (!response.ok) {
+          throw new Error('Network response failed');
+        }
+        const result = await response.json();
+        setSightings(result);
+      }
+      catch (error) {
+        console.error('Error fetching sightings:', error);
+      }
+    }
 
-  //   fetchSightings();
-  // }, [jwt]);
+    fetchSightings();
+  }, [jwt]);
 
   return (<>
     <h1>Explore</h1>
     {
+      // <img src={sightings[0][0].PhotoUrl}/>
       JSON.stringify(sightings)
     }
 
