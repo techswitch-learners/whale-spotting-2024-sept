@@ -7,24 +7,27 @@ function Explore(): JSX.Element {
   const loginContext = useContext(LoginContext);
   const jwt = loginContext.jwt;
 
-  useEffect(() => {
-    async function fetchSightings() {
-      try {
-        console.log('login context', jwt); //test code, jwt is blank currently for unknown reasons
-        const response = await getSightings(jwt);
-        if (!response.ok) {
-          throw new Error('Network response failed');
-        }
-        const result = await response.json();
-        setSightings(result);
-      }
-      catch (error) {
-        console.error('Error fetching sightings:', error);
-      }
-    }
+  getSightings(jwt)
+  .then(data => setSightings(data))
 
-    fetchSightings();
-  }, [jwt]);
+  // useEffect(() => {
+  //   async function fetchSightings() {
+  //     try {
+    
+  //       const response = await getSightings(jwt);
+  //       if (!response.ok) {
+  //         throw new Error('Network response failed');
+  //       }
+  //       const result = await response.json();
+  //       setSightings(result);
+  //     }
+  //     catch (error) {
+  //       console.error('Error fetching sightings:', error);
+  //     }
+  //   }
+
+  //   fetchSightings();
+  // }, [jwt]);
 
   return (<>
     <h1>Explore</h1>
