@@ -1,13 +1,15 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Explore from "./pages/Explore"
-import Home from "./pages/Home"
+import Home from "./pages/Home/Home"
 import "./App.scss"
 import { CreateUser } from "./pages/CreateUser"
 import Header from "./Header/Header"
 import Hamburger from "./Hamburger/Hamburger"
 import Login from "./pages/Login/Login"
 import { LoginManager } from "./Components/LoginManager/LoginManager"
+import Admin from "./pages/Admin/Admin"
+import AddSighting from "./pages/AddSighting"
 
 function App() {
   return (
@@ -17,9 +19,11 @@ function App() {
         <Hamburger />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<CreateUser />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </LoginManager>
     </BrowserRouter>
