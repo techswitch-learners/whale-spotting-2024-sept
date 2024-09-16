@@ -32,13 +32,13 @@ export function AddSighting(): JSX.Element {
                 })
             });
             if (!response.ok) {
-                setErrorMessage('Error: Sighting not submitted (response not ok)');
+                setErrorMessage('Oh no! Something did not go swimmingly, please try again.');
             } else {
                 navigate("/")
             }
             // redirect to sighting
         } catch (err) {
-            setErrorMessage("Error: Sighting not submitted! (catch err)");
+            setErrorMessage("Error: Please contact support.");
         };
     }
 
