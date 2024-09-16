@@ -16,7 +16,7 @@ export function Profile(): JSX.Element {
   }
 
   return (
-    <div className="container col-10 col-md-6 mx-auto">
+    <div className="container col-10 col-md-6 pt-3 mx-auto">
       <div className="card bg-light mb-3 mt-lg-5 mx-auto">
         <h4 className="card-header py-3 ps-4">Profile</h4>
         <div className="card-body px-4">
