@@ -16,6 +16,22 @@ const Admin = () => {
     return (
       <div>
         <h1 data-testid="adminTitle">Admin Page</h1>
+        <table>
+          {sightings?.sightings.map((sighting) => (
+            <tr>
+              <td>{sighting.userId}</td>
+              <td>{sighting.speciesId}</td>
+              <td>{sighting.latitude}</td>
+              <td>{sighting.longitude}</td>
+              <td>{sighting.photoUrl}</td>
+              <td>{sighting.description}</td>
+              <td>{sighting.dateTime}</td>
+              <td>
+                <button>Approve</button>
+              </td>
+            </tr>
+          ))}
+        </table>
       </div>
     )
   } else {
@@ -28,3 +44,7 @@ const Admin = () => {
 }
 
 export default Admin
+
+// sightings = [sighting, sighting]
+
+// sightings = {sightings: [sighting1, sighting2]}

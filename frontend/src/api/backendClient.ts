@@ -12,6 +12,7 @@ export interface Sightings {
 }
 
 export interface Sighting {
+  id: number
   userId: number
   speciesId: number
   latitude: number
