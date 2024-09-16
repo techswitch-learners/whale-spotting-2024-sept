@@ -4,7 +4,7 @@ import Header from "../../Header/Header"
 import Admin from "../Admin/Admin"
 import { CreateUser } from "../CreateUser"
 import Explore from "../Explore/Explore"
-import Home from "../Home"
+import Home from "../Home/Home"
 import Login from "../Login/Login"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 
