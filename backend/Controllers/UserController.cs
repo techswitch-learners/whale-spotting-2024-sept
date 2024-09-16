@@ -81,7 +81,6 @@ public class UserController(IUserService userService) : Controller
         {
             return BadRequest(ex.Message);
         }
-
     }
 
     [HttpDelete("")]
@@ -122,5 +121,4 @@ public class UserController(IUserService userService) : Controller
             return BadRequest(ex.Message);
         }
     }
-
 }

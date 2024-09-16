@@ -30,7 +30,7 @@ public class SightingsController : Controller
             await _sightingService.CreateSighting(sightingRequest, userId);
             return Ok();
         }
-        catch(NullReferenceException ex)
+        catch (NullReferenceException ex)
         {
             return BadRequest($"User identifier not found. {ex.Message}");
         }
@@ -86,7 +86,7 @@ public class SightingsController : Controller
             await _sightingService.UpdateSighting(sightingRequest, sightingId, userId);
             return Ok();
         }
-        catch(NullReferenceException ex)
+        catch (NullReferenceException ex)
         {
             return BadRequest($"User identifier not found. {ex.Message}");
         }

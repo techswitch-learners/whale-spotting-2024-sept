@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import Explore from "../../pages/Explore";
-import SubmitSighting from "../SubmitSighting";
+import AddSighting from "../AddSighting";
 
 describe("Check exitence of background image, submit and explore buttons", () => {
   test("check if submit button exist", () => {
@@ -46,7 +46,7 @@ describe("Buttons go to correct pages", () => {
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/submit-sighting" element={<SubmitSighting />} />
+          <Route path="/submit-sighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </MemoryRouter>,
@@ -54,8 +54,8 @@ describe("Buttons go to correct pages", () => {
 
     const button = screen.getByTestId("submit-button")
     fireEvent.click(button)
-    const submitSightingHeading = await screen.findByRole("heading", { name: /submit sighting/i })
-    expect(submitSightingHeading).toBeInTheDocument()
+    const AddSightingHeading = await screen.findByRole("heading", { name: /submit sighting/i })
+    expect(AddSightingHeading).toBeInTheDocument()
   })
 
   test("go to explore page when explore button is clicked", async () => {
@@ -63,7 +63,7 @@ describe("Buttons go to correct pages", () => {
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/submit-sighting" element={<SubmitSighting />} />
+          <Route path="/submit-sighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
         </Routes>
       </MemoryRouter>,
