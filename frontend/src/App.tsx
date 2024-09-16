@@ -9,7 +9,7 @@ import Hamburger from "./Hamburger/Hamburger"
 import Login from "./pages/Login/Login"
 import { LoginManager } from "./Components/LoginManager/LoginManager"
 import Admin from "./pages/Admin/Admin"
-import AddSighting from "./pages/AddSighting"
+import { AddSighting } from "./pages/AddSighting/AddSighting"
 import { Profile } from "./pages/Profile/Profile"
 
 function App() {
@@ -20,11 +20,11 @@ function App() {
         <Hamburger />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<CreateUser />} />
+          <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </LoginManager>

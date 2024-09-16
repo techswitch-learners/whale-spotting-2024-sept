@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 import Home from "../../pages/Home/Home"
 import Explore from "../../pages/Explore"
-import AddSighting from "../AddSighting"
+import { AddSighting } from "../AddSighting/AddSighting"
 
 describe("Check exitence of background image, submit and explore buttons", () => {
   test("check if submit button exist", () => {
@@ -53,7 +53,7 @@ describe("Buttons go to correct pages", () => {
 
     const button = screen.getByTestId("submit-button")
     fireEvent.click(button)
-    const AddSightingHeading = await screen.findByRole("heading", { name: /submit sighting/i })
+    const AddSightingHeading = await screen.findByRole("heading", { name: /add a sighting/i })
     expect(AddSightingHeading).toBeInTheDocument()
   })
 
