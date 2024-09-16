@@ -2,6 +2,7 @@ import React, { FormEvent } from 'react';
 import { useState } from 'react';
 import { SpeciesDropdown } from '../../Components/SpeciesDropdown/SpeciesDropdown';
 import './AddSighting.scss';
+import { useNavigate } from "react-router-dom"
 
 export function AddSighting(): JSX.Element {
 
@@ -12,6 +13,7 @@ export function AddSighting(): JSX.Element {
     const [dateTime, setDateTime] = useState(""); // Todo
     const [speciesId, setSpeciesId] = useState(0);
     const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate()
 
     async function submitSighting(event: FormEvent) {
         event.preventDefault();
@@ -31,6 +33,8 @@ export function AddSighting(): JSX.Element {
             });
             if (!response.ok) {
                 setErrorMessage('Error: Sighting not submitted (response not ok)');
+            } else {
+                navigate("/")
             }
             // redirect to sighting
         } catch (err) {
