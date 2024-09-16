@@ -5,7 +5,7 @@ using WhaleSpotting.Services;
 namespace WhaleSpotting.Controllers;
 
 [ApiController]
-[Authorize(Roles="Admin")]
+[Authorize(Roles = "Admin")]
 [Route("/admin")]
 public class AdminController(ISightingsService sightingsService) : Controller
 {
