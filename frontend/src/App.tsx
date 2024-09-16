@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Explore from "./pages/Explore"
+import Explore from "./pages/Explore/Explore"
 import Home from "./pages/Home/Home"
 import "./App.scss"
 import { CreateUser } from "./pages/CreateUser"

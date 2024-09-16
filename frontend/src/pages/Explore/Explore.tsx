@@ -1,20 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { LoginContext } from '../Components/LoginManager/LoginManager';
-import { getSightings } from '../api/backendClient';
+import { LoginContext } from '../../Components/LoginManager/LoginManager';
+import { getSightings } from '../../api/backendClient';
 
 function Explore(): JSX.Element {
-  const [sightings, setSightings] = useState([]); 
+  const [sightings, setSightings] = useState([]);
   const loginContext = useContext(LoginContext);
   const jwt = loginContext.jwt;
 
   useEffect(() => {
     async function fetchSightings() {
-      try
-      {
+      try {
         console.log('login context', jwt); //test code, jwt is blank currently for unknown reasons
         const response = await getSightings(jwt);
-        if (!response.ok)
-        {
+        if (!response.ok) {
           throw new Error('Network response failed');
         }
         const result = await response.json();
@@ -31,7 +29,7 @@ function Explore(): JSX.Element {
   return (<>
     <h1>Explore</h1>
     {
-       JSON.stringify(sightings)
+      JSON.stringify(sightings)
     }
 
   </>)
