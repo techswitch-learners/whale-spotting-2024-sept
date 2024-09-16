@@ -1,10 +1,9 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent } from 'react';
 import { useState } from 'react';
 import { SpeciesDropdown } from '../Components/SpeciesDropdown/SpeciesDropdown';
 
 export function AddSighting(): JSX.Element {
     
-    const [userId, setUserId] = useState(0);
     const [latitude, setLatitude] = useState("0.0");
     const [longitude, setLongitude] = useState("0.0");
     const [photoUrl, setPhotoUrl] = useState("");
@@ -15,6 +14,7 @@ export function AddSighting(): JSX.Element {
 
     async function submitSighting(event: FormEvent) {
         event.preventDefault();
+        console.log("speciesId:", speciesId);
 
         try {
             const response = await fetch("http://localhost:5280/sightings/create", {
@@ -29,12 +29,16 @@ export function AddSighting(): JSX.Element {
                 })
             });
             if (!response.ok) {
-                setErrorMessage('Error: Sighting not submitted');
+                setErrorMessage('Error: Sighting not submitted (response not ok)');
             }
             // redirect to sighting
         } catch (err) {
-            setErrorMessage("Error: Sighting not submitted!");
+            setErrorMessage("Error: Sighting not submitted! (catch err)");
         };
+    }
+
+    function getSpeciesIdFromDropdown(speciesIdFromDropdown: number) {
+        setSpeciesId(speciesIdFromDropdown);
     }
 
     return (
@@ -44,7 +48,7 @@ export function AddSighting(): JSX.Element {
             <form method="post" onSubmit={submitSighting}>
                 <label htmlFor="species">
                     Species:
-                    <SpeciesDropdown />
+                    <SpeciesDropdown getSpeciesIdFromDropdown={getSpeciesIdFromDropdown} />
                 </label><br />
                 <label htmlFor="latitude">
                     Latitude:

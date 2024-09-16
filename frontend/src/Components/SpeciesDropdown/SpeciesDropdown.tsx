@@ -10,8 +10,8 @@ interface SpeciesType {
     sightings:[]
 }
 
-export function SpeciesDropdown() {
-    const [speciesId, setSpeciesId] = useState(0);
+export function SpeciesDropdown({getSpeciesIdFromDropdown} : {getSpeciesIdFromDropdown(speciesIdFromDropdown: number): void}) {
+    // const [speciesId, setSpeciesId] = useState(0);
     const [species, setSpecies] = useState<SpeciesType[]>([]);
     
     if(species.length === 0) {
@@ -31,7 +31,7 @@ export function SpeciesDropdown() {
         return <div>Loading...</div>
     } else {
         return (
-            <select id="species" value={speciesId} onChange={(event) => setSpeciesId(species[event.target.selectedIndex].speciesId)}>
+            <select id="species" onChange={(event) => getSpeciesIdFromDropdown(species[event.target.selectedIndex].speciesId)}>
                 {species.map(option => (
                     <option value={option.speciesId}>{option.speciesName}</option>
                 ))}
