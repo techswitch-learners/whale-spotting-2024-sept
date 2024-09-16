@@ -9,7 +9,7 @@ export function CreateUser(): JSX.Element {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [aboutme, setAboutMe] = useState("")
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<{[key: string]: string[] }>({})
 
   const navigate = useNavigate()
 
@@ -31,6 +31,16 @@ export function CreateUser(): JSX.Element {
         setError(error.message)
       })
   }
+
+  // function ErrorList() {
+  //   if (!error) {
+  //     for (const value of Object.values(error)) {
+  //       for (const item of value) {
+  //         return <p>{item}</p>
+  //       }
+  //     }
+  //   }
+  // }
 
   return (
     <div className="sign-up-page">
@@ -129,7 +139,7 @@ export function CreateUser(): JSX.Element {
             </button>
           </div>
         </div>
-        {error && <p style={{ color: "red" }}> {error}</p>}
+        {/* {error && <p style={{ color: "red" }}> {error}</p>} */}
       </form>
     </div>
   )
