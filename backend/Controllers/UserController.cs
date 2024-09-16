@@ -28,20 +28,19 @@ public class UserController(IUserService userService) : Controller
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
 
-    /*     [HttpGet("{userRole}")]
-        public ActionResult<UserLeaderBoardListResponse> GetAllUsers(string userRole)
+    [HttpGet("GetLeaderboardUserList")]
+    public ActionResult<List<User>> GetAllUsers()
+    {
+        try
         {
-    
-            try
-            {
-                UserListResponse users = _userService.GetAllUsers(userRole);
-                return Ok(users);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        } */
+            var users = _userService.GetAllUsers();
+            return Ok(users);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
     [HttpPut("/update")]
     public async Task<IActionResult> UpdateUser(UpdateUserRequest userRequest)
