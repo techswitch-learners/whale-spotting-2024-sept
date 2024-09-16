@@ -11,7 +11,6 @@ interface SpeciesType {
 }
 
 export function SpeciesDropdown({getSpeciesIdFromDropdown} : {getSpeciesIdFromDropdown(speciesIdFromDropdown: number): void}) {
-    // const [speciesId, setSpeciesId] = useState(0);
     const [species, setSpecies] = useState<SpeciesType[]>([]);
     
     if(species.length === 0) {

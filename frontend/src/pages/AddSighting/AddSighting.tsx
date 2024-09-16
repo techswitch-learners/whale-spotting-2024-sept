@@ -34,9 +34,8 @@ export function AddSighting(): JSX.Element {
             if (!response.ok) {
                 setErrorMessage('Oh no! Something did not go swimmingly, please try again.');
             } else {
-                navigate("/")
+                navigate("/") //TODO 1.check the redirect works once LoginContext is working. 2.change this to redirect to sightings page once that is up.
             }
-            // redirect to sighting
         } catch (err) {
             setErrorMessage("Error: Please contact support.");
         };
