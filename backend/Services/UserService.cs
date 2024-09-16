@@ -25,6 +25,12 @@ public class UserService : IUserService
         return await _userManager.FindByNameAsync(userName);
     }
 
+    public async Task<List<User>> GetAllUsers(string rolename)
+    {
+        var userlist = await _userManager.GetUsersInRoleAsync(rolename);
+        return userlist.ToList();
+    }
+
     public async Task<User> FindById(string userId)
     {
         return await _userManager.FindByIdAsync(userId);

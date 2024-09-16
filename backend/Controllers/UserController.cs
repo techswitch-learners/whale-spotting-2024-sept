@@ -20,12 +20,28 @@ public class UserController(IUserService userService) : Controller
     public IActionResult GetByUserName([FromRoute] string userName)
     {
         User? matchingUser = _userService.FindByName(userName).Result;
+
         if (matchingUser == null)
         {
             return NotFound();
         }
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName, });
     }
+
+    /*     [HttpGet("{userRole}")]
+        public ActionResult<UserLeaderBoardListResponse> GetAllUsers(string userRole)
+        {
+    
+            try
+            {
+                UserListResponse users = _userService.GetAllUsers(userRole);
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        } */
 
     [HttpPut("/update")]
     public async Task<IActionResult> UpdateUser(UpdateUserRequest userRequest)
