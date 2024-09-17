@@ -2,7 +2,7 @@ import "./Home.scss"
 import { Link, useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-
+  
   const logo = require("./../../images/Whale3logo.png");
 
   // const navigate = useNavigate()

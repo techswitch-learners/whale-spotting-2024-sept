@@ -8,36 +8,35 @@ describe("Check exitence of background image, submit and explore buttons", () =>
   test("check if submit button exist", () => {
     render(
       <MemoryRouter>
-        <Home/>
+        <Home />
       </MemoryRouter>,
     )
 
-    const submitButton = screen.getByTestId("submit-button");
-    expect(submitButton).toBeInTheDocument();  
+    const submitButton = screen.getByTestId("submit-button")
+    expect(submitButton).toBeInTheDocument()
   })
 
   test("check if explore button exist", () => {
     render(
       <MemoryRouter>
-        <Home/>
+        <Home />
       </MemoryRouter>,
     )
 
-    const exploreButton = screen.getByTestId("explore-button");
-    expect(exploreButton).toBeInTheDocument();  
+    const exploreButton = screen.getByTestId("explore-button")
+    expect(exploreButton).toBeInTheDocument()
   })
 
   test("check if background image exist", () => {
     render(
       <MemoryRouter>
-        <Home/>
+        <Home />
       </MemoryRouter>,
     )
 
-    const backgroundContainer = screen.getByTestId("background-container");
-    expect(backgroundContainer).toBeInTheDocument();
+    const backgroundContainer = screen.getByTestId("background-container")
+    expect(backgroundContainer).toBeInTheDocument()
   })
-
 })
 
 describe("Buttons go to correct pages", () => {
@@ -54,7 +53,7 @@ describe("Buttons go to correct pages", () => {
 
     const button = screen.getByTestId("submit-button")
     fireEvent.click(button)
-    const AddSightingHeading = await screen.findByRole("heading", { name: /submit sighting/i })
+    const AddSightingHeading = await screen.findByRole("heading", { name: /add a sighting/i })
     expect(AddSightingHeading).toBeInTheDocument()
   })
 

@@ -1,0 +1,28 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "./../../colour-variables.scss";
+
+.top-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10vw;
+  padding-bottom: 9vh;
+}
+
+.btn-primary {
+  background-color: $whale-logo-yellow;
+  color: $whale-main-blue;
+  border: $whale-logo-yellow;
+}
+
+.btn-primary:hover {
+  background-color: $whale-light-blue;
+  color: $whale-main-blue;
+  border: $whale-light-blue;
+}
+
+.custom-button {
+  font-size: 3vh;
+  width: 30vw;
+  height: 8vh;
+  margin: 10px;
+}
