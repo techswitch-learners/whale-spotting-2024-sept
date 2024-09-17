@@ -9,7 +9,7 @@ export function CreateUser(): JSX.Element {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [aboutme, setAboutMe] = useState("")
-  const [error, setError] = useState<{[key: string]: string[] }>({})
+  const [error, setError] = useState<{ [key: string]: string[] }>({})
 
   const navigate = useNavigate()
 
@@ -19,7 +19,8 @@ export function CreateUser(): JSX.Element {
       .then((response) => {
         if (!response.ok) {
           return response.json().then((errorData) => {
-            throw new Error(JSON.stringify(errorData.errors))
+            setError(errorData.errors);
+            throw new Error();
           })
         }
         return response.json()
@@ -28,19 +29,16 @@ export function CreateUser(): JSX.Element {
         navigate("/")
       })
       .catch((error) => {
-        setError(error.message)
       })
   }
 
-  // function ErrorList() {
-  //   if (!error) {
-  //     for (const value of Object.values(error)) {
-  //       for (const item of value) {
-  //         return <p>{item}</p>
-  //       }
-  //     }
-  //   }
-  // }
+  let errorLines: string[] = [];
+
+  for (const item of Object.values(error)) {
+    errorLines = errorLines.concat(item);
+  }
+
+  const errorList = errorLines.map(errorLine => <p style={{ color: "red" }}>{errorLine}</p>)
 
   return (
     <div className="sign-up-page">
@@ -139,7 +137,7 @@ export function CreateUser(): JSX.Element {
             </button>
           </div>
         </div>
-        {/* {error && <p style={{ color: "red" }}> {error}</p>} */}
+        {error && errorList}
       </form>
     </div>
   )
