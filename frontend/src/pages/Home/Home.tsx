@@ -1,23 +1,22 @@
 import "./Home.scss"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const Home: React.FC = () => {
-
-  const logo = require("./../../images/Whale3logo.png");
+  const logo = require("./../../images/Whale3logo.png")
 
   const navigate = useNavigate()
 
-  const handleClick = (event: { currentTarget: { id: string; }; }) => {
-    const buttonId = event.currentTarget.id;
+  const handleClick = (event: { currentTarget: { id: string } }) => {
+    const buttonId = event.currentTarget.id
     switch (buttonId) {
       case "submit-button":
-        navigate("/addsighting");
-        break;
+        navigate("/addsighting")
+        break
       case "explore-button":
-        navigate("/explore");
-        break;
+        navigate("/explore")
+        break
       default:
-        break;
+        break
     }
   }
 
@@ -28,10 +27,20 @@ const Home: React.FC = () => {
           <img src={logo} alt="Whale Whale Whale logo" width="200" />
         </div>
         <div className="top-buttons">
-          <button id="submit-button" data-testid="submit-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
+          <button
+            id="submit-button"
+            data-testid="submit-button"
+            className="btn btn-primary btn-lg custom-button"
+            onClick={handleClick}
+          >
             Submit
           </button>
-          <button id="explore-button" data-testid="explore-button" className="btn btn-primary btn-lg custom-button" onClick={handleClick}>
+          <button
+            id="explore-button"
+            data-testid="explore-button"
+            className="btn btn-primary btn-lg custom-button"
+            onClick={handleClick}
+          >
             Explore
           </button>
         </div>
