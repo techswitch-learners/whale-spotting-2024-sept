@@ -2,6 +2,7 @@ import { FormEvent, useContext, useState } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { updateUser } from "../../api/backendClient"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
+import "./UpdateUser.scss"
 
 export function UpdateUser(): JSX.Element {
   const loginContext = useContext(LoginContext)
@@ -36,14 +37,17 @@ export function UpdateUser(): JSX.Element {
   }
 
   return (
-    <div className="update-user-page">
-      <h1 className="title">Update My Details</h1>
-      <form className="updateUser-form" onSubmit={tryUpdate}>
+    <div className="container col-10 col-md-6 pt-3 mx-auto text-center">
+      <div className="row">
+        <h1 className="title">Update My Details</h1>
+      </div>
+      <div className="row justify-content-center">
+      <form className="form" onSubmit={tryUpdate}>
         <div className="form-group row">
-          <label htmlFor="firstName" className="col-sm-2 col-form-label">
+          <label htmlFor="firstName" className="col-sm-2 col-lg-4 col-form-label">
             First Name
           </label>
-          <div className="col-sm-3">
+          <div className="col-sm-3 col-lg-6">
             <input
               id="firstName"
               className="form-control"
@@ -92,6 +96,7 @@ export function UpdateUser(): JSX.Element {
         </div>
         {error && <p style={{ color: "red" }}> {error}</p>}
       </form>
+      </div>
     </div>
   )
 }
