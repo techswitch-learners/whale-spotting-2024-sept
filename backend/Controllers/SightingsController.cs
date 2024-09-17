@@ -21,12 +21,19 @@ public class SightingsController : Controller
         _sightingService = sightingService;
     }
 
-    [HttpGet("GetSightingByID/{id}")]
-    public IActionResult GetById([FromRoute] int id)
+    [HttpGet("{sightingId}")]
+    public IActionResult GetBySightingId([FromRoute] int sightingId)
     {
-        var sighting = _sightingService.GetSighting(id);
-        //var sighting = _sightingService.GetSightingById(id);
-        return Ok(sighting);
+        try
+        {
+            var sightingResult = _sightingService.GetSightingById(sightingId);
+            Sighting sighting = sightingResult.Result;
+            return Ok(sighting);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPost("create")]
