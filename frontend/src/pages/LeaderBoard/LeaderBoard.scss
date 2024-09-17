@@ -5,12 +5,14 @@ h1 {
   text-align: center;
   color: $whale-main-blue;
 }
+
 table,
 th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
 table {
   border-spacing: 30px;
   margin-left: auto;
@@ -18,16 +20,14 @@ table {
   max-width: 100%;
   overflow-x: auto;
 }
+
 th,
 td {
   background-color: $whale-light-blue;
   text-align: center;
   padding: 15px;
 }
+
 tr:hover {
   background-color: $whale-light-blue;
 }
-/* 
-tbody tr:nth-child(1) {
-  background-color: $whale-main-blue;
-}; */

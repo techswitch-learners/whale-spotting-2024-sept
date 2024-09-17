@@ -1,11 +1,10 @@
-export interface UserLeaderboard {
-  id: number
+export interface UserLeaderBoard {
   userName: string
   totalPointsEarned: number
 }
 
-export interface LeaderBoardUsers {
-  userLeaderBoard: Array<UserLeaderboard>
+export interface UserLeaderBoards {
+  userLeaderBoard: Array<UserLeaderBoard>
 }
 
 export const loginUser = async (username: string, password: string) => {

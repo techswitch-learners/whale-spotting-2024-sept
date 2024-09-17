@@ -15,7 +15,6 @@ public class UserLeaderBoardListResponse()
         {
             UserLeaderBoardResponse userLeaderBoardResponse = new UserLeaderBoardResponse()
             {
-                Id = user.Id,
                 UserName = user.UserName,
                 TotalPointsEarned = user.TotalPointsEarned
             };
