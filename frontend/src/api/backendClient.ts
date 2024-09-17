@@ -54,6 +54,17 @@ export async function fetchUserProfile(header: string): Promise<User> {
   return await response.json()
 }
 
+export async function deleteUserProfile(header: string) {
+  const response = await fetch(`http://localhost:5280/users/`, {
+    headers: {
+      "method": "delete",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response.json()
+}
+
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:
 // In the .tsx file where the fetch request is being called:
 // 1) import the login context to access the value of the JWT token
