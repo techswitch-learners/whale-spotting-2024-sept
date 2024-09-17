@@ -1,8 +1,10 @@
-import React, { FormEvent } from "react"
+import React, { FormEvent, useContext ,useEffect } from "react"
 import { useState } from "react"
 import { SpeciesDropdown } from "../../Components/SpeciesDropdown/SpeciesDropdown"
 import "./AddSighting.scss"
 import { useNavigate } from "react-router-dom"
+import { createSighting } from "../../api/backendClient"
+import { LoginContext } from "../../Components/LoginManager/LoginManager"
 
 export function AddSighting(): JSX.Element {
   const [latitude, setLatitude] = useState("0.0")
@@ -14,31 +16,57 @@ export function AddSighting(): JSX.Element {
   const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
 
-  async function submitSighting(event: FormEvent) {
+  async function SubmitSighting(event: FormEvent) {
     event.preventDefault()
-    console.log("speciesId:", speciesId)
+    
+    const loginContext = useContext(LoginContext);
+    const jwt = loginContext.jwt;
 
-    try {
-      const response = await fetch("http://localhost:5280/sightings/create", {
-        method: "post",
-        body: JSON.stringify({
-          SpeciesId: speciesId,
-          Latitude: parseFloat(latitude),
-          Longitude: parseFloat(longitude),
-          PhotoUrl: photoUrl,
-          Description: description,
-          DateTime: dateTime,
-        }),
-      })
-      if (!response.ok) {
-        setErrorMessage("Oh no! Something did not go swimmingly, please try again.")
-      } else {
-        navigate("/") //TODO 1.check the redirect works once LoginContext is working. 2.change this to redirect to sightings page once that is up.
+    useEffect(() => {
+      async function createNewSightings() {
+        try {
+          // const response = await createSighting(
+          //   jwt,
+          //   speciesId,
+          //   parseFloat(latitude),
+          //   parseFloat(longitude),
+          //   photoUrl,
+          //   description,
+          //   // dateTime,
+          // )
+          
+          const response = await fetch("http://localhost:5280/sightings/create", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwt}`,
+            },
+            body: JSON.stringify({
+              SpeciesId: speciesId,
+              Latitude: parseFloat(latitude),
+              Longitude: parseFloat(longitude),
+              PhotoUrl: photoUrl,
+              Description: description,
+              DateTime: dateTime,
+            }),
+          })
+
+          if (!response.ok) {
+            setErrorMessage("Oh no! Something did not go swimmingly, please try again.")
+          } else {
+            navigate("/") //TODO 1.check the redirect works once LoginContext is working. 2.change this to redirect to sightings page once that is up.
+          }
+        } catch (err) {
+          setErrorMessage("Error: Please contact support.")
+        }
       }
-    } catch (err) {
-      setErrorMessage("Error: Please contact support.")
-    }
+  
+      createNewSightings();
+    }, [jwt]);
+
   }
+
+
 
   function getSpeciesIdFromDropdown(speciesIdFromDropdown: number) {
     setSpeciesId(speciesIdFromDropdown)
@@ -48,7 +76,7 @@ export function AddSighting(): JSX.Element {
     <div className="add-a-sighting-page">
       <h1 className="title">Add a Sighting</h1>
       <p>{errorMessage}</p>
-      <form className="addSighting-form" method="post" onSubmit={submitSighting}>
+      <form className="addSighting-form" method="post" onSubmit={SubmitSighting}>
         <div className="form-group row">
           <label htmlFor="species" className="col-sm-2 col-form-label">
             Species:
