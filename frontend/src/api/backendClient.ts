@@ -7,11 +7,11 @@ export interface User {
   aboutMe?: string
 }
 
-export interface UpdatedUser {
-  firstName?: string
-  lastName?: string
-  aboutMe?: string
-}
+// export interface UpdatedUser {
+//   firstName?: string
+//   lastName?: string
+//   aboutMe?: string
+// }
 
 export const loginUser = async (username: string, password: string) => {
   return await fetch(`http://localhost:5280/auth/login`, {
@@ -65,7 +65,7 @@ export const updateUser = async (
   firstname?: string,
   lastname?: string,
   aboutme?: string,
-): Promise<UpdatedUser> => {
+) => {
   return await fetch(`http://localhost:5280/users/update`, {
     method: "put",
     headers: {
@@ -77,7 +77,7 @@ export const updateUser = async (
       lastname,
       aboutme,
     }),
-  }).then((response) => response.json())
+  })
 }
 
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:
