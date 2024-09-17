@@ -7,7 +7,6 @@ public interface IUserService
 {
     public Task<User> FindByName(string userName);
     public Task<User> FindById(string userId);
-    public Task<string> FindUsernameById(string userId);
     public Task Update(User user);
     public Task<IdentityResult> Delete(User user);
     public Task AddPoint(string userId);
@@ -30,13 +29,6 @@ public class UserService : IUserService
     public async Task<User> FindById(string userId)
     {
         return await _userManager.FindByIdAsync(userId);
-    }
-
-    public async Task<string?> FindUsernameById(string userId)
-    {
-        User user = await _userManager.FindByIdAsync(userId);
-
-        return user.UserName;
     }
 
     public async Task Update(User user)

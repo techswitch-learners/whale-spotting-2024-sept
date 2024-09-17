@@ -48,33 +48,8 @@ public class SightingsService : ISightingsService
     public SightingListResponse GetApproved()
     {
 
-        // var query = _context.Animals
-        //             .Include(a => a.Species)
-        //             .ThenInclude(s => s.Classification)
-        //             .Where(a => search.SpeciesId == null || a.SpeciesId == search.SpeciesId)
-        //             .Where(a => search.ClassificationId == null || a.Species.ClassificationId == search.ClassificationId)
-        //             .Where(a => search.Name == null || a.Name == search.Name)
-        //             .Where(a => search.DateCameToZoo == null || a.DateCameToZoo.Date == search.DateCameToZoo)
-        //             .Where(a => search.EnclosureId == null || a.EnclosureId == search.EnclosureId);
-        //     List<AnimalViewModel> animals = query.Select(a => new AnimalViewModel
-        //                 {
-        //                     Id = a.Id,
-        //                     Name = a.Name,
-        //                     SpeciesId = a. SpeciesId,
-        //                     DateOfBirth = a.DateOfBirth,
-        //                     DateCameToZoo = a.DateCameToZoo,
-        //                     EnclosureId = a.EnclosureId,
-        //                     EnclosureName = a.Enclosure.Name,
-        //                     SpeciesName = a.Species.Name,
-        //                     ClassificationName = a.Species.Classification.Name
-        //                 })
-        //                 .ToList();
-
-//SELECT * From Sightings AS s
-//JOIN Users AS u
-//ON s.UserId == u.Id
-        List<Sighting> sightings = _context.Sightings  //SELECT * FROM Sightings As s
-        .Include(u => u.User) //JOIN Users as u
+        List<Sighting> sightings = _context.Sightings
+        .Include(u => u.User)
         .Include(p => p.Species) 
         .Where(s => s.IsApproved).ToList();
         SightingListResponse sightingListResponse = new SightingListResponse();
