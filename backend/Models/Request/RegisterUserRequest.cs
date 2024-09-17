@@ -10,7 +10,7 @@ public class RegisterUserRequest
 
     [RegularExpression(
         @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*",
-        ErrorMessage = "E-mail address must contain @."
+        ErrorMessage = "E-mail address must be in a valid format."
     )]
     public required string Email { get; set; }
 
