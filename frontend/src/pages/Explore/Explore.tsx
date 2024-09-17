@@ -3,25 +3,17 @@ import { LoginContext } from '../../Components/LoginManager/LoginManager';
 import { getSightings } from '../../api/backendClient';
 import "./Explore.scss"
 
-interface SpeciesType {
-  speciesId: number;
-  speciesName: string
-}
-
-interface UserType {
-  userId: number;
-  username: string
-}
 
 interface SightingType {
-  user: UserType;
-  species: SpeciesType;
+  userName: string;
+  speciesName: string;
   latitude: number;
   longitude: number;
   photoUrl: string;
   description: string;
   dateTime: Date;
 }
+
 
 function Explore(): JSX.Element {
   const [sightings, setSightings] = useState<SightingType[]>([]);
@@ -52,32 +44,18 @@ function Explore(): JSX.Element {
       <h1>Explore</h1>
       {sightings.map(sighting => (
         <>
-        {/* <p>{sighting.user.username}</p> */}
+        <p>{sighting.userName}</p>
+        <p>{sighting.speciesName}</p>
         <img src={sighting.photoUrl} className="thumbnail-explore-gallery"/>
-        {/* <p>{sighting.user}</p> */}
         <p>Latitude: {sighting.latitude}</p>
         <p>Longitude: {sighting.longitude}</p>
         <p>Description: {sighting.description}</p>
-        {/* <p>Date: {sighting.dateTime.toDateString()}</p> */}
+        <p>Date: {sighting.dateTime.toString()}</p>
         </>
       ))}
     </>
   )
   
-  
-  
-  // <>
-  //   <h1>Explore</h1>
-  //   {
-  //     sightings.map((sighting) => (
-  //       <>
-  //       <p>{sighting.user.username} </p>
-  //       <img src={sighting.photoUrl} />
-  //       </>
-  //     ))
-  //   }
-
-  // </>)
 }
 
 export default Explore
