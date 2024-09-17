@@ -1,10 +1,10 @@
 export interface User {
   userName: string
-  firstName: string
-  lastName: string
+  firstName?: string
+  lastName?: string
   email: string
   totalPointsEarned: number
-  aboutMe: string
+  aboutMe?: string
 }
 
 export interface Sightings {
@@ -57,6 +57,16 @@ export const registerUser = async (
       aboutme,
     }),
   })
+}
+
+export async function fetchUserProfile(header: string): Promise<User> {
+  const response = await fetch(`http://localhost:5280/users/profile`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response.json()
 }
 
 export async function fetchUnapprovedSightings(header: string): Promise<Sightings> {

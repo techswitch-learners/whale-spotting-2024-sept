@@ -4,6 +4,7 @@ import { useContext } from "react"
 
 const NavigationLinks: React.FC = () => {
   const { roleType } = useContext(LoginContext)
+  const { isLoggedIn } = useContext(LoginContext)
   const navigate = useNavigate()
 
   const handleClick = (event: { currentTarget: { id: string } }) => {
@@ -37,6 +38,15 @@ const NavigationLinks: React.FC = () => {
           <li className="nav-item" data-testid="adminLink">
             <Link to="/admin" className="nav-link">
               Admin
+            </Link>
+          </li>
+        </div>
+      )}
+      {isLoggedIn && (
+        <div>
+          <li className="nav-item" data-testid="profileLink">
+            <Link to="/profile" className="nav-link">
+              Profile
             </Link>
           </li>
         </div>
