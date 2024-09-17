@@ -1,10 +1,9 @@
-import { act } from "react";
 import { fireEvent, render, screen } from "@testing-library/react"
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Hamburger from "../Hamburger/Hamburger";
-import { CreateUser } from "../pages/CreateUser";
-import Home from "../pages/Home/Home";
-import Explore from "../pages/Explore";
+import { MemoryRouter, Route, Routes } from "react-router-dom"
+import Hamburger from "../Hamburger/Hamburger"
+import { CreateUser } from "../pages/CreateUser"
+import Home from "../pages/Home/Home"
+import Explore from "../pages/Explore"
 
 describe("Menu toggles on/off when hamburger button clicked", () => {
   test("menu class is menu menu-open when hamburger button is clicked", () => {

@@ -2,69 +2,66 @@
 @import "./../../colour-variables.scss";
 
 .background-container {
-    background-image: url("https://blog.cwf-fcf.org/wp-content/uploads/2020/07/humpback-whale-breaching-590268314.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
+  background-image: url("https://blog.cwf-fcf.org/wp-content/uploads/2020/07/humpback-whale-breaching-590268314.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
 }
 
 .top-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10vw;
-    padding-bottom: 9vh;
+  display: flex;
+  flex-direction: row;
+  gap: 10vw;
+  padding-bottom: 9vh;
 }
 
 .btn-primary {
-    background-color: $whale-logo-yellow;
-    color: $whale-main-blue;
-    border: $whale-logo-yellow;
+  background-color: $whale-logo-yellow;
+  color: $whale-main-blue;
+  border: $whale-logo-yellow;
 }
 
-
 .btn-primary:hover {
-    background-color: $whale-light-blue;
-    color: $whale-main-blue;
-    border: $whale-light-blue;
+  background-color: $whale-light-blue;
+  color: $whale-main-blue;
+  border: $whale-light-blue;
 }
 
 .custom-button {
-    font-size: 3vh;
-    width: 30vw;
-    height: 8vh;
-    margin: 10px
+  font-size: 3vh;
+  width: 30vw;
+  height: 8vh;
+  margin: 10px;
 }
 
 .logo {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 767px) {
-    
-    .background-container {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-    }
+  .background-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
 
-    .logo {
-        display: block;
-        grid-area: 1 / 1 / 2 / 3;
-        padding-left: 5vw;
-        padding-top: 1vh;
-    }
+  .logo {
+    display: block;
+    grid-area: 1 / 1 / 2 / 3;
+    padding-left: 5vw;
+    padding-top: 1vh;
+  }
 
-    .top-buttons {
-        grid-area: 5 / 2 / 6 / 5;
-        gap: 5vw;
-        justify-self: center;
-        align-self: end;
-    }
-
+  .top-buttons {
+    grid-area: 5 / 2 / 6 / 5;
+    gap: 5vw;
+    justify-self: center;
+    align-self: end;
+  }
 }
