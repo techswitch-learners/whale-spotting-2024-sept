@@ -15,24 +15,12 @@ public class SightingListResponse()
 
         foreach (var sighting in SightingsList)
         {
-            // User = new User();
-            // User.UserName = sighting.User.UserName;
-
-            // Species = new Species();
-            // Species.SpeciesName = sighting.Species.SpeciesName;
-
-            // call user service get user by ID
-            // user = userService.getbyId(sightings.userID)
-            
-            // User user = _userService.FindById(sighting.UserId.ToString()).Result;
             
             SightingResponse sightingResponse = new SightingResponse()
             {
                 UserId = sighting.UserId,
-                // Username = _userService.FindUsernameById(sighting.UserId.ToString()).Result,
                 Username = sighting.User.UserName,
                 SpeciesId = sighting.SpeciesId,
-                // SpeciesName = Species.SpeciesName,
                 SpeciesName = sighting.Species.SpeciesName,
                 Latitude = sighting.Latitude,
                 Longitude = sighting.Longitude,

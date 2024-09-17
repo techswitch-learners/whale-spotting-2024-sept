@@ -3,9 +3,8 @@ import { LoginContext } from '../../Components/LoginManager/LoginManager';
 import { getSightings } from '../../api/backendClient';
 import "./Explore.scss"
 
-
 interface SightingType {
-  userName: string;
+  username: string;
   speciesName: string;
   latitude: number;
   longitude: number;
@@ -14,6 +13,9 @@ interface SightingType {
   dateTime: Date;
 }
 
+const formatDate = (dateTime: Date) => {
+  return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
+}
 
 function Explore(): JSX.Element {
   const [sightings, setSightings] = useState<SightingType[]>([]);
@@ -44,13 +46,13 @@ function Explore(): JSX.Element {
       <h1>Explore</h1>
       {sightings.map(sighting => (
         <>
-        <p>{sighting.userName}</p>
+        <p>{sighting.username}</p>
         <p>{sighting.speciesName}</p>
         <img src={sighting.photoUrl} className="thumbnail-explore-gallery"/>
         <p>Latitude: {sighting.latitude}</p>
         <p>Longitude: {sighting.longitude}</p>
         <p>Description: {sighting.description}</p>
-        <p>Date: {sighting.dateTime.toString()}</p>
+        <p>Date: {formatDate(sighting.dateTime)}</p>
         </>
       ))}
     </>
