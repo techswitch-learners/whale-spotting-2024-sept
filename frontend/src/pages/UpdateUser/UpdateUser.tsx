@@ -28,7 +28,7 @@ export function UpdateUser(): JSX.Element {
         }
         return response.json()
       })
-      .then((data) => {
+      .then(() => {
         navigate("/profile")
       })
       .catch((error) => {
