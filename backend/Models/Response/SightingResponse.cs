@@ -9,4 +9,5 @@ public class SightingResponse
     public string PhotoUrl { get; set; }
     public string? Description { get; set; }
     public DateTime DateTime { get; set; }
+    public object UserId1 { get; }
 }

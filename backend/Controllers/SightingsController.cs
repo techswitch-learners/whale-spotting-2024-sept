@@ -21,6 +21,14 @@ public class SightingsController : Controller
         _sightingService = sightingService;
     }
 
+    [HttpGet("GetSightingByID/{id}")]
+    public IActionResult GetById([FromRoute] int id)
+    {
+        var sighting = _sightingService.GetSighting(id);
+        //var sighting = _sightingService.GetSightingById(id);
+        return Ok(sighting);
+    }
+
     [HttpPost("create")]
     public async Task<IActionResult> Create(SightingsRequest sightingRequest)
     {

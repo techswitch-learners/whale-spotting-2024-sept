@@ -14,6 +14,7 @@ public interface ISightingsService
     public Task DeleteSighting(int sightingId, int userId);
     public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
     public Task ApproveSighting(int sightingId);
+    public Task<SightingResponse> GetSighting(int sightingId);
 }
 
 public class SightingsService : ISightingsService
@@ -51,6 +52,22 @@ public class SightingsService : ISightingsService
         SightingListResponse sightingListResponse = new SightingListResponse();
         sightingListResponse.SetList(sightings);
         return sightingListResponse;
+    }
+
+    public async Task<SightingResponse> GetSighting(int sightingId)
+    {
+        Sighting sighting = await GetSightingById(sightingId);
+        SightingResponse sightingResponse = new SightingResponse()
+        {
+            UserId = sighting.UserId,
+            SpeciesId = sighting.SpeciesId,
+            Latitude = sighting.Latitude,
+            Longitude = sighting.Longitude,
+            PhotoUrl = sighting.PhotoUrl,
+            Description = sighting.Description,
+            DateTime = sighting.DateTime
+        };
+        return sightingResponse;
     }
 
     public async Task<Sighting> GetSightingById(int sightingId)
