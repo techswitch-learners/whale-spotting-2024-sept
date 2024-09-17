@@ -1,3 +1,13 @@
+export interface UserLeaderboard {
+  id: number
+  userName: string
+  totalPointsEarned: number
+}
+
+export interface LeaderBoardUsers {
+  userLeaderBoard: Array<UserLeaderboard>
+}
+
 export const loginUser = async (username: string, password: string) => {
   return await fetch(`http://localhost:5280/auth/login`, {
     method: "post",
@@ -33,6 +43,22 @@ export const registerUser = async (
       aboutme,
     }),
   })
+}
+
+export async function FetchLeaderBoard(header: string) {
+  const response = await fetch(`http://localhost:5280/users/GetLeaderBoardUserList`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  if (!response.ok) {
+    return response.json().then((errorData) => {
+      throw new Error(JSON.stringify(errorData.errors))
+    })
+  }
+  return await response.json()
 }
 
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:

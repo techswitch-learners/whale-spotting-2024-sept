@@ -10,6 +10,7 @@ import Login from "./pages/Login/Login"
 import { LoginManager } from "./Components/LoginManager/LoginManager"
 import Admin from "./pages/Admin/Admin"
 import AddSighting from "./pages/AddSighting"
+import { LeaderBoard } from "./pages/LeaderBoard/LeaderBoard"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/leaderboard" element={<LeaderBoard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<CreateUser />} />
           <Route path="/admin" element={<Admin />} />

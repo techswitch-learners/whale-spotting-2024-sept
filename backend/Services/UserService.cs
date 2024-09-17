@@ -11,7 +11,7 @@ public interface IUserService
     public Task<User> FindById(string userId);
     public Task Update(User user);
     public Task<IdentityResult> Delete(User user);
-    public Task<UserLeaderBoardListResponse> GetAllUsers();
+    public Task<UserLeaderBoardListResponse> GetLeaderBoardUserList();
 }
 
 public class UserService : IUserService
@@ -28,7 +28,7 @@ public class UserService : IUserService
         return await _userManager.FindByNameAsync(userName);
     }
 
-    public async Task<UserLeaderBoardListResponse> GetAllUsers()
+    public async Task<UserLeaderBoardListResponse> GetLeaderBoardUserList()
     {
         List<User> userList = _userManager.Users.OrderByDescending(u => u.TotalPointsEarned).ToList();
         UserLeaderBoardListResponse userLeaderBoardListResponse = new UserLeaderBoardListResponse();

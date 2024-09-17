@@ -29,11 +29,11 @@ public class UserController(IUserService userService) : Controller
     }
 
     [HttpGet("GetLeaderboardUserList")]
-    public ActionResult<List<User>> GetAllUsers()
+    public ActionResult<List<User>> GetLeaderBoardUserList()
     {
         try
         {
-            var users = _userService.GetAllUsers();
+            var users = _userService.GetLeaderBoardUserList();
             return Ok(users);
         }
         catch (Exception ex)
