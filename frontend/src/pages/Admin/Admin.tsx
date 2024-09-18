@@ -1,13 +1,76 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
+import { approveSighting, fetchUnapprovedSightings, Sightings } from "../../api/backendClient"
+import "./Admin.scss"
 
 const Admin = () => {
-  const { roleType } = useContext(LoginContext)
+  const loginContext = useContext(LoginContext)
+  const [sightings, setSightings] = useState<Sightings | null>(null)
+  const [approvals, setApprovals] = useState(0)
 
-  if (roleType === "Admin") {
+  useEffect(() => {
+    fetchUnapprovedSightings(loginContext.jwt).then((response) => setSightings(response))
+  }, [loginContext.jwt, approvals])
+
+  const handleClick = (header: string, id: number) => {
+    approveSighting(header, id).then((response) => {
+      if (response.ok) {
+        setApprovals(approvals + 1)
+      }
+    })
+  }
+
+  const formatDate = (dateTime: string) => {
+    return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
+  }
+
+  if (loginContext.roleType === "Admin") {
     return (
-      <div>
-        <h1 data-testid="adminTitle">Admin Page</h1>
+      <div className="px-4">
+        <h1 data-testid="adminTitle" className="py-4">
+          Admin Page
+        </h1>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Sighting Id</th>
+                <th scope="col">User Id</th>
+                <th scope="col">Species Id</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Description</th>
+                <th scope="col">Submission Date/Time</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sightings?.sightings.map((sighting) => (
+                <tr>
+                  <th scope="row">{sighting.id}</th>
+                  <td>{sighting.userId}</td>
+                  <td>{sighting.speciesId}</td>
+                  <td>{sighting.latitude}</td>
+                  <td>{sighting.longitude}</td>
+                  <td>
+                    <img className="img-thumbnail custom-thumbnail" alt="A whale" src={sighting.photoUrl} />
+                  </td>
+                  <td>{sighting.description}</td>
+                  <td>{formatDate(sighting.dateTime)}</td>
+                  <td>
+                    <button
+                      className="btn btn-primary btn-md"
+                      onClick={() => handleClick(loginContext.jwt, sighting.id)}
+                    >
+                      Approve
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   } else {

@@ -11,6 +11,7 @@ import { LoginManager } from "./Components/LoginManager/LoginManager"
 import Admin from "./pages/Admin/Admin"
 import { AddSighting } from "./pages/AddSighting/AddSighting"
 import { Profile } from "./pages/Profile/Profile"
+import { UpdateUser } from "./pages/UpdateUser/UpdateUser"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/signup" element={<CreateUser />} />
           <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/updateprofile" element={<UpdateUser />} />
         </Routes>
       </LoginManager>
     </BrowserRouter>

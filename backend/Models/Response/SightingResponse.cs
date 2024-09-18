@@ -4,6 +4,7 @@ namespace WhaleSpotting.Models.Response;
 
 public class SightingResponse
 {
+    public int Id { get; set; }
     public int UserId { get; set; }
     public string Username { get; set; } = "Unknown User";
     public int SpeciesId { get; set; }
