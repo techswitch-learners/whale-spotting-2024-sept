@@ -86,6 +86,18 @@ namespace WhaleSpotting.SeedData
                 Description = "Test Whale pic",
                 DateTime = DateTime.Parse("29Mar2023 13:42:00").ToUniversalTime(),
                 IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 1,
+                SpeciesId = 33,
+                Latitude = 86.045654F,
+                Longitude = 100.012346F,
+                PhotoUrl =
+                    "https://i.abcnewsfe.com/a/ccc2de0c-4237-45de-9579-ac66cc27d9e9/humpback-whale-gty-jt-240220_1708450395992_hpMain.jpg",
+                Description = "",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
             }
         };
 
