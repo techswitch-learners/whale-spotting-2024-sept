@@ -5,6 +5,7 @@ import { useContext } from "react"
 const NavigationLinks: React.FC = () => {
   const { roleType } = useContext(LoginContext)
   const { isLoggedIn } = useContext(LoginContext)
+  const { logOut, saveJwtToContext, saveRoleTypeToContext } = useContext(LoginContext);
   const navigate = useNavigate()
 
   const handleClick = (event: { currentTarget: { id: string } }) => {
@@ -15,6 +16,12 @@ const NavigationLinks: React.FC = () => {
         break
       case "sign-up-button":
         navigate("/signup")
+        break
+      case "log-out-button":
+        logOut()
+        saveRoleTypeToContext("")
+        saveJwtToContext("")
+        navigate("/")
         break
       default:
         break
