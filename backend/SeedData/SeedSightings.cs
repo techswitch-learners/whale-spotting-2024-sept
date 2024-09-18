@@ -18,12 +18,72 @@ namespace WhaleSpotting.SeedData
             new Sighting()
             {
                 UserId = 1,
+                SpeciesId = 90,
+                Latitude = 2.1801F,
+                Longitude = -76.696F,
+                PhotoUrl =
+                    "https://inaturalist-open-data.s3.amazonaws.com/photos/162435290/medium.jpg",
+                Description = "Hellooo World!!!",
+                DateTime = DateTime.Parse("09Jan2022 09:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 1,
+                SpeciesId = 77,
+                Latitude = 55.555F,
+                Longitude = -77.777F,
+                PhotoUrl =
+                    "https://inaturalist-open-data.s3.amazonaws.com/photos/26838108/medium.jpg",
+                Description = "Jumping around the sea",
+                DateTime = DateTime.Parse("03Aug2023 11:22:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 1,
+                SpeciesId = 64,
+                Latitude = 45.115F,
+                Longitude = 120.45F,
+                PhotoUrl =
+                    "https://inaturalist-open-data.s3.amazonaws.com/photos/380921709/large.jpeg",
+                Description = "I'm not a whale L.O.L.",
+                DateTime = DateTime.Parse("17Mar2024 17:13:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 3,
+                SpeciesId = 54,
+                Latitude = 11.765F,
+                Longitude = -39.115F,
+                PhotoUrl =
+                    "https://wwf.ca/wp-content/uploads/2020/02/Narwhal-Two-narwhal-surfacing-to-breathe-in-Lancaster-Sound-Nunavut-Canada-%C2%A9-Paul-Nicklen_National-Geographic-Stock-_-WWF-Canada-scaled-e1583782336735.jpg",
+                Description = "A whale meets a unicorn. Pure perfection.",
+                DateTime = DateTime.Parse("08Apr2022 12:13:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 48,
+                Latitude = 99.665F,
+                Longitude = -111.435F,
+                PhotoUrl =
+                    "https://i0.wp.com/www.australiangeographic.com.au/wp-content/uploads/2018/06/indo-pacific-humpback-dolphin.jpg?fit=1000%2C588&ssl=1",
+                Description = "I'M PINK",
+                DateTime = DateTime.Parse("08Sept2024 11:13:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 1,
                 SpeciesId = 1,
                 Latitude = 64.0123F,
                 Longitude = -74.0122F,
                 PhotoUrl =
                     "https://media.istockphoto.com/id/1436921059/photo/closeup-shot-of-a-humpback-whale-under-the-sea.jpg?s=2048x2048&w=is&k=20&c=vl4PFMO_hcVjZZeIq4MxGosri9aUll1nMAbndOxhm8E=",
-                Description = "Saw this humback whale whilst out sailing",
+                Description = "Saw this humpback whale whilst out sailing",
                 DateTime = DateTime.Parse("29Aug2024 16:40:00").ToUniversalTime(),
                 IsApproved = false
             },
@@ -91,14 +151,99 @@ namespace WhaleSpotting.SeedData
             {
                 UserId = 1,
                 SpeciesId = 33,
+                Latitude = 34.462F,
+                Longitude = 18.99F,
+                PhotoUrl =
+                    "https://inaturalist-open-data.s3.amazonaws.com/photos/315414123/original.jpg",
+                Description = "Check out this cute little guy",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 22,
                 Latitude = 86.045654F,
                 Longitude = 100.012346F,
                 PhotoUrl =
                     "https://i.abcnewsfe.com/a/ccc2de0c-4237-45de-9579-ac66cc27d9e9/humpback-whale-gty-jt-240220_1708450395992_hpMain.jpg",
-                Description = "",
+                Description = "Just wow.",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 34,
+                Latitude = 26.7614F,
+                Longitude = -76.6442F,
+                PhotoUrl =
+                    "https://marinesanctuary.org/wp-content/uploads/2021/10/cuviers-beaked-whale-pc-charlotte-kirchner.png",
+                Description = "Good morning",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 3,
+                SpeciesId = 38,
+                Latitude = 27.1801F,
+                Longitude = -92.696F,
+                PhotoUrl =
+                    "https://upload.wikimedia.org/wikipedia/commons/a/a6/Descri%C3%A7%C3%A3o_in%C3%ADcio_ou_comportamento.jpg",
+                Description = "Check this out, how cool!",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 63,
+                Latitude = 15.764F,
+                Longitude = -101.935F,
+                PhotoUrl =
+                    "https://www.fisheries.noaa.gov/s3//dam-migration/5184x3456-pantropical-spotted-dolphin-guam.jpg",
+                Description = "Saw this on my morning sail, how cute",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 3,
+                SpeciesId = 66,
+                Latitude = 11.734F,
+                Longitude = -129.26F,
+                PhotoUrl =
+                    "https://www.fisheries.noaa.gov/s3//styles/full_width/s3/dam-migration/750x500-pygmy-killer-whale.jpg?itok=2s7aExxG",
+                Description = "Three little whales",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 70,
+                Latitude = 40.160F,
+                Longitude = -87.841F,
+                PhotoUrl =
+                    "https://upload.wikimedia.org/wikipedia/commons/e/ec/SEFSC-PAM-Rices-whale.png",
+                Description = "Got this from on my drone",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 1,
+                SpeciesId = 72,
+                Latitude = 1.318F,
+                Longitude = -83.665F,
+                PhotoUrl =
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn8NAUPeBQX3XInlhdErLQe6BA-jrKhZjTTw&s",
+                Description = "This little guy came to say hello",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             }
+            
         };
 
         public void SeedSighting()

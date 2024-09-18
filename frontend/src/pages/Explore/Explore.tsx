@@ -4,6 +4,7 @@ import { getSightings } from '../../api/backendClient';
 import "./Explore.scss"
 
 interface SightingType {
+  id: number
   username: string;
   speciesName: string;
   latitude: number;
