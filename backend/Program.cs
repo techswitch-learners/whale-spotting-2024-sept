@@ -102,6 +102,12 @@ public class Program
 
         var app = builder.Build();
 
+        using (var scope = app.Services.CreateScope())
+        {
+            var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
+            speciesSeeder.Seed();
+        }
+
         if (app.Environment.IsDevelopment())
         {
             using (var scope = app.Services.CreateScope())
@@ -117,13 +123,6 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
-        using (var scope = app.Services.CreateScope())
-        {
-            var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
-            speciesSeeder.Seed();
-        }
-
 
         app.UseCors();
         app.UseHttpsRedirection();
