@@ -112,13 +112,13 @@ export async function approveSighting(header: string, sightingId: number) {
 
 export async function deleteUserProfile(header: string) {
   const response = await fetch(`http://localhost:5280/users/`, {
+    method: "DELETE",
     headers: {
-      "method": "delete",
       "Content-Type": "application/json",
       Authorization: `Bearer ${header}`,
     },
   })
-  return await response.json()
+  return await response
 }
 
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:

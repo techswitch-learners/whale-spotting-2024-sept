@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { SetStateAction, useContext, useEffect, useState } from "react"
 import { deleteUserProfile, fetchUserProfile, User } from "../../api/backendClient"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import "./Profile.scss"
@@ -13,23 +13,23 @@ export function Profile(): JSX.Element {
   const navigate = useNavigate();
 
   const getConfirmDelete = (confirmation: boolean) => {
-    if (confirmation) {
-      console.log("Confirmed");
-      // deleteUserProfile(loginContext.jwt)
-      //   .then(response => {
-      //     if (!response.ok) {
-      //       return response.json().then()
-      //     }
-      //     response.json()
-      //   })
-      //   .then(response => console.log(response))
-      // .catch() {
-      //     console.log("Are in here...")
-      // };
-      // navigate("/")
-    }
-    else console.log("Cancelled");
     setShowDeleteModal(false);
+
+    if (confirmation) {
+      deleteUserProfile(loginContext.jwt)
+        .then(response => {
+
+          if (!response.ok) {
+            return response.json().then((errorData: { errors: SetStateAction<{ [key: string]: string[] }> }) =>{
+              throw new Error();
+            })
+          }
+
+          navigate("/")
+          return response.json()
+        }) //TODO: log user out once that feature is implemented.
+      .catch((error) => {});
+    }
   }
 
   useEffect(() => {
