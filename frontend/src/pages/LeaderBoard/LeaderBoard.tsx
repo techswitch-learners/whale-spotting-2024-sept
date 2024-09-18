@@ -1,11 +1,11 @@
 import "./LeaderBoard.scss"
 import { useContext, useState } from "react"
-import { FetchLeaderBoard, UserLeaderBoards } from "../../api/backendClient"
+import { FetchLeaderBoard, LeaderBoardTable } from "../../api/backendClient"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 
 export function LeaderBoard(): JSX.Element {
   const { jwt } = useContext(LoginContext)
-  const [usersLeaderBoard, setUsersLeaderBoard] = useState<UserLeaderBoards | null>(null)
+  const [usersLeaderBoard, setUsersLeaderBoard] = useState<LeaderBoardTable | null>(null)
 
   const logo = require("../../images/Whale3logo.png")
   const [error, setError] = useState("")

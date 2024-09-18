@@ -7,13 +7,13 @@ export interface User {
   aboutMe?: string
 }
 
-export interface UserLeaderBoard {
+export interface LeaderBoardRow {
   userName: string
   totalPointsEarned: number
 }
 
-export interface UserLeaderBoards {
-  userLeaderBoard: Array<UserLeaderBoard>
+export interface LeaderBoardTable {
+  userLeaderBoard: Array<LeaderBoardRow>
 }
 
 export const loginUser = async (username: string, password: string) => {
@@ -64,7 +64,7 @@ export async function fetchUserProfile(header: string): Promise<User> {
 }
 
 export async function FetchLeaderBoard(header: string) {
-  const response = await fetch(`http://localhost:5280/users/GetLeaderBoardUserList`, {
+  const response = await fetch(`http://localhost:5280/users/leaderboard`, {
     method: "get",
     headers: {
       "Content-Type": "application/json",

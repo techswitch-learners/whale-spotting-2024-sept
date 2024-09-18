@@ -50,7 +50,7 @@ public class UserController(IUserService userService) : Controller
         );
     }
 
-    [HttpGet("GetLeaderboardUserList")]
+    [HttpGet("leaderboard")]
     public ActionResult<List<User>> GetLeaderBoardUserList()
     {
         try
