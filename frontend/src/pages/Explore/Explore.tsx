@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import "./Explore.scss"
-import MapOfWhales from "../../Components/WhaleMap/WhaleMap"
+import WhaleMap from "../../Components/WhaleMap/WhaleMap"
 import { APIProvider } from "@vis.gl/react-google-maps"
 
 export interface SightingType {
@@ -48,7 +48,7 @@ function Explore(): JSX.Element {
     <>
       <h1>Explore</h1>
       <APIProvider apiKey={apiKey}>
-        <MapOfWhales sightings={sightings} />
+        <WhaleMap sightings={sightings} />
       </APIProvider>
       {sightings.map((sighting) => (
         <>

@@ -7,7 +7,7 @@ interface whaleMapProps {
   sightings: SightingType[]
 }
 
-const MapOfWhales = (props: whaleMapProps) => {
+const WhaleMap = (props: whaleMapProps) => {
   const centre = { lat: 0, lng: 0 }
   const [selectedSighting, setSelectedSighting] = useState(0)
 
@@ -60,4 +60,4 @@ const MapOfWhales = (props: whaleMapProps) => {
   )
 }
 
-export default MapOfWhales
+export default WhaleMap
