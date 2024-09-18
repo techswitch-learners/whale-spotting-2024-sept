@@ -67,11 +67,11 @@ public class SightingsService : ISightingsService
 
     public SightingListResponse GetApproved()
     {
-
-        List<Sighting> sightings = _context.Sightings
-        .Include(u => u.User)
-        .Include(p => p.Species) 
-        .Where(s => s.IsApproved).ToList();
+        List<Sighting> sightings = _context
+            .Sightings.Include(u => u.User)
+            .Include(p => p.Species)
+            .Where(s => s.IsApproved)
+            .ToList();
         SightingListResponse sightingListResponse = new SightingListResponse();
         sightingListResponse.SetList(sightings);
         return sightingListResponse;
@@ -79,7 +79,11 @@ public class SightingsService : ISightingsService
 
     public SightingListResponse GetUnapproved()
     {
-        List<Sighting> sightings = _context.Sightings.Where(s => !s.IsApproved).ToList();
+        List<Sighting> sightings = _context
+            .Sightings.Include(u => u.User)
+            .Include(p => p.Species)
+            .Where(s => !s.IsApproved)
+            .ToList();
         SightingListResponse sightingListResponse = new SightingListResponse();
         sightingListResponse.SetList(sightings);
         return sightingListResponse;
