@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import "./Explore.scss"
+import WhaleMap from "../../Components/Map/Map"
 
 interface SightingType {
   username: string
@@ -42,6 +43,7 @@ function Explore(): JSX.Element {
   return (
     <>
       <h1>Explore</h1>
+      <WhaleMap />
       {sightings.map((sighting) => (
         <>
           <p>{sighting.username}</p>
