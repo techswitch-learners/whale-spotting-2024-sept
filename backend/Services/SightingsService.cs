@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Request;
@@ -10,6 +9,7 @@ public interface ISightingsService
 {
     public Task CreateSighting(SightingsRequest sightingsRequest, int userId);
     public SightingListResponse GetApproved();
+    public SightingListResponse GetUnapproved();
     public Task<Sighting> GetSightingById(int sightingId);
     public Task DeleteSighting(int sightingId, int userId);
     public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
@@ -47,7 +47,19 @@ public class SightingsService : ISightingsService
 
     public SightingListResponse GetApproved()
     {
-        List<Sighting> sightings = _context.Sightings.Where(s => s.IsApproved).ToList();
+        List<Sighting> sightings = _context
+            .Sightings.Include(u => u.User)
+            .Include(p => p.Species)
+            .Where(s => s.IsApproved)
+            .ToList();
+        SightingListResponse sightingListResponse = new SightingListResponse();
+        sightingListResponse.SetList(sightings);
+        return sightingListResponse;
+    }
+
+    public SightingListResponse GetUnapproved()
+    {
+        List<Sighting> sightings = _context.Sightings.Where(s => !s.IsApproved).ToList();
         SightingListResponse sightingListResponse = new SightingListResponse();
         sightingListResponse.SetList(sightings);
         return sightingListResponse;
