@@ -54,6 +54,21 @@ public class SightingsController : Controller
         }
     }
 
+    [Authorize(Roles = "Admin")]
+    [HttpGet("unapproved")]
+    public ActionResult<SightingListResponse> GetUnapproved()
+    {
+        try
+        {
+            SightingListResponse sightings = _sightingService.GetUnapproved();
+            return Ok(sightings);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpDelete("{sightingId}/delete")]
     public async Task<IActionResult> Delete([FromRoute] int sightingId)
     {

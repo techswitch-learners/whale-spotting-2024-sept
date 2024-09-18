@@ -49,7 +49,7 @@ public class UserController(IUserService userService) : Controller
         );
     }
 
-    [HttpPut("/update")]
+    [HttpPut("update")]
     public async Task<IActionResult> UpdateUser(UpdateUserRequest userRequest)
     {
         try
