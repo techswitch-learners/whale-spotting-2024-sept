@@ -33,6 +33,11 @@ const NavigationLinks: React.FC = () => {
           Explore
         </Link>
       </li>
+      <li className="nav-item">
+        <Link to="/leaderboard" className="nav-link">
+          Leaderboard
+        </Link>
+      </li>
       {roleType === "Admin" && (
         <div>
           <li className="nav-item" data-testid="adminLink">

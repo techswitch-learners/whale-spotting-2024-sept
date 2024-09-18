@@ -7,6 +7,15 @@ export interface User {
   aboutMe?: string
 }
 
+export interface LeaderBoardRow {
+  userName: string
+  totalPointsEarned: number
+}
+
+export interface LeaderBoardTable {
+  userLeaderBoard: Array<LeaderBoardRow>
+}
+
 export interface Sightings {
   sightings: Array<Sighting>
 }
@@ -79,6 +88,22 @@ export async function fetchUserProfile(header: string): Promise<User> {
   return await response.json()
 }
 
+export async function FetchLeaderBoard(header: string) {
+  const response = await fetch(`http://localhost:5280/users/leaderboard`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+      },
+    })
+    if (!response.ok) {
+    return response.json().then((errorData) => {
+      throw new Error(JSON.stringify(errorData.errors))
+    })
+  }
+  return await response.json()
+}
+
 export const updateUser = async (
   header: string,
   firstname?: string,
@@ -104,7 +129,7 @@ export async function fetchUnapprovedSightings(header: string): Promise<Sighting
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${header}`,
-    },
+      },
   })
   return await response.json()
 }

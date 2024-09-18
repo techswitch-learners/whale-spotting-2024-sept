@@ -19,8 +19,8 @@ export function CreateUser(): JSX.Element {
       .then((response) => {
         if (!response.ok) {
           return response.json().then((errorData) => {
-            setError(errorData.errors);
-            throw new Error();
+            setError(errorData.errors)
+            throw new Error()
           })
         }
         return response.json()
@@ -28,17 +28,16 @@ export function CreateUser(): JSX.Element {
       .then((data) => {
         navigate("/")
       })
-      .catch((error) => {
-      })
+      .catch((error) => {})
   }
 
-  let errorLines: string[] = [];
+  let errorLines: string[] = []
 
   for (const item of Object.values(error)) {
-    errorLines = errorLines.concat(item);
+    errorLines = errorLines.concat(item)
   }
 
-  const errorList = errorLines.map(errorLine => <p style={{ color: "red" }}>{errorLine}</p>)
+  const errorList = errorLines.map((errorLine) => <p style={{ color: "red" }}>{errorLine}</p>)
 
   return (
     <div className="sign-up-page">

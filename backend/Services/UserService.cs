@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using WhaleSpotting.Migrations;
 using WhaleSpotting.Models.Data;
+using WhaleSpotting.Models.Response;
 
 namespace WhaleSpotting.Services;
 
@@ -10,6 +12,7 @@ public interface IUserService
     public Task Update(User user);
     public Task<IdentityResult> Delete(User user);
     public Task AddPoint(string userId);
+    public Task<UserLeaderBoardListResponse> GetLeaderBoardUserList();
 }
 
 public class UserService : IUserService
@@ -24,6 +27,15 @@ public class UserService : IUserService
     public async Task<User> FindByName(string userName)
     {
         return await _userManager.FindByNameAsync(userName);
+    }
+
+    public async Task<UserLeaderBoardListResponse> GetLeaderBoardUserList()
+    {
+        List<User> userList = _userManager.Users.OrderByDescending(u => u.TotalPointsEarned).ToList();
+        UserLeaderBoardListResponse userLeaderBoardListResponse = new UserLeaderBoardListResponse();
+        userLeaderBoardListResponse.SetList(userList.ToList());
+
+        return userLeaderBoardListResponse;
     }
 
     public async Task<User> FindById(string userId)
