@@ -122,4 +122,6 @@ You should see unlocked padlock icons on the right of every endpoint.
 
 1. run npm install in the frontend folder
 2. follow the instructions from this page to get an API key: https://developers.google.com/maps/get-started
-3. create a new .env file in the frontend folder, following the .env.template file, and put in your API key
+3. In your project on the Cloud Console, go to 'Map styles' and create a new style (you don't need to change any settings, just save it)
+4. Once you have saved a map style, you will get a Map style ID
+5. create a new .env file in the frontend folder, following the .env.template file, and put in your API key and the Map style ID
