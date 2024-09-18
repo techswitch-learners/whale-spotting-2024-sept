@@ -20,6 +20,7 @@ public class UserController(IUserService userService) : Controller
     public IActionResult GetByUserName([FromRoute] string userName)
     {
         User? matchingUser = _userService.FindByName(userName).Result;
+
         if (matchingUser == null)
         {
             return NotFound();
@@ -47,6 +48,20 @@ public class UserController(IUserService userService) : Controller
                 AboutMe = user.AboutMe
             }
         );
+    }
+
+    [HttpGet("leaderboard")]
+    public ActionResult<List<User>> GetLeaderBoardUserList()
+    {
+        try
+        {
+            var users = _userService.GetLeaderBoardUserList();
+            return Ok(users);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut("update")]
