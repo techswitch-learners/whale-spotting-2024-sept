@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import { MemoryRouter, Route, Routes } from "react-router-dom"
-import Header from "../Header/Header"
-import { CreateUser } from "../pages/CreateUser"
-import Home from "../pages/Home/Home"
-import Explore from "../pages/Explore"
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import Header from "../Header/Header";
+import { CreateUser } from "../pages/CreateUser";
+import Home from "../pages/Home/Home";
+import Explore from "../pages/Explore/Explore";
 
 describe("Header contains all the navigation items", () => {
   test("header has navigation items bar", () => {
