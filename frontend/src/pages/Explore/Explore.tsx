@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import "./Explore.scss"
-import WhaleMap from "../../Components/WhaleMap/WhaleMap"
+import MapOfWhales from "../../Components/WhaleMap/WhaleMap"
+import { APIProvider } from "@vis.gl/react-google-maps"
 
 export interface SightingType {
+  id: number
   username: string
   speciesName: string
   latitude: number
@@ -17,6 +19,8 @@ export interface SightingType {
 const formatDate = (dateTime: Date) => {
   return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
 }
+
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY : ""
 
 function Explore(): JSX.Element {
   const [sightings, setSightings] = useState<SightingType[]>([])
@@ -43,7 +47,9 @@ function Explore(): JSX.Element {
   return (
     <>
       <h1>Explore</h1>
-      <WhaleMap sightings={sightings} />
+      <APIProvider apiKey={apiKey}>
+        <MapOfWhales sightings={sightings} />
+      </APIProvider>
       {sightings.map((sighting) => (
         <>
           <p>{sighting.username}</p>

@@ -118,7 +118,7 @@ You should see unlocked padlock icons on the right of every endpoint.
 5. Paste the token into the box
 6. Postman will add the correct header
 
-## Using the react-google-maps API
+## Using the vis.gl/react-google-maps API
 
 1. run npm install in the frontend folder
 2. follow the instructions from this page to get an API key: https://developers.google.com/maps/get-started
