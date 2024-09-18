@@ -69,6 +69,26 @@ export async function fetchUserProfile(header: string): Promise<User> {
   return await response.json()
 }
 
+export const updateUser = async (
+  header: string,
+  firstname?: string,
+  lastname?: string,
+  aboutme?: string,
+) => {
+  return await fetch(`http://localhost:5280/users/update`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    body: JSON.stringify({
+      firstname,
+      lastname,
+      aboutme,
+    }),
+  })
+}
+
 export async function fetchUnapprovedSightings(header: string): Promise<Sightings> {
   const response = await fetch(`http://localhost:5280/sightings/unapproved`, {
     headers: {
