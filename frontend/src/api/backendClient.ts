@@ -156,6 +156,32 @@ export async function deleteUserProfile(header: string) {
   return await response
 }
 
+export async function createSighting(
+  header: string,
+  speciesId: number,
+  latitude: number,
+  longitude: number,
+  photoUrl: string,
+  description: string,
+  dateTime: Date,
+) {
+  return await fetch(`http://localhost:5280/sightings/create`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${header}`,
+    },
+    body: JSON.stringify({
+      speciesId,
+      latitude,
+      longitude,
+      photoUrl,
+      description,
+      dateTime,
+    }),
+  })
+}
+
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:
 // In the .tsx file where the fetch request is being called:
 // 1) import the login context to access the value of the JWT token
