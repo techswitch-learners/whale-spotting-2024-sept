@@ -26,9 +26,21 @@ public class SightingsController : Controller
     {
         try
         {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var sightingResult = _sightingService.GetSightingById(sightingId);
             Sighting sighting = sightingResult.Result;
-            return Ok(sighting);
+            if (
+                sighting.UserId == userId
+                || (sighting.UserId != userId && sighting.IsApproved)
+                || User.IsInRole("Admin")
+            )
+            {
+                return Ok(sighting);
+            }
+            else
+            {
+                return BadRequest("Data not available");
+            }
         }
         catch (Exception ex)
         {
