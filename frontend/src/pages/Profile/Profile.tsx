@@ -1,10 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-<<<<<<< HEAD
 import { deleteUserProfile, fetchUserProfile, User } from "../../api/backendClient"
-=======
-import { useNavigate } from "react-router-dom"
-import { fetchUserProfile, User } from "../../api/backendClient"
->>>>>>> main
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import "./Profile.scss"
 import { DeleteModal } from "../../Components/DeleteModal/DeleteModal"
@@ -14,7 +9,6 @@ export function Profile(): JSX.Element {
   const [user, setUser] = useState<User | null>(null)
   const loginContext = useContext(LoginContext)
 
-<<<<<<< HEAD
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate = useNavigate();
 
@@ -38,10 +32,6 @@ export function Profile(): JSX.Element {
     setShowDeleteModal(false);
   }
 
-=======
-  const navigate = useNavigate()
-  
->>>>>>> main
   useEffect(() => {
     fetchUserProfile(loginContext.jwt).then((response) => setUser(response))
   }, [loginContext.jwt])
@@ -137,57 +127,6 @@ export function Profile(): JSX.Element {
               </button>
             </div>
           </div>
-<<<<<<< HEAD
-=======
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <h6 className="mb-0">Last name</h6>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">{user.lastName}</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <h6 className="mb-0">Email</h6>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">{user.email}</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <h6 className="mb-0">Points earned</h6>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">{user.totalPointsEarned}</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <h6 className="mb-0">About me</h6>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">{user.aboutMe}</p>
-            </div>
-          </div>
-        </div>
-        <div className="row g-0">
-          <div className="col-6 p-2">
-            <button id="update-button" data-testid="update-button" className="btn btn-primary btn-md w-100" onClick={handleClick}>
-              Update
-            </button>
-          </div>
-          <div className="col-6 p-2">
-            <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100">
-              Delete
-            </button>
-          </div>
->>>>>>> main
         </div>
       </div>
       {showDeleteModal && <DeleteModal getConfirmDelete={getConfirmDelete} />}
