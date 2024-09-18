@@ -9,7 +9,7 @@ interface SightingType {
   latitude: number;
   longitude: number;
   photoUrl: string;
-  description: string;
+  description?: string;
   dateTime: Date;
 }
 
@@ -51,7 +51,7 @@ function Explore(): JSX.Element {
         <img src={sighting.photoUrl} className="thumbnail-explore-gallery"/>
         <p>Latitude: {sighting.latitude}</p>
         <p>Longitude: {sighting.longitude}</p>
-        <p>Description: {sighting.description}</p>
+        {sighting.description && <p>Description: {sighting.description}</p> }  
         <p>Date: {formatDate(sighting.dateTime)}</p>
         </>
       ))}

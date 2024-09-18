@@ -7,7 +7,6 @@ namespace WhaleSpotting.Models.Response;
 public class SightingListResponse()
 {
     public List<SightingResponse> Sightings { get; set; }
-    // private readonly IUserService _userService;
 
     public void SetList(List<Sighting> SightingsList)
     {
