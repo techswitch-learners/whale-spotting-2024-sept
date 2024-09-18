@@ -5,7 +5,7 @@ import { deleteUserProfile } from "../../api/backendClient";
 import { useNavigate } from "react-router-dom"
 
 
-export const DeleteModal = ({setShowDeleteModal}:{setShowDeleteModal: (flag :boolean) => void}) => {
+export const DeleteModal = ({getConfirmDelete}:{getConfirmDelete(confirmation :boolean): void}) => {
     
     return (
         <div className="popup">
@@ -23,12 +23,12 @@ export const DeleteModal = ({setShowDeleteModal}:{setShowDeleteModal: (flag :boo
                 <button id="deletebutton-yes"
                     data-testid="delete-button"
                     className="btn btn-primary btn-md w-50"
-                    // onClick={getConfirmDelete(true)}
+                    onClick={() => getConfirmDelete(true)}
                     >Yes</button>
                 <button id="deletebutton-no"
                     data-testid="delete-button"
                     className="btn btn-primary btn-md w-50"
-                    // onClick={getConfirmDelete(false)}
+                    onClick={() => getConfirmDelete(false)}
                     >No</button>
                 </div>
             </div>

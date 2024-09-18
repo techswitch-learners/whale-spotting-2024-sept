@@ -14,6 +14,7 @@ export function Profile(): JSX.Element {
 
   const getConfirmDelete = (confirmation: boolean) => {
     if (confirmation) {
+      console.log("Confirmed");
       // deleteUserProfile(loginContext.jwt)
       //   .then(response => {
       //     if (!response.ok) {
@@ -27,6 +28,7 @@ export function Profile(): JSX.Element {
       // };
       // navigate("/")
     }
+    else console.log("Cancelled");
     setShowDeleteModal(false);
   }
 
@@ -112,7 +114,7 @@ export function Profile(): JSX.Element {
           </div>
         </div>
       </div>
-      {showDeleteModal && <DeleteModal setShowDeleteModal={setShowDeleteModal} />}
+      {showDeleteModal && <DeleteModal getConfirmDelete={getConfirmDelete} />}
     </div>
   )
 }
