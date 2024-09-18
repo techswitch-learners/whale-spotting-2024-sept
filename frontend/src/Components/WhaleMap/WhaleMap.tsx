@@ -1,4 +1,5 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
+import { SightingType } from "../../pages/Explore/Explore"
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY : ""
 
@@ -11,7 +12,11 @@ const center = {
   lng: 0,
 }
 
-const WhaleMap = () => {
+interface whaleMapProps {
+  sightings: SightingType[]
+}
+
+const WhaleMap = (props: whaleMapProps) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: apiKey,
   })
@@ -27,8 +32,13 @@ const WhaleMap = () => {
   return (
     <div>
       <GoogleMap mapContainerStyle={mapContainerStyle} zoom={3} center={center}>
-        <Marker position={center} />
+        {props.sightings.map((sighting) => (
+          <Marker position={{ lat: 55.3617609, lng: -3.4433238 }} />
+        ))}
       </GoogleMap>
+
+      {/* <Marker position={{lat: sighting.latitude, lng: sighting.longitude}} /> */}
+      {/* {props.sightings.map((sighting) => (<div>{sighting.latitude}</div>))} */}
     </div>
   )
 }

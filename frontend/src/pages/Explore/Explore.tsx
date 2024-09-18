@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import "./Explore.scss"
-import WhaleMap from "../../Components/Map/Map"
+import WhaleMap from "../../Components/WhaleMap/WhaleMap"
 
-interface SightingType {
+export interface SightingType {
   username: string
   speciesName: string
   latitude: number
@@ -43,7 +43,7 @@ function Explore(): JSX.Element {
   return (
     <>
       <h1>Explore</h1>
-      <WhaleMap />
+      <WhaleMap sightings={sightings} />
       {sightings.map((sighting) => (
         <>
           <p>{sighting.username}</p>
