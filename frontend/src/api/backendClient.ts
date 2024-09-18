@@ -23,7 +23,9 @@ export interface Sightings {
 export interface Sighting {
   id: number
   userId: number
+  username: string
   speciesId: number
+  speciesName: string
   latitude: number
   longitude: number
   photoUrl: string
@@ -73,7 +75,7 @@ export const getSightings = async (header: string) => {
     method: "get",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${header}`
+      Authorization: `Bearer ${header}`,
     },
   })
 }
@@ -94,9 +96,9 @@ export async function FetchLeaderBoard(header: string) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${header}`,
-      },
-    })
-    if (!response.ok) {
+    },
+  })
+  if (!response.ok) {
     return response.json().then((errorData) => {
       throw new Error(JSON.stringify(errorData.errors))
     })
@@ -104,12 +106,7 @@ export async function FetchLeaderBoard(header: string) {
   return await response.json()
 }
 
-export const updateUser = async (
-  header: string,
-  firstname?: string,
-  lastname?: string,
-  aboutme?: string,
-) => {
+export const updateUser = async (header: string, firstname?: string, lastname?: string, aboutme?: string) => {
   return await fetch(`http://localhost:5280/users/update`, {
     method: "put",
     headers: {
@@ -129,7 +126,7 @@ export async function fetchUnapprovedSightings(header: string): Promise<Sighting
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${header}`,
-      },
+    },
   })
   return await response.json()
 }
