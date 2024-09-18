@@ -7,6 +7,15 @@ export interface User {
   aboutMe?: string
 }
 
+export interface LeaderBoardRow {
+  userName: string
+  totalPointsEarned: number
+}
+
+export interface LeaderBoardTable {
+  userLeaderBoard: Array<LeaderBoardRow>
+}
+
 export interface Sightings {
   sightings: Array<Sighting>
 }
@@ -79,6 +88,22 @@ export async function fetchUserProfile(header: string): Promise<User> {
   return await response.json()
 }
 
+export async function FetchLeaderBoard(header: string) {
+  const response = await fetch(`http://localhost:5280/users/leaderboard`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  if (!response.ok) {
+    return response.json().then((errorData) => {
+      throw new Error(JSON.stringify(errorData.errors))
+    })
+  }
+  return await response.json()
+}
+
 export const updateUser = async (header: string, firstname?: string, lastname?: string, aboutme?: string) => {
   return await fetch(`http://localhost:5280/users/update`, {
     method: "put",
@@ -113,6 +138,43 @@ export async function approveSighting(header: string, sightingId: number) {
     method: "PUT",
   })
   return await response
+}
+
+export async function deleteUserProfile(header: string) {
+  const response = await fetch(`http://localhost:5280/users/`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response
+}
+
+export async function createSighting(
+  header: string,
+  speciesId: number,
+  latitude: number,
+  longitude: number,
+  photoUrl: string,
+  description: string,
+  dateTime: Date,
+) {
+  return await fetch(`http://localhost:5280/sightings/create`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    body: JSON.stringify({
+      speciesId,
+      latitude,
+      longitude,
+      photoUrl,
+      description,
+      dateTime,
+    }),
+  })
 }
 
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:

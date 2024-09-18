@@ -14,6 +14,7 @@ public interface ISightingsService
     public Task DeleteSighting(int sightingId, int userId);
     public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
     public Task ApproveSighting(int sightingId);
+    public SingleSightingResponse GetSingleSightingResponse(int sightingId);
 }
 
 public class SightingsService : ISightingsService
@@ -45,6 +46,25 @@ public class SightingsService : ISightingsService
         await _context.SaveChangesAsync();
     }
 
+    public SingleSightingResponse GetSingleSightingResponse(int sightingId)
+    {
+        var singlesighting = GetSightingById(sightingId);
+
+        SingleSightingResponse sighting = new SingleSightingResponse()
+        {
+            Id = singlesighting.Result.Id,
+            UserId = singlesighting.Result.UserId,
+            SpeciesId = singlesighting.Result.SpeciesId,
+            Latitude = singlesighting.Result.Latitude,
+            Longitude = singlesighting.Result.Longitude,
+            PhotoUrl = singlesighting.Result.PhotoUrl,
+            Description = singlesighting.Result.Description,
+            DateTime = singlesighting.Result.DateTime,
+            IsApproved = singlesighting.Result.IsApproved,
+        };
+        return sighting;
+    }
+
     public SightingListResponse GetApproved()
     {
         List<Sighting> sightings = _context
@@ -59,7 +79,11 @@ public class SightingsService : ISightingsService
 
     public SightingListResponse GetUnapproved()
     {
-        List<Sighting> sightings = _context.Sightings.Where(s => !s.IsApproved).ToList();
+        List<Sighting> sightings = _context
+            .Sightings.Include(u => u.User)
+            .Include(p => p.Species)
+            .Where(s => !s.IsApproved)
+            .ToList();
         SightingListResponse sightingListResponse = new SightingListResponse();
         sightingListResponse.SetList(sightings);
         return sightingListResponse;

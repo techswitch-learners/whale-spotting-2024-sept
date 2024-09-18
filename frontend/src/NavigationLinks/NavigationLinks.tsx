@@ -5,6 +5,7 @@ import { useContext } from "react"
 const NavigationLinks: React.FC = () => {
   const { roleType } = useContext(LoginContext)
   const { isLoggedIn } = useContext(LoginContext)
+  const { logOut, saveJwtToContext, saveRoleTypeToContext } = useContext(LoginContext)
   const navigate = useNavigate()
 
   const handleClick = (event: { currentTarget: { id: string } }) => {
@@ -15,6 +16,12 @@ const NavigationLinks: React.FC = () => {
         break
       case "sign-up-button":
         navigate("/signup")
+        break
+      case "log-out-button":
+        logOut()
+        saveRoleTypeToContext("")
+        saveJwtToContext("")
+        navigate("/")
         break
       default:
         break
@@ -31,6 +38,11 @@ const NavigationLinks: React.FC = () => {
       <li className="nav-item">
         <Link to="/explore" className="nav-link">
           Explore
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link to="/leaderboard" className="nav-link">
+          Leaderboard
         </Link>
       </li>
       {roleType === "Admin" && (
@@ -51,26 +63,41 @@ const NavigationLinks: React.FC = () => {
           </li>
         </div>
       )}
-      <div>
-        <button
-          id="log-in-button"
-          data-testid="log-in-button"
-          className="btn btn-outline-success px-2"
-          style={{ width: "100px", margin: "5px" }}
-          onClick={handleClick}
-        >
-          Log In
-        </button>
-        <button
-          id="sign-up-button"
-          data-testid="sign-up-button"
-          className="btn btn-outline-success px-2"
-          style={{ width: "100px", margin: "5px" }}
-          onClick={handleClick}
-        >
-          Sign Up
-        </button>
-      </div>
+      {isLoggedIn && (
+        <div>
+          <button
+            id="log-out-button"
+            data-testid="log-out-button"
+            className="btn btn-outline-success px-2"
+            style={{ width: "100px", margin: "5px" }}
+            onClick={handleClick}
+          >
+            Log Out
+          </button>
+        </div>
+      )}
+      {!isLoggedIn && (
+        <div>
+          <button
+            id="log-in-button"
+            data-testid="log-in-button"
+            className="btn btn-outline-success px-2"
+            style={{ width: "100px", margin: "5px" }}
+            onClick={handleClick}
+          >
+            Log In
+          </button>
+          <button
+            id="sign-up-button"
+            data-testid="sign-up-button"
+            className="btn btn-outline-success px-2"
+            style={{ width: "100px", margin: "5px" }}
+            onClick={handleClick}
+          >
+            Sign Up
+          </button>
+        </div>
+      )}
     </ul>
   )
 }

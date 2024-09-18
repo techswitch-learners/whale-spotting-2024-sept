@@ -21,6 +21,32 @@ public class SightingsController : Controller
         _sightingService = sightingService;
     }
 
+    [HttpGet("{sightingId}")]
+    public IActionResult GetBySightingId([FromRoute] int sightingId)
+    {
+        try
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            SingleSightingResponse sighting = _sightingService.GetSingleSightingResponse(sightingId);
+            if (
+                sighting.UserId == userId
+                || (sighting.UserId != userId && sighting.IsApproved)
+                || User.IsInRole("Admin")
+            )
+            {
+                return Ok(sighting);
+            }
+            else
+            {
+                return BadRequest("Data not available");
+            }
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpPost("create")]
     public async Task<IActionResult> Create(SightingsRequest sightingRequest)
     {
