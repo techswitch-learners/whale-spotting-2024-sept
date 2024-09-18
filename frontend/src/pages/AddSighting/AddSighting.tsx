@@ -1,72 +1,46 @@
-import React, { FormEvent, useContext ,useEffect } from "react"
+import React, { FormEvent, useContext } from "react"
 import { useState } from "react"
 import { SpeciesDropdown } from "../../Components/SpeciesDropdown/SpeciesDropdown"
 import "./AddSighting.scss"
 import { useNavigate } from "react-router-dom"
-import { createSighting } from "../../api/backendClient"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
+import { createSighting } from "../../api/backendClient"
 
 export function AddSighting(): JSX.Element {
+  const loginContext = useContext(LoginContext)
+
   const [latitude, setLatitude] = useState("0.0")
   const [longitude, setLongitude] = useState("0.0")
   const [photoUrl, setPhotoUrl] = useState("")
   const [description, setDescription] = useState("")
-  const [dateTime, setDateTime] = useState("") // Todo
-  const [speciesId, setSpeciesId] = useState(0)
+  const [dateTime, setDateTime] = useState(new Date())
+  const [speciesId, setSpeciesId] = useState(1)
   const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
 
-  async function SubmitSighting(event: FormEvent) {
+  async function submitSighting(event: FormEvent) {
     event.preventDefault()
-    
-    const loginContext = useContext(LoginContext);
-    const jwt = loginContext.jwt;
 
-    useEffect(() => {
-      async function createNewSightings() {
-        try {
-          // const response = await createSighting(
-          //   jwt,
-          //   speciesId,
-          //   parseFloat(latitude),
-          //   parseFloat(longitude),
-          //   photoUrl,
-          //   description,
-          //   // dateTime,
-          // )
-          
-          const response = await fetch("http://localhost:5280/sightings/create", {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${jwt}`,
-            },
-            body: JSON.stringify({
-              SpeciesId: speciesId,
-              Latitude: parseFloat(latitude),
-              Longitude: parseFloat(longitude),
-              PhotoUrl: photoUrl,
-              Description: description,
-              DateTime: dateTime,
-            }),
-          })
+    try {
+      const response = await createSighting(
+        loginContext.jwt,
+        speciesId,
+        parseFloat(latitude),
+        parseFloat(longitude),
+        photoUrl,
+        description,
+        new Date(dateTime))
 
-          if (!response.ok) {
-            setErrorMessage("Oh no! Something did not go swimmingly, please try again.")
-          } else {
-            navigate("/") //TODO 1.check the redirect works once LoginContext is working. 2.change this to redirect to sightings page once that is up.
-          }
-        } catch (err) {
-          setErrorMessage("Error: Please contact support.")
-        }
+      if (!response.ok) {
+        setErrorMessage("Oh no! Something did not go swimmingly, please try again.")
+      } else {
+        console.log("New pic uploaded")
+        navigate("/explore")
       }
-  
-      createNewSightings();
-    }, [jwt]);
-
+    } catch (err) {
+      setErrorMessage("Error: Please contact support.")
+    }
   }
-
-
 
   function getSpeciesIdFromDropdown(speciesIdFromDropdown: number) {
     setSpeciesId(speciesIdFromDropdown)
@@ -76,7 +50,7 @@ export function AddSighting(): JSX.Element {
     <div className="add-a-sighting-page">
       <h1 className="title">Add a Sighting</h1>
       <p>{errorMessage}</p>
-      <form className="addSighting-form" method="post" onSubmit={SubmitSighting}>
+      <form className="addSighting-form" method="post" onSubmit={submitSighting}>
         <div className="form-group row">
           <label htmlFor="species" className="col-sm-2 col-form-label">
             Species:
@@ -149,8 +123,8 @@ export function AddSighting(): JSX.Element {
               type="datetime-local"
               id="dateTime"
               className="form-control"
-              value={dateTime}
-              onChange={(event) => setDateTime(event.target.value)}
+              value={dateTime.toDateString()}
+              onChange={(event) => setDateTime(new Date(event.target.value))}
             />
           </div>
         </div>

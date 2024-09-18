@@ -122,26 +122,26 @@ export async function approveSighting(header: string, sightingId: number) {
 
 export async function createSighting(
   header: string,
-  SpeciesId: number,
-  Latitude: number,
-  Longitude: number,
-  PhotoUrl: string,
-  Description: string,
-  DateTime: Date = new Date(),
+  speciesId: number,
+  latitude: number,
+  longitude: number,
+  photoUrl: string,
+  description: string,
+  dateTime: Date,
 ) {
-  return await fetch("http://localhost:5280/sightings/create", {
+  return await fetch(`http://localhost:5280/sightings/create`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${header}`,
+      "Authorization": `Bearer ${header}`,
     },
     body: JSON.stringify({
-      SpeciesId,
-      Latitude,
-      Longitude,
-      PhotoUrl,
-      Description,
-      DateTime,
+      speciesId,
+      latitude,
+      longitude,
+      photoUrl,
+      description,
+      dateTime,
     }),
   })
 }
