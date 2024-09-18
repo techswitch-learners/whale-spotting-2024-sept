@@ -110,9 +110,6 @@ public class Program
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
 
-                var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
-                speciesSeeder.Seed();
-
                 var sightingsSeeder = scope.ServiceProvider.GetService<SeedSightings>();
                 sightingsSeeder.SeedSighting();
             }
@@ -120,6 +117,13 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
+            speciesSeeder.Seed();
+        }
+
 
         app.UseCors();
         app.UseHttpsRedirection();
