@@ -27,19 +27,7 @@ public class SightingsController : Controller
         try
         {
             int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var singlesighting = _sightingService.GetSightingById(sightingId);
-            SingleSightingResponse sighting = new SingleSightingResponse()
-            {
-                Id = singlesighting.Result.Id,
-                UserId = singlesighting.Result.UserId,
-                SpeciesId = singlesighting.Result.SpeciesId,
-                Latitude = singlesighting.Result.Latitude,
-                Longitude = singlesighting.Result.Longitude,
-                PhotoUrl = singlesighting.Result.PhotoUrl,
-                Description = singlesighting.Result.Description,
-                DateTime = singlesighting.Result.DateTime,
-                IsApproved = singlesighting.Result.IsApproved,
-            };
+            SingleSightingResponse sighting = _sightingService.GetSingleSightingResponse(sightingId);
             if (
                 sighting.UserId == userId
                 || (sighting.UserId != userId && sighting.IsApproved)
