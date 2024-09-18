@@ -15,6 +15,7 @@ public class SightingListResponse()
         {
             SightingResponse sightingResponse = new SightingResponse()
             {
+                Id = sighting.Id,
                 UserId = sighting.UserId,
                 SpeciesId = sighting.SpeciesId,
                 Latitude = sighting.Latitude,
