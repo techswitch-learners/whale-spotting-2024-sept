@@ -16,6 +16,21 @@ export interface LeaderBoardTable {
   userLeaderBoard: Array<LeaderBoardRow>
 }
 
+export interface Sightings {
+  sightings: Array<Sighting>
+}
+
+export interface Sighting {
+  id: number
+  userId: number
+  speciesId: number
+  latitude: number
+  longitude: number
+  photoUrl: string
+  description: string
+  dateTime: string
+}
+
 export const loginUser = async (username: string, password: string) => {
   return await fetch(`http://localhost:5280/auth/login`, {
     method: "post",
@@ -53,6 +68,16 @@ export const registerUser = async (
   })
 }
 
+export const getSightings = async (header: string) => {
+  return await fetch(`http://localhost:5280/sightings`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${header}`
+    },
+  })
+}
+
 export async function fetchUserProfile(header: string): Promise<User> {
   const response = await fetch(`http://localhost:5280/users/profile`, {
     headers: {
@@ -69,14 +94,55 @@ export async function FetchLeaderBoard(header: string) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${header}`,
-    },
-  })
-  if (!response.ok) {
+      },
+    })
+    if (!response.ok) {
     return response.json().then((errorData) => {
       throw new Error(JSON.stringify(errorData.errors))
     })
   }
   return await response.json()
+}
+
+export const updateUser = async (
+  header: string,
+  firstname?: string,
+  lastname?: string,
+  aboutme?: string,
+) => {
+  return await fetch(`http://localhost:5280/users/update`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    body: JSON.stringify({
+      firstname,
+      lastname,
+      aboutme,
+    }),
+  })
+}
+
+export async function fetchUnapprovedSightings(header: string): Promise<Sightings> {
+  const response = await fetch(`http://localhost:5280/sightings/unapproved`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+      },
+  })
+  return await response.json()
+}
+
+export async function approveSighting(header: string, sightingId: number) {
+  const response = await fetch(`http://localhost:5280/admin/approve/sighting=${sightingId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    method: "PUT",
+  })
+  return await response
 }
 
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:

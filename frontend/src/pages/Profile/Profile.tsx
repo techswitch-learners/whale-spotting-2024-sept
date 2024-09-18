@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { fetchUserProfile, User } from "../../api/backendClient"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import "./Profile.scss"
@@ -7,9 +8,26 @@ export function Profile(): JSX.Element {
   const [user, setUser] = useState<User | null>(null)
   const loginContext = useContext(LoginContext)
 
+  const navigate = useNavigate()
+  
   useEffect(() => {
     fetchUserProfile(loginContext.jwt).then((response) => setUser(response))
   }, [loginContext.jwt])
+  
+  const userData = { firstName: user?.firstName, lastName: user?.lastName, aboutMe: user?.aboutMe }
+
+  const handleClick = (event: { currentTarget: { id: string }}) => {
+    const buttonId = event.currentTarget.id
+    switch (buttonId) {
+      case "update-button":
+        navigate("/updateprofile", { state: userData })
+        break
+      case "delete-button":
+        break
+      default:
+        break
+    }
+  }
 
   if (!user) {
     return <section>You are not authorized to view this page</section>
@@ -76,7 +94,7 @@ export function Profile(): JSX.Element {
         </div>
         <div className="row g-0">
           <div className="col-6 p-2">
-            <button id="update-button" data-testid="update-button" className="btn btn-primary btn-md w-100">
+            <button id="update-button" data-testid="update-button" className="btn btn-primary btn-md w-100" onClick={handleClick}>
               Update
             </button>
           </div>

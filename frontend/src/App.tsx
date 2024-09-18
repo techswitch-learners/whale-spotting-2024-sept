@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Explore from "./pages/Explore"
+import Explore from "./pages/Explore/Explore"
 import Home from "./pages/Home/Home"
 import "./App.scss"
 import { CreateUser } from "./pages/CreateUser"
@@ -12,6 +12,7 @@ import Admin from "./pages/Admin/Admin"
 import { AddSighting } from "./pages/AddSighting/AddSighting"
 import { Profile } from "./pages/Profile/Profile"
 import { LeaderBoard } from "./pages/LeaderBoard/LeaderBoard"
+import { UpdateUser } from "./pages/UpdateUser/UpdateUser"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signup" element={<CreateUser />} />
           <Route path="/addsighting" element={<AddSighting />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/updateprofile" element={<UpdateUser />} />
         </Routes>
       </LoginManager>
     </BrowserRouter>
