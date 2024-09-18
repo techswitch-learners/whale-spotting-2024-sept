@@ -20,14 +20,16 @@ export function Profile(): JSX.Element {
         .then(response => {
 
           if (!response.ok) {
-            return response.json().then((errorData: { errors: SetStateAction<{ [key: string]: string[] }> }) =>{
+            return response.json().then((errorData: { errors: SetStateAction<{ [key: string]: string[] }> }) => {
               throw new Error();
             })
           }
-
+          loginContext.logOut()
+          loginContext.saveRoleTypeToContext("")
+          loginContext.saveJwtToContext("")
           navigate("/")
           return response.json()
-        }) //TODO: log user out once that feature is implemented.
+        }) 
       .catch((error) => {});
     }
   }
