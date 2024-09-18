@@ -7,12 +7,6 @@ export interface User {
   aboutMe?: string
 }
 
-// export interface UpdatedUser {
-//   firstName?: string
-//   lastName?: string
-//   aboutMe?: string
-// }
-
 export const loginUser = async (username: string, password: string) => {
   return await fetch(`http://localhost:5280/auth/login`, {
     method: "post",
