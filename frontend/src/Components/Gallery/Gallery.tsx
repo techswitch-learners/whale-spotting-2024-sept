@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../../Components/LoginManager/LoginManager';
 import { getSightings } from '../../api/backendClient';
 import { SightingType } from '../../pages/Explore/Explore';
+import "./Gallery.scss" 
 
 const formatDate = (dateTime: Date) => {
     return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
@@ -32,18 +33,18 @@ function Gallery(): JSX.Element {
     }, [jwt]);
 
     return (
-        <>
+        <div className="container">
             {sightings.map(sighting => (
-                <>
+                <div className="thumbnails">
                     <p>{sighting.id}</p>
                     <p>{sighting.username}</p>
                     <p>{sighting.speciesName}</p>
                     <img src={sighting.photoUrl} className="thumbnail-explore-gallery" />
                     {sighting.description && <p>Description: {sighting.description}</p>}
                     <p>Date: {formatDate(sighting.dateTime)}</p>
-                </>
+                </div>
             ))}
-        </>
+        </div>
     )
 
 }

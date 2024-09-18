@@ -1,0 +1,12 @@
+// @import "~bootstrap/dist/css/bootstrap.min.css";
+// @import "/../../colour-variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    // align-items: stretch;
+    // align-content: stretch;
+    gap: 5vw
+}
