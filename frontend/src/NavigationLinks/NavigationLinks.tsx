@@ -51,7 +51,21 @@ const NavigationLinks: React.FC = () => {
           </li>
         </div>
       )}
-      <div>
+      {isLoggedIn && (
+        <div>
+          <button
+            id="log-out-button"
+            data-testid="log-out-button"
+            className="btn btn-outline-success px-2"
+            style={{ width: "100px", margin: "5px" }}
+            onClick={handleClick}
+          >
+            Log Out
+          </button>
+        </div>
+      )}
+      {!isLoggedIn && (
+        <div>
         <button
           id="log-in-button"
           data-testid="log-in-button"
@@ -71,6 +85,7 @@ const NavigationLinks: React.FC = () => {
           Sign Up
         </button>
       </div>
+      )}
     </ul>
   )
 }
