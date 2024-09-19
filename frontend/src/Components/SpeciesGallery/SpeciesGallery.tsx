@@ -26,7 +26,7 @@ function SpeciesGallery(): JSX.Element {
 
     return (
         <div>
-            <div className="banner">
+            <div className="banner-species">
                 <h1>Species Gallery</h1>
             </div>
             <div className="container">
