@@ -1,4 +1,4 @@
-import "./DeleteModal.scss";
+import "./DeleteSightingModal.scss";
 import { LoginContext } from "../LoginManager/LoginManager";
 import React, { useContext } from "react";
 import { deleteUserProfile } from "../../api/backendClient";

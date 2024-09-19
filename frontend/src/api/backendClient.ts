@@ -188,7 +188,7 @@ export async function deleteUserProfile(header: string) {
 }
 
 export async function deleteSighting(header: string, sightingId: number) {
-  const response = await fetch(`http://localhost:5280/${sightingId}/delete`, {
+  const response = await fetch(`http://localhost:5280/sightings/${sightingId}/delete`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

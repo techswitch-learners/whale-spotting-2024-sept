@@ -24,8 +24,6 @@ export function Profile(): JSX.Element {
   const formatDate = (dateTime: string) => {
     return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
   }
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const navigate = useNavigate()
 
   const getConfirmDelete = (confirmation: boolean) => {
     setShowDeleteModal(false)
