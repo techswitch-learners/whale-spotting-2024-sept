@@ -3,6 +3,7 @@ import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import { SightingType } from "../../pages/Explore/Explore"
 import "./Gallery.scss"
+import { Link } from "react-router-dom"
 
 const formatDate = (dateTime: Date) => {
   return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
@@ -35,23 +36,25 @@ function Gallery(): JSX.Element {
       <div className="banner">
         <h1>Sightings Gallery</h1>
       </div>
-      <div className="gallery-container">
-        {sightings.map((sighting) => (
-          <div className="card" style={{ width: "20rem" }}>
-            <img className="card-img-top" src={sighting.photoUrl} alt="Card cap" />
-            <div className="card-username-species">
-              <h6 className="username">{sighting.username}</h6>
-              <p className="species-name">{sighting.speciesName}</p>
-            </div>
-            <div className="card-body">
-              <p className="card-text">{sighting.description}</p>
-            </div>
-            <div className="card-img-overlay">
-              <p>{sighting.id}</p>
-              <p>{formatDate(sighting.dateTime)}</p>
-            </div>
-          </div>
-        ))}
+            <div className="gallery-container">
+                {sightings.map(sighting => (
+                    <div className="card" style={{ width: "20rem" }}>
+                        <Link className='link' to={`/sightings/${sighting.id}`}>
+                            <img className="card-img-top" src={sighting.photoUrl} alt="Card image cap" />
+                            <div className="card-username-species">
+                                <h6 className="username">{sighting.username}</h6>
+                                <p className="species-name">{sighting.speciesName}</p>
+                            </div>
+                            <div className="card-body">
+                                <p className="card-text">{sighting.description}</p>
+                            </div>
+                            <div className="card-img-overlay">
+                                <p>{sighting.id}</p>
+                                <p>{formatDate(sighting.dateTime)}</p>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
       </div>
     </div>
   )
