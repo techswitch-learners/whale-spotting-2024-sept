@@ -22,7 +22,7 @@ export function LeaderBoard(): JSX.Element {
 
   return (
     <div>
-      <h1 className="title">Leaderboard</h1>
+      <h1 className="title pt-4 pb-3">Leaderboard</h1>
       <table>
         <tr>
           <th>Username</th>

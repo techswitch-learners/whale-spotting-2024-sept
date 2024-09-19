@@ -12,7 +12,7 @@ export function IndividualSighting() {
 
   useEffect(() => {
     getSightingById(loginContext.jwt, Number(params.id)).then((response) => setSighting(response))
-  }, [loginContext.jwt])
+  }, [loginContext.jwt, params.id])
 
   console.log(sighting)
 
@@ -110,21 +110,25 @@ export function IndividualSighting() {
           </div>
         </div>
         <div className="row g-0">
-          <div className="col-6 p-2">
-            <button
-              id="update-button"
-              data-testid="update-button"
-              className="btn btn-primary btn-md w-100"
-              onClick={() => navigate("/updatesighting", { state: sightingData })}
-            >
-              Update
-            </button>
-          </div>
-          <div className="col-6 p-2">
-            <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100">
-              Delete
-            </button>
-          </div>
+          {loginContext.username === sighting.username && !sighting.isApproved && (
+            <div className="col-6 p-2">
+              <button
+                id="update-button"
+                data-testid="update-button"
+                className="btn btn-primary btn-md w-100"
+                onClick={() => navigate("/updatesighting", { state: sightingData })}
+              >
+                Update
+              </button>
+            </div>
+          )}
+          {loginContext.username === sighting.username && (
+            <div className="col-6 p-2">
+              <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100">
+                Delete
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

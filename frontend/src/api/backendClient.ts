@@ -31,6 +31,7 @@ export interface Sighting {
   photoUrl: string
   description: string
   dateTime: string
+  isApproved: boolean
 }
 
 export const loginUser = async (username: string, password: string) => {
@@ -151,6 +152,28 @@ export async function approveSighting(header: string, sightingId: number) {
     method: "PUT",
   })
   return await response
+}
+
+export async function fetchUnapprovedSightingsForUser(header: string): Promise<Sightings> {
+  const response = await fetch(`http://localhost:5280/sightings/unapprovedforuser/`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    method: "get",
+  })
+  return await response.json()
+}
+
+export async function fetchApprovedSightingForUser(header: string): Promise<Sightings> {
+  const response = await fetch(`http://localhost:5280/sightings/approvedforuser/`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    method: "get",
+  })
+  return await response.json()
 }
 
 export async function deleteUserProfile(header: string) {
