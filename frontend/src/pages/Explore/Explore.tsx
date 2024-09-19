@@ -46,7 +46,7 @@ function Explore(): JSX.Element {
 
   return (
     <>
-      <h1 className="pt-4">Explore</h1>
+      {/* <h1 className="pt-4">Explore</h1> */}
       <APIProvider apiKey={apiKey}>
         <WhaleMap sightings={sightings} />
       </APIProvider>

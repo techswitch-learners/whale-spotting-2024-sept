@@ -10,7 +10,7 @@ interface whaleMapProps {
 const mapId = process.env.REACT_APP_GOOGLE_MAPS_MAP_ID ? process.env.REACT_APP_GOOGLE_MAPS_MAP_ID : ""
 
 const WhaleMap = (props: whaleMapProps) => {
-  const centre = { lat: 0, lng: 0 }
+  const centre = { lat: 0, lng: -25 }
   const [selectedSighting, setSelectedSighting] = useState(0)
 
   const handleMarkerClick = (sightingId: number) => setSelectedSighting(sightingId)
@@ -22,10 +22,10 @@ const WhaleMap = (props: whaleMapProps) => {
   const whaleMarker = require("../../images/Onlywhale.png")
 
   return (
-    <div className="container-fluid map-container my-4 px-0">
+    <div className="container-fluid map-container px-0">
       <Map
         style={{ borderRadius: "20px" }}
-        defaultZoom={3}
+        defaultZoom={2}
         defaultCenter={centre}
         gestureHandling={"greedy"}
         disableDefaultUI
