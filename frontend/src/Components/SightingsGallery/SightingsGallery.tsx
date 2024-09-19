@@ -5,7 +5,7 @@ import { SightingType } from '../../pages/Explore/Explore';
 import "./SightingsGallery.scss"
 
 const formatDate = (dateTime: Date) => {
-  return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
+    return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
 }
 
 function SightingsGallery(): JSX.Element {
@@ -13,22 +13,22 @@ function SightingsGallery(): JSX.Element {
     const loginContext = useContext(LoginContext)
     const jwt = loginContext.jwt
 
-  useEffect(() => {
-    async function fetchSightings() {
-      try {
-        const response = await getSightings(jwt)
-        if (!response.ok) {
-          throw new Error("Network response failed")
+    useEffect(() => {
+        async function fetchSightings() {
+            try {
+                const response = await getSightings(jwt)
+                if (!response.ok) {
+                    throw new Error("Network response failed")
+                }
+                const result = await response.json()
+                setSightings(result.sightings)
+            } catch (error) {
+                console.error("Error fetching sightings:", error)
+            }
         }
-        const result = await response.json()
-        setSightings(result.sightings)
-      } catch (error) {
-        console.error("Error fetching sightings:", error)
-      }
-    }
 
-    fetchSightings()
-  }, [jwt])
+        fetchSightings()
+    }, [jwt])
 
     return (
         <div>
@@ -38,7 +38,7 @@ function SightingsGallery(): JSX.Element {
             <div className="container">
                 {sightings.map(sighting => (
                     <div className="card" style={{ width: "20rem" }}>
-                        <img className="card-img-top" src={sighting.photoUrl} alt="Card image cap" style={{maxHeight: "12rem", objectFit: "cover"}}/>
+                        <img className="card-img-top" src={sighting.photoUrl} alt="Card image cap" style={{ maxHeight: "12rem", objectFit: "cover" }} />
                         <div className="card-username-species">
                             <h6 className="username">{sighting.username}</h6>
                             <p className="species-name">{sighting.speciesName}</p>
