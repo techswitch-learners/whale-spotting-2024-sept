@@ -17,6 +17,42 @@ namespace WhaleSpotting.SeedData
         {
             new Sighting()
             {
+                UserId = 2,
+                SpeciesId = 63,
+                Latitude = 15.764F,
+                Longitude = -101.935F,
+                PhotoUrl =
+                    "https://www.fisheries.noaa.gov/s3//dam-migration/5184x3456-pantropical-spotted-dolphin-guam.jpg",
+                Description = "Saw this on my morning sail, how cute. I think I have a new best friend.",
+                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                IsApproved = true
+            },            
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 1,
+                Latitude = 54.012354F,
+                Longitude = -94.012267F,
+                PhotoUrl =
+                    "https://images.unsplash.com/photo-1570913179118-f3d24be1d1f7?q=80&w=3943&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                Description = "Check out that beautiful fin! This beautiful creature gave me a little wave hello today.",
+                DateTime = DateTime.Parse("29Mar2023 13:42:00").ToUniversalTime(),
+                IsApproved = true
+            },
+            new Sighting()
+            {
+                UserId = 2,
+                SpeciesId = 1,
+                Latitude = 54.012354F,
+                Longitude = -94.012267F,
+                PhotoUrl =
+                    "https://images.unsplash.com/photo-1723246619553-fd5685fb559f?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                Description = "Splashy splashy! Catching some rays on this gorgeous, sunny day.",
+                DateTime = DateTime.Parse("29May2023 15:30:00").ToUniversalTime(),
+                IsApproved = false
+            },
+            new Sighting()
+            {
                 UserId = 1,
                 SpeciesId = 90,
                 Latitude = 2.1801F,
@@ -119,33 +155,9 @@ namespace WhaleSpotting.SeedData
                 Longitude = -94.012267F,
                 PhotoUrl =
                     "https://images.unsplash.com/photo-1520646924857-261be3037bc7?q=80&w=3069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                Description = "Test Whale pic",
+                Description = "A lucky spot, I only just manage to catch this before it disappeared.",
                 DateTime = DateTime.Parse("29Sep2023 16:40:00").ToUniversalTime(),
                 IsApproved = false
-            },
-            new Sighting()
-            {
-                UserId = 2,
-                SpeciesId = 1,
-                Latitude = 54.012354F,
-                Longitude = -94.012267F,
-                PhotoUrl =
-                    "https://images.unsplash.com/photo-1723246619553-fd5685fb559f?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                Description = "Test Whale pic",
-                DateTime = DateTime.Parse("29May2023 15:30:00").ToUniversalTime(),
-                IsApproved = false
-            },
-            new Sighting()
-            {
-                UserId = 2,
-                SpeciesId = 1,
-                Latitude = 54.012354F,
-                Longitude = -94.012267F,
-                PhotoUrl =
-                    "https://images.unsplash.com/photo-1570913179118-f3d24be1d1f7?q=80&w=3943&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                Description = "Test Whale pic",
-                DateTime = DateTime.Parse("29Mar2023 13:42:00").ToUniversalTime(),
-                IsApproved = true
             },
             new Sighting()
             {
@@ -155,7 +167,7 @@ namespace WhaleSpotting.SeedData
                 Longitude = 18.99F,
                 PhotoUrl =
                     "https://inaturalist-open-data.s3.amazonaws.com/photos/315414123/original.jpg",
-                Description = "Check out this cute little guy",
+                Description = "Went for a swim this morning and look who came to say hello.",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -179,7 +191,7 @@ namespace WhaleSpotting.SeedData
                 Longitude = -76.6442F,
                 PhotoUrl =
                     "https://marinesanctuary.org/wp-content/uploads/2021/10/cuviers-beaked-whale-pc-charlotte-kirchner.png",
-                Description = "Good morning",
+                Description = "Peak-a-boo! What a big jump, how incredible.",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -191,19 +203,7 @@ namespace WhaleSpotting.SeedData
                 Longitude = -92.696F,
                 PhotoUrl =
                     "https://upload.wikimedia.org/wikipedia/commons/a/a6/Descri%C3%A7%C3%A3o_in%C3%ADcio_ou_comportamento.jpg",
-                Description = "Check this out, how cool!",
-                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
-                IsApproved = true
-            },
-            new Sighting()
-            {
-                UserId = 2,
-                SpeciesId = 63,
-                Latitude = 15.764F,
-                Longitude = -101.935F,
-                PhotoUrl =
-                    "https://www.fisheries.noaa.gov/s3//dam-migration/5184x3456-pantropical-spotted-dolphin-guam.jpg",
-                Description = "Saw this on my morning sail, how cute",
+                Description = "Check this out, how cool! I didn't realise that dolphins could jump this high.",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -215,7 +215,7 @@ namespace WhaleSpotting.SeedData
                 Longitude = -129.26F,
                 PhotoUrl =
                     "https://www.fisheries.noaa.gov/s3//styles/full_width/s3/dam-migration/750x500-pygmy-killer-whale.jpg?itok=2s7aExxG",
-                Description = "Three little whales",
+                Description = "A family of pygmy killer whales, what a truly magical experience.",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -227,7 +227,7 @@ namespace WhaleSpotting.SeedData
                 Longitude = -87.841F,
                 PhotoUrl =
                     "https://upload.wikimedia.org/wikipedia/commons/e/ec/SEFSC-PAM-Rices-whale.png",
-                Description = "Got this from on my drone",
+                Description = "Got this from on my drone whilst out sailing, hadn't even realised it was there, that was lucky!",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -239,7 +239,7 @@ namespace WhaleSpotting.SeedData
                 Longitude = -83.665F,
                 PhotoUrl =
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn8NAUPeBQX3XInlhdErLQe6BA-jrKhZjTTw&s",
-                Description = "This little guy came to say hello",
+                Description = "Squeak squeak squeak! Oh hello little guy, nice to meet you!",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             }
