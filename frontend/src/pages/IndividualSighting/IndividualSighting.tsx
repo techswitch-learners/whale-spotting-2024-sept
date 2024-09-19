@@ -1,20 +1,42 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import "./IndividualSighting.scss"
-import { getSightingById, Sighting } from "../../api/backendClient";
+import { deleteSighting, getSightingById, Sighting } from "../../api/backendClient";
 import { LoginContext } from "../../Components/LoginManager/LoginManager";
 import { useContext, useEffect, useState } from "react";
 
 export function IndividualSighting() {
     const [sighting, setSighting] = useState<Sighting | null>(null)
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const params = useParams();
     const loginContext = useContext(LoginContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getSightingById(loginContext.jwt, Number(params.id))
             .then((response) => setSighting(response));
     }, [loginContext.jwt])
 
-    console.log(sighting);
+
+    const getConfirmDelete = (confirmation: boolean) => {
+        setShowDeleteModal(false);
+
+        if (confirmation && sighting.id !== null) {
+            deleteSighting(loginContext.jwt, Number(sighting.id))
+                .then(response => {
+
+                    if (!response.ok) {
+                        return response.json().then((errorData: { errors: SetStateAction<{ [key: string]: string[] }> }) => {
+                            throw new Error();
+                        })
+                    }
+
+                    navigate("/")
+                    return response.json()
+                })
+                .catch((error) => { });
+        }
+    }
+    
 
     if (!sighting) {
         return (<div>Loading...</div>)
@@ -104,7 +126,7 @@ export function IndividualSighting() {
                         </button>
                     </div>
                     <div className="col-6 p-2">
-                        <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100">
+                        <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100" onClick={() => setShowDeleteSightingModal(true)}>
                             Delete
                         </button>
                     </div>
