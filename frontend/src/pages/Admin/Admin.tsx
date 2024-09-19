@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { approveSighting, fetchUnapprovedSightings, Sightings } from "../../api/backendClient"
 import "./Admin.scss"
+import { Link } from "react-router-dom"
 
 const Admin = () => {
   const loginContext = useContext(LoginContext)
@@ -48,7 +49,7 @@ const Admin = () => {
             <tbody>
               {sightings?.sightings.map((sighting) => (
                 <tr>
-                  <th scope="row">{sighting.id}</th>
+                  <th scope="row"><Link to={`/sightings/${sighting.id}`}>{sighting.id}</Link></th>
                   <td>{sighting.username}</td>
                   <td>{sighting.speciesName}</td>
                   <td>{sighting.latitude}</td>

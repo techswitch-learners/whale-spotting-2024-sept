@@ -96,7 +96,7 @@ namespace WhaleSpotting.SeedData
                 PhotoUrl =
                     "https://i.abcnewsfe.com/a/ccc2de0c-4237-45de-9579-ac66cc27d9e9/humpback-whale-gty-jt-240220_1708450395992_hpMain.jpg",
                 Description = "",
-                DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
+                DateTime = DateTime.Parse("18Sep2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             }
         };
