@@ -4,6 +4,11 @@ import { updateSighting } from "../../api/backendClient"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { SpeciesDropdown } from "../../Components/SpeciesDropdown/SpeciesDropdown"
 import "./UpdateSighting.scss"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { DateTimePicker } from "@mui/x-date-pickers"
+import dayjs, { Dayjs } from "dayjs"
+import "dayjs/locale/en-gb"
 
 export function UpdateSighting(): JSX.Element {
   const loginContext = useContext(LoginContext)
@@ -11,7 +16,7 @@ export function UpdateSighting(): JSX.Element {
   const sightingData = location.state
 
   //const [id, setId] = useState(sightingData.id)
-  const [dateTime, setDateTime] = useState(sightingData.dateTime)
+  const [dateTime, setDateTime] = useState<Dayjs>(dayjs(sightingData.dateTime))
   const [description, setDescription] = useState(sightingData.description)
   const [photoUrl, setPhotoUrl] = useState(sightingData.photoUrl)
   const [speciesId, setSpeciesId] = useState(sightingData.speciesId)
@@ -31,7 +36,7 @@ export function UpdateSighting(): JSX.Element {
       longitude,
       photoUrl,
       description,
-      new Date(dateTime),
+      dateTime?.toDate(),
     )
       .then((response) => {
         if (!response.ok) {
@@ -127,13 +132,13 @@ export function UpdateSighting(): JSX.Element {
               Date/Time:
             </label>
             <div className="col-sm-3">
-              <input
-                type="datetime-local"
-                id="dateTime"
-                className="form-control"
-                value={dateTime}
-                onChange={(event) => setDateTime(new Date(event.target.value))}
-              />
+              <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en-gb"}>
+                <DateTimePicker
+                  defaultValue={dayjs()}
+                  value={dateTime}
+                  onChange={(newValue) => setDateTime(newValue ? newValue : dayjs())}
+                />
+              </LocalizationProvider>
             </div>
           </div>
           <div className="form-group row justify-content-center">
