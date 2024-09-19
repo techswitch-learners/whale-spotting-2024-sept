@@ -5,6 +5,11 @@ import "./AddSighting.scss"
 import { useNavigate } from "react-router-dom"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { createSighting } from "../../api/backendClient"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { DateTimePicker } from "@mui/x-date-pickers"
+import dayjs, { Dayjs } from "dayjs"
+import "dayjs/locale/en-gb"
 
 export function AddSighting(): JSX.Element {
   const loginContext = useContext(LoginContext)
@@ -13,7 +18,7 @@ export function AddSighting(): JSX.Element {
   const [longitude, setLongitude] = useState("0.0")
   const [photoUrl, setPhotoUrl] = useState("")
   const [description, setDescription] = useState("")
-  const [dateTime, setDateTime] = useState(new Date())
+  const [dateTime, setDateTime] = useState<Dayjs>(dayjs())
   const [speciesId, setSpeciesId] = useState(1)
   const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
@@ -29,7 +34,7 @@ export function AddSighting(): JSX.Element {
         parseFloat(longitude),
         photoUrl,
         description,
-        new Date(dateTime),
+        dateTime?.toDate(),
       )
 
       if (!response.ok) {
@@ -48,91 +53,93 @@ export function AddSighting(): JSX.Element {
   }
 
   return (
-    <div className="add-a-sighting-page">
-      <h1 className="title">Add a Sighting</h1>
-      <p>{errorMessage}</p>
-      <form className="addSighting-form" method="post" onSubmit={submitSighting}>
-        <div className="form-group row">
-          <label htmlFor="species" className="col-sm-2 col-form-label">
-            Species:
-          </label>
-          <div className="col-sm-3">
-            <SpeciesDropdown getSpeciesIdFromDropdown={getSpeciesIdFromDropdown} />
+    <div className="add-a-sighting-page container justify-content-center">
+      <h1 className="title pt-4">Add a Sighting</h1>
+      <div className="container col-10 pt-3 mx-auto">
+        <p className="row justify-content-center">{errorMessage}</p>
+        <form className="addSighting-form container justify-content-center row" method="post" onSubmit={submitSighting}>
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="species" className="col-lg-3 col-sm-2 col-form-label">
+              Species:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <SpeciesDropdown getSpeciesIdFromDropdown={getSpeciesIdFromDropdown} />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="latitude" className="col-sm-2 col-form-label">
-            Latitude:
-          </label>
-          <div className="col-sm-3">
-            <input
-              type="text"
-              id="latitude"
-              className="form-control"
-              value={latitude}
-              onChange={(event) => setLatitude(event.target.value)}
-            />
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="latitude" className="col-lg-3 col-sm-2 col-form-label">
+              Latitude:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <input
+                type="text"
+                id="latitude"
+                className="form-control"
+                value={latitude}
+                onChange={(event) => setLatitude(event.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="longitude" className="col-sm-2 col-form-label">
-            Longitude:
-          </label>
-          <div className="col-sm-3">
-            <input
-              type="text"
-              id="longitude"
-              className="form-control"
-              value={longitude}
-              onChange={(event) => setLongitude(event.target.value)}
-            />
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="longitude" className="col-lg-3 col-sm-2 col-form-label">
+              Longitude:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <input
+                type="text"
+                id="longitude"
+                className="form-control"
+                value={longitude}
+                onChange={(event) => setLongitude(event.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="photoUrl" className="col-sm-2 col-form-label">
-            Photo URL:
-          </label>
-          <div className="col-sm-3">
-            <input
-              type="url"
-              id="photoUrl"
-              className="form-control"
-              value={photoUrl}
-              onChange={(event) => setPhotoUrl(event.target.value)}
-            />
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="photoUrl" className="col-lg-3 col-sm-2 col-form-label">
+              Photo URL:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <input
+                type="url"
+                id="photoUrl"
+                className="form-control"
+                value={photoUrl}
+                onChange={(event) => setPhotoUrl(event.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="description" className="col-sm-2 col-form-label">
-            Description:
-          </label>
-          <div className="col-sm-3">
-            <textarea
-              id="description"
-              className="form-control"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
-            />
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="description" className="col-lg-3 col-sm-2 col-form-label">
+              Description:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <textarea
+                id="description"
+                className="form-control"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="dateTime" className="col-sm-2 col-form-label">
-            Date/Time:
-          </label>
-          <div className="col-sm-3">
-            <input
-              type="datetime-local"
-              id="dateTime"
-              className="form-control"
-              value={dateTime.toDateString()}
-              onChange={(event) => setDateTime(new Date(event.target.value))}
-            />
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="dateTime" className="col-lg-3 col-sm-2 col-form-label">
+              Date/Time:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en-gb"}>
+                <DateTimePicker
+                  defaultValue={dayjs()}
+                  value={dateTime}
+                  onChange={(newValue) => setDateTime(newValue ? newValue : dayjs())}
+                />
+              </LocalizationProvider>
+            </div>
           </div>
-        </div>
-        <button type="submit" className="btn btn-outline-success px-4" style={{ width: "200px" }}>
-          Submit
-        </button>
-      </form>
+          <button type="submit" className="btn btn-outline-success px-4" style={{ width: "200px" }}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   )
 }
