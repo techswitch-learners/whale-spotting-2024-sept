@@ -15,7 +15,6 @@ export function UpdateSighting(): JSX.Element {
   const location = useLocation()
   const sightingData = location.state
 
-  //const [id, setId] = useState(sightingData.id)
   const [dateTime, setDateTime] = useState<Dayjs>(dayjs(sightingData.dateTime))
   const [description, setDescription] = useState(sightingData.description)
   const [photoUrl, setPhotoUrl] = useState(sightingData.photoUrl)
@@ -43,11 +42,12 @@ export function UpdateSighting(): JSX.Element {
           return response.json().then((errorData) => {
             throw new Error(JSON.stringify(errorData.errors))
           })
+        } else {
+          navigate(`/sightings/${sightingData.id}`)
         }
-        return response.json()
       })
       .then(() => {
-        navigate("/sightings/:sightingData.id")
+        navigate(`/sightings/${sightingData.id}`)
       })
       .catch((error) => {
         setError(error.message)

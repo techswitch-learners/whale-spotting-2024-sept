@@ -14,8 +14,6 @@ export function IndividualSighting() {
     getSightingById(loginContext.jwt, Number(params.id)).then((response) => setSighting(response))
   }, [loginContext.jwt, params.id])
 
-  console.log(sighting)
-
   if (!sighting) {
     return <div>Loading...</div>
   }
