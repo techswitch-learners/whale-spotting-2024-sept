@@ -31,6 +31,7 @@ export interface Sighting {
   photoUrl: string
   description: string
   dateTime: string
+  isApproved: boolean
 }
 
 export const loginUser = async (username: string, password: string) => {
