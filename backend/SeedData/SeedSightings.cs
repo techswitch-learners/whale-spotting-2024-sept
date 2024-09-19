@@ -238,8 +238,8 @@ namespace WhaleSpotting.SeedData
                 Latitude = 1.318F,
                 Longitude = -83.665F,
                 PhotoUrl =
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn8NAUPeBQX3XInlhdErLQe6BA-jrKhZjTTw&s",
-                Description = "Squeak squeak squeak! Oh hello little guy, nice to meet you!",
+                    "https://www.worldanimalprotection.org.uk/cdn-cgi/image/fit=cover,width=1280/siteassets/article/dolphin-body-image.jpg",
+                Description = "",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             }
