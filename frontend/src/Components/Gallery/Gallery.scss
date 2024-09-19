@@ -1,6 +1,8 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "../../colour-variables.scss";
 
+.link { text-decoration: none; color: black; }
+
 .banner {
     background-color: $whale-light-blue;
     padding: 2vh;
@@ -13,7 +15,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5vw
+    gap: 5vw;
 }
 
 .card-username-species {
