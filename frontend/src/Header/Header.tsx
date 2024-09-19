@@ -10,9 +10,6 @@ const Header: React.FC = () => {
     <div className="show-header">
       <nav className="navbar navbar-expand-lg fixed-top custom-navbar">
         <div className="container-fluid d-flex justify-content-between align-items-center">
-          {/* <a className="navbar-brand" href="/">
-            <img src={logo} alt="Whale Whale Whale logo" width="200" />
-          </a> */}
           <Link to="/" className="navbar-brand">
             <img src={logo} alt="Whale Whale Whale logo" width="200" />
           </Link>
