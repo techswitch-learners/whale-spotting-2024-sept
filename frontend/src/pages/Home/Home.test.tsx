@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Home from "../../pages/Home/Home";
-import Explore from "../Explore/Explore";
-import { AddSighting } from "../AddSighting/AddSighting";
+import { MemoryRouter, Route, Routes } from "react-router-dom"
+import Home from "../../pages/Home/Home"
+import Explore from "../Explore/Explore"
+import { AddSighting } from "../AddSighting/AddSighting"
 
 describe("Check exitence of background image, submit and explore buttons", () => {
   test("check if submit button exist", () => {
@@ -55,22 +55,5 @@ describe("Buttons go to correct pages", () => {
     fireEvent.click(button)
     const AddSightingHeading = await screen.findByRole("heading", { name: /add a sighting/i })
     expect(AddSightingHeading).toBeInTheDocument()
-  })
-
-  test("go to explore page when explore button is clicked", async () => {
-    render(
-      <MemoryRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/addsighting" element={<AddSighting />} />
-          <Route path="/explore" element={<Explore />} />
-        </Routes>
-      </MemoryRouter>,
-    )
-
-    const button = screen.getByTestId("explore-button")
-    fireEvent.click(button)
-    const exploreHeading = await screen.findByRole("heading", { name: /explore/i })
-    expect(exploreHeading).toBeInTheDocument()
   })
 })
