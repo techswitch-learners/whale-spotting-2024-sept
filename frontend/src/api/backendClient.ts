@@ -31,6 +31,7 @@ export interface Sighting {
   photoUrl: string
   description: string
   dateTime: string
+  isApproved: boolean
 }
 
 export const loginUser = async (username: string, password: string) => {
@@ -78,6 +79,17 @@ export const getSightings = async (header: string) => {
       Authorization: `Bearer ${header}`,
     },
   })
+}
+
+export async function getSightingById(header: string, id: number): Promise<Sighting> {
+  const response = await fetch(`http://localhost:5280/sightings/${id}`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response.json()
 }
 
 export async function fetchUserProfile(header: string): Promise<User> {
@@ -142,6 +154,28 @@ export async function approveSighting(header: string, sightingId: number) {
   return await response
 }
 
+export async function fetchUnapprovedSightingsForUser(header: string): Promise<Sightings> {
+  const response = await fetch(`http://localhost:5280/sightings/unapprovedforuser/`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    method: "get",
+  })
+  return await response.json()
+}
+
+export async function fetchApprovedSightingForUser(header: string): Promise<Sightings> {
+  const response = await fetch(`http://localhost:5280/sightings/approvedforuser/`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    method: "get",
+  })
+  return await response.json()
+}
+
 export async function deleteUserProfile(header: string) {
   const response = await fetch(`http://localhost:5280/users/`, {
     method: "DELETE",
@@ -166,7 +200,7 @@ export async function createSighting(
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${header}`,
+      Authorization: `Bearer ${header}`,
     },
     body: JSON.stringify({
       speciesId,

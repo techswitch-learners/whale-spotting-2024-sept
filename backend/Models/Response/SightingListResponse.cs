@@ -14,7 +14,6 @@ public class SightingListResponse()
 
         foreach (var sighting in SightingsList)
         {
-            
             SightingResponse sightingResponse = new SightingResponse()
             {
                 Id = sighting.Id,

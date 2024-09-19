@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Home from "../../pages/Home/Home";
-import Explore from "../Explore/Explore";
-import { AddSighting } from "../AddSighting/AddSighting";
+import { MemoryRouter, Route, Routes } from "react-router-dom"
+import Home from "../../pages/Home/Home"
+import Explore from "../Explore/Explore"
+import { AddSighting } from "../AddSighting/AddSighting"
 
 describe("Check exitence of background image, submit and explore buttons", () => {
   test("check if submit button exist", () => {
@@ -70,7 +70,7 @@ describe("Buttons go to correct pages", () => {
 
     const button = screen.getByTestId("explore-button")
     fireEvent.click(button)
-    const exploreHeading = await screen.findByRole("heading", { name: /explore/i })
+    const exploreHeading = await screen.findByRole("heading", { name: /Sightings Gallery/i })
     expect(exploreHeading).toBeInTheDocument()
   })
 })
