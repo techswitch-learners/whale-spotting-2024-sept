@@ -10,7 +10,7 @@ import {
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import "./Profile.scss"
 import { DeleteModal } from "../../Components/DeleteModal/DeleteModal"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 export function Profile(): JSX.Element {
   const [user, setUser] = useState<User | null>(null)
@@ -165,58 +165,70 @@ export function Profile(): JSX.Element {
       <h1 className="py-3">Unapproved Sightings</h1>
       <div className="table-responsive">
         <table className="table table-striped">
-          <tr>
-            <th>Sighting ID</th>
-            <th>DateTime</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Description</th>
-            <th>Species Name</th>
-            <th>Photo</th>
-          </tr>
-          {unapprovedSightings &&
-            unapprovedSightings?.sightings.map((sighting, index) => (
-              <tr key={index}>
-                <td>{sighting.id}</td>
-                <td>{formatDate(sighting.dateTime)}</td>
-                <td>{sighting.latitude}</td>
-                <td>{sighting.longitude}</td>
-                <td>{sighting.description}</td>
-                <td>{sighting.speciesName}</td>
-                <td>
-                  <img className="img-thumbnail custom-thumbnail" alt="A whale" src={sighting.photoUrl} />
-                </td>
-              </tr>
-            ))}
+          <thead>
+            <tr>
+              <th>Sighting ID</th>
+              <th>DateTime</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Description</th>
+              <th>Species Name</th>
+              <th>Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {unapprovedSightings &&
+              unapprovedSightings?.sightings.map((sighting, index) => (
+                <tr key={index}>
+                  <td>
+                    <Link to={`/sightings/${sighting.id}`}>{sighting.id}</Link>
+                  </td>
+                  <td>{formatDate(sighting.dateTime)}</td>
+                  <td>{sighting.latitude}</td>
+                  <td>{sighting.longitude}</td>
+                  <td>{sighting.description}</td>
+                  <td>{sighting.speciesName}</td>
+                  <td>
+                    <img className="img-thumbnail custom-thumbnail" alt="A whale" src={sighting.photoUrl} />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
         </table>
       </div>
       <div></div>
       <h1 className="py-3">Approved Sightings</h1>
       <div className="table-responsive">
         <table className="table table-striped">
-          <tr>
-            <th>Sighting ID</th>
-            <th>DateTime</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Description</th>
-            <th>Species Name</th>
-            <th>Photo</th>
-          </tr>
-          {approvedSightings &&
-            approvedSightings?.sightings.map((sighting, index) => (
-              <tr key={index}>
-                <td>{sighting.id}</td>
-                <td>{formatDate(sighting.dateTime)}</td>
-                <td>{sighting.latitude}</td>
-                <td>{sighting.longitude}</td>
-                <td>{sighting.description}</td>
-                <td>{sighting.speciesName}</td>
-                <td>
-                  <img className="img-thumbnail custom-thumbnail" alt="A whale" src={sighting.photoUrl} />
-                </td>
-              </tr>
-            ))}
+          <thead>
+            <tr>
+              <th>Sighting ID</th>
+              <th>DateTime</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Description</th>
+              <th>Species Name</th>
+              <th>Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {approvedSightings &&
+              approvedSightings?.sightings.map((sighting, index) => (
+                <tr key={index}>
+                  <td>
+                    <Link to={`/sightings/${sighting.id}`}>{sighting.id}</Link>
+                  </td>
+                  <td>{formatDate(sighting.dateTime)}</td>
+                  <td>{sighting.latitude}</td>
+                  <td>{sighting.longitude}</td>
+                  <td>{sighting.description}</td>
+                  <td>{sighting.speciesName}</td>
+                  <td>
+                    <img className="img-thumbnail custom-thumbnail" alt="A whale" src={sighting.photoUrl} />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
         </table>
       </div>
     </>
