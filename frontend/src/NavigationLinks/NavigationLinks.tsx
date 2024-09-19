@@ -5,7 +5,7 @@ import { useContext } from "react"
 const NavigationLinks: React.FC = () => {
   const { roleType } = useContext(LoginContext)
   const { isLoggedIn } = useContext(LoginContext)
-  const { logOut, saveJwtToContext, saveRoleTypeToContext } = useContext(LoginContext);
+  const { logOut, saveJwtToContext, saveRoleTypeToContext } = useContext(LoginContext)
   const navigate = useNavigate()
 
   const handleClick = (event: { currentTarget: { id: string } }) => {
@@ -78,25 +78,25 @@ const NavigationLinks: React.FC = () => {
       )}
       {!isLoggedIn && (
         <div>
-        <button
-          id="log-in-button"
-          data-testid="log-in-button"
-          className="btn btn-outline-success px-2"
-          style={{ width: "100px", margin: "5px" }}
-          onClick={handleClick}
-        >
-          Log In
-        </button>
-        <button
-          id="sign-up-button"
-          data-testid="sign-up-button"
-          className="btn btn-outline-success px-2"
-          style={{ width: "100px", margin: "5px" }}
-          onClick={handleClick}
-        >
-          Sign Up
-        </button>
-      </div>
+          <button
+            id="log-in-button"
+            data-testid="log-in-button"
+            className="btn btn-outline-success px-2"
+            style={{ width: "100px", margin: "5px" }}
+            onClick={handleClick}
+          >
+            Log In
+          </button>
+          <button
+            id="sign-up-button"
+            data-testid="sign-up-button"
+            className="btn btn-outline-success px-2"
+            style={{ width: "100px", margin: "5px" }}
+            onClick={handleClick}
+          >
+            Sign Up
+          </button>
+        </div>
       )}
     </ul>
   )
