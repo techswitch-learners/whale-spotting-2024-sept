@@ -26,7 +26,7 @@ namespace WhaleSpotting.SeedData
                 Description = "Saw this on my morning sail, how cute. I think I have a new best friend.",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
-            },            
+            },
             new Sighting()
             {
                 UserId = 2,
@@ -35,7 +35,8 @@ namespace WhaleSpotting.SeedData
                 Longitude = -94.012267F,
                 PhotoUrl =
                     "https://images.unsplash.com/photo-1570913179118-f3d24be1d1f7?q=80&w=3943&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                Description = "Check out that beautiful fin! This beautiful creature gave me a little wave hello today.",
+                Description =
+                    "Check out that beautiful fin! This beautiful creature gave me a little wave hello today.",
                 DateTime = DateTime.Parse("29Mar2023 13:42:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -57,8 +58,7 @@ namespace WhaleSpotting.SeedData
                 SpeciesId = 90,
                 Latitude = 2.1801F,
                 Longitude = -76.696F,
-                PhotoUrl =
-                    "https://inaturalist-open-data.s3.amazonaws.com/photos/162435290/medium.jpg",
+                PhotoUrl = "https://inaturalist-open-data.s3.amazonaws.com/photos/162435290/medium.jpg",
                 Description = "Hellooo World!!!",
                 DateTime = DateTime.Parse("09Jan2022 09:24:00").ToUniversalTime(),
                 IsApproved = true
@@ -69,8 +69,7 @@ namespace WhaleSpotting.SeedData
                 SpeciesId = 77,
                 Latitude = 55.555F,
                 Longitude = -77.777F,
-                PhotoUrl =
-                    "https://inaturalist-open-data.s3.amazonaws.com/photos/26838108/medium.jpg",
+                PhotoUrl = "https://inaturalist-open-data.s3.amazonaws.com/photos/26838108/medium.jpg",
                 Description = "Jumping around the sea",
                 DateTime = DateTime.Parse("03Aug2023 11:22:00").ToUniversalTime(),
                 IsApproved = true
@@ -81,8 +80,7 @@ namespace WhaleSpotting.SeedData
                 SpeciesId = 64,
                 Latitude = 45.115F,
                 Longitude = 120.45F,
-                PhotoUrl =
-                    "https://inaturalist-open-data.s3.amazonaws.com/photos/380921709/large.jpeg",
+                PhotoUrl = "https://inaturalist-open-data.s3.amazonaws.com/photos/380921709/large.jpeg",
                 Description = "I'm not a whale L.O.L.",
                 DateTime = DateTime.Parse("17Mar2024 17:13:00").ToUniversalTime(),
                 IsApproved = true
@@ -165,8 +163,7 @@ namespace WhaleSpotting.SeedData
                 SpeciesId = 33,
                 Latitude = 34.462F,
                 Longitude = 18.99F,
-                PhotoUrl =
-                    "https://inaturalist-open-data.s3.amazonaws.com/photos/315414123/original.jpg",
+                PhotoUrl = "https://inaturalist-open-data.s3.amazonaws.com/photos/315414123/original.jpg",
                 Description = "Went for a swim this morning and look who came to say hello.",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
@@ -225,9 +222,9 @@ namespace WhaleSpotting.SeedData
                 SpeciesId = 70,
                 Latitude = 40.160F,
                 Longitude = -87.841F,
-                PhotoUrl =
-                    "https://upload.wikimedia.org/wikipedia/commons/e/ec/SEFSC-PAM-Rices-whale.png",
-                Description = "Got this from on my drone whilst out sailing, hadn't even realised it was there, that was lucky!",
+                PhotoUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ec/SEFSC-PAM-Rices-whale.png",
+                Description =
+                    "Got this from on my drone whilst out sailing, hadn't even realised it was there, that was lucky!",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             },
@@ -243,7 +240,6 @@ namespace WhaleSpotting.SeedData
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
             }
-            
         };
 
         public void SeedSighting()

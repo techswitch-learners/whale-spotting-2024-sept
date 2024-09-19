@@ -66,6 +66,36 @@ public class SightingsController : Controller
         }
     }
 
+    [HttpGet("approvedforuser")]
+    public ActionResult<SightingListResponse> GetUserApproved()
+    {
+        try
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            SightingListResponse sightings = _sightingService.GetUserApproved(userId);
+            return Ok(sightings);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("unapprovedforuser")]
+    public ActionResult<SightingListResponse> GetUserUnapproved()
+    {
+        try
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            SightingListResponse sightings = _sightingService.GetUserUnapproved(userId);
+            return Ok(sightings);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpGet("")]
     public ActionResult<SightingListResponse> GetApproved()
     {
