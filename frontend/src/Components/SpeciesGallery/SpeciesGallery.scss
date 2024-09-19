@@ -16,8 +16,10 @@
     gap: 5vw
 }
 
-.card-body {
+.species-card-body {
     display: flex;
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     flex-direction: column;
     justify-content: center;
     background-color: $whale-light-blue;
@@ -29,7 +31,7 @@
     padding-bottom: 0.5vw;
 }
 
-.card-text {
+.total-sightings {
     font-size: small;
     font-style: italic;
     color: darkblue;

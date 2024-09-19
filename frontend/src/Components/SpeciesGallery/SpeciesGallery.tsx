@@ -32,12 +32,12 @@ function SpeciesGallery(): JSX.Element {
             <div className="container">
                 {species.map(s => (
                     <div className="card" style={{ width: "20rem" }}>
-                        <img className="card-img-top" src={s.exampleLink} alt="Card image cap" />
-                        <div className="card-body">
+                        <img className="card-img-top" src={s.exampleLink} alt="Card image cap" style={{maxHeight: "12rem", objectFit: "cover"}}/>
+                        <div className="species-card-body">
                             <a href={s.wikiLink} target="_blank">
                                 <h5 className="species">{s.speciesName}</h5>
                             </a>
-                            <p className="card-text">Total number of sightings: {s.totalSightings}</p>
+                            <p className="total-sightings">Total number of sightings: {s.totalSightings}</p>
                         </div>
                     </div>
                 ))}

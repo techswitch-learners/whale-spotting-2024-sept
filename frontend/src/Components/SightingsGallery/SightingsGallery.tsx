@@ -40,7 +40,7 @@ function SightingsGallery(): JSX.Element {
             <div className="container">
                 {sightings.map(sighting => (
                     <div className="card" style={{ width: "20rem" }}>
-                        <img className="card-img-top" src={sighting.photoUrl} alt="Card image cap" />
+                        <img className="card-img-top" src={sighting.photoUrl} alt="Card image cap" style={{maxHeight: "12rem", objectFit: "cover"}}/>
                         <div className="card-username-species">
                             <h6 className="username">{sighting.username}</h6>
                             <p className="species-name">{sighting.speciesName}</p>
