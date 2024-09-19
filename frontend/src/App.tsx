@@ -14,6 +14,7 @@ import { Profile } from "./pages/Profile/Profile"
 import { LeaderBoard } from "./pages/LeaderBoard/LeaderBoard"
 import { UpdateUser } from "./pages/UpdateUser/UpdateUser"
 import { IndividualSighting } from "./pages/IndividualSighting/IndividualSighting"
+import { UpdateSighting } from "./pages/UpdateSighting/UpdateSighting"
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/updateprofile" element={<UpdateUser />} />
           <Route path="/sightings/:id" element={<IndividualSighting />} />
+          <Route path="/updatesighting" element={<UpdateSighting />} />
         </Routes>
       </LoginManager>
     </BrowserRouter>

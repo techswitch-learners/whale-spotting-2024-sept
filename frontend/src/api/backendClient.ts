@@ -177,7 +177,34 @@ export async function createSighting(
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${header}`,
+      Authorization: `Bearer ${header}`,
+    },
+    body: JSON.stringify({
+      speciesId,
+      latitude,
+      longitude,
+      photoUrl,
+      description,
+      dateTime,
+    }),
+  })
+}
+
+export const updateSighting = async (
+  header: string,
+  sightingId: number,
+  speciesId: number,
+  latitude: number,
+  longitude: number,
+  photoUrl: string,
+  description: string,
+  dateTime: Date,
+) => {
+  return await fetch(`http://localhost:5280/sightings/${sightingId}/update`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
     },
     body: JSON.stringify({
       speciesId,
