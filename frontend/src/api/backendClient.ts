@@ -23,7 +23,9 @@ export interface Sightings {
 export interface Sighting {
   id: number
   userId: number
+  username: string
   speciesId: number
+  speciesName: string
   latitude: number
   longitude: number
   photoUrl: string
