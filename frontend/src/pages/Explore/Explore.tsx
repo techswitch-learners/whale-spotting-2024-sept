@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import "./Explore.scss"
+import Gallery from "../../Components/Gallery/Gallery"
 import WhaleMap from "../../Components/WhaleMap/WhaleMap"
 import { APIProvider } from "@vis.gl/react-google-maps"
 
@@ -14,10 +15,6 @@ export interface SightingType {
   photoUrl: string
   description?: string
   dateTime: Date
-}
-
-const formatDate = (dateTime: Date) => {
-  return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
 }
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY : ""
@@ -46,21 +43,10 @@ function Explore(): JSX.Element {
 
   return (
     <>
-      {/* <h1 className="pt-4">Explore</h1> */}
       <APIProvider apiKey={apiKey}>
         <WhaleMap sightings={sightings} />
       </APIProvider>
-      {sightings.map((sighting) => (
-        <>
-          <p>{sighting.username}</p>
-          <p>{sighting.speciesName}</p>
-          <img src={sighting.photoUrl} className="thumbnail-explore-gallery" alt="A whale" />
-          <p>Latitude: {sighting.latitude}</p>
-          <p>Longitude: {sighting.longitude}</p>
-          {sighting.description && <p>Description: {sighting.description}</p>}
-          <p>Date: {formatDate(sighting.dateTime)}</p>
-        </>
-      ))}
+      <Gallery />
     </>
   )
 }
