@@ -1,0 +1,37 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../../colour-variables.scss";
+
+.banner {
+    background-color: $whale-light-blue;
+    padding: 2vh;
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5vw
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $whale-light-blue;
+}
+
+.species {
+    color: $whale-main-blue;
+    text-align: center;
+    padding-bottom: 0.5vw;
+}
+
+.card-text {
+    font-size: small;
+    font-style: italic;
+    color: darkblue;
+    text-align: center;
+}

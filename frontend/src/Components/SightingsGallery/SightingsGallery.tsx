@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../../Components/LoginManager/LoginManager';
 import { getSightings } from '../../api/backendClient';
 import { SightingType } from '../../pages/Explore/Explore';

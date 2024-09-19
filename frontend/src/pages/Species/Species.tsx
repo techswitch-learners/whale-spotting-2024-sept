@@ -1,15 +1,13 @@
 import SpeciesGallery from "../../Components/SpeciesGallery/SpeciesGallery";
 import "./Species.scss"
 
-export interface SightingType {
-    id: number
-    username: string;
+export interface SpeciesType {
+    speciesId: number
     speciesName: string;
-    latitude: number;
-    longitude: number;
-    photoUrl: string;
-    description?: string;
-    dateTime: Date;
+    exampleLink: string;
+    tailPictureLink: string;
+    wikiLink: string;
+    totalSightings: number
 }
 
 function Species(): JSX.Element {
