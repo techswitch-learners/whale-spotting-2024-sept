@@ -5,6 +5,11 @@ import "./AddSighting.scss"
 import { useNavigate } from "react-router-dom"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { createSighting } from "../../api/backendClient"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { DateTimePicker } from "@mui/x-date-pickers"
+import dayjs, { Dayjs } from "dayjs"
+import "dayjs/locale/en-gb"
 
 export function AddSighting(): JSX.Element {
   const loginContext = useContext(LoginContext)
@@ -13,7 +18,8 @@ export function AddSighting(): JSX.Element {
   const [longitude, setLongitude] = useState("0.0")
   const [photoUrl, setPhotoUrl] = useState("")
   const [description, setDescription] = useState("")
-  const [dateTime, setDateTime] = useState(new Date())
+  // const [dateTime, setDateTime] = useState(new Date())
+  const [dateTime, setDateTime] = useState<Dayjs>(dayjs())
   const [speciesId, setSpeciesId] = useState(1)
   const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
@@ -29,7 +35,8 @@ export function AddSighting(): JSX.Element {
         parseFloat(longitude),
         photoUrl,
         description,
-        new Date(dateTime))
+        dateTime?.toDate(),
+      )
 
       if (!response.ok) {
         setErrorMessage("Oh no! Something did not go swimmingly, please try again.")
@@ -119,13 +126,20 @@ export function AddSighting(): JSX.Element {
             Date/Time:
           </label>
           <div className="col-sm-3">
-            <input
+            {/* <input
               type="datetime-local"
               id="dateTime"
               className="form-control"
               value={dateTime.toDateString()}
               onChange={(event) => setDateTime(new Date(event.target.value))}
-            />
+            /> */}
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en-gb"}>
+              <DateTimePicker
+                defaultValue={dayjs()}
+                value={dateTime}
+                onChange={(newValue) => setDateTime(newValue ? newValue : dayjs())}
+              />
+            </LocalizationProvider>
           </div>
         </div>
         <button type="submit" className="btn btn-outline-success px-4" style={{ width: "200px" }}>
