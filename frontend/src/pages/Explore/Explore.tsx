@@ -1,8 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { LoginContext } from '../../Components/LoginManager/LoginManager';
-import { getSightings } from '../../api/backendClient';
 import "./Explore.scss"
-import Gallery from '../../Components/Gallery/Gallery';
+import SightingsGallery from '../../Components/SightingsGallery/SightingsGallery';
 
 export interface SightingType {
   id: number
@@ -19,7 +16,7 @@ function Explore(): JSX.Element {
 
   return (
     <>
-      <Gallery />
+      <SightingsGallery />
     </>
   )
   

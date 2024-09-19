@@ -41,6 +41,11 @@ const NavigationLinks: React.FC = () => {
         </Link>
       </li>
       <li className="nav-item">
+        <Link to="/species" className="nav-link">
+          Species
+        </Link>
+      </li>
+      <li className="nav-item">
         <Link to="/leaderboard" className="nav-link">
           Leaderboard
         </Link>

@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../../Components/LoginManager/LoginManager';
 import { getSightings } from '../../api/backendClient';
 import { SightingType } from '../../pages/Explore/Explore';
-import "./Gallery.scss"
+import "./SpeciesGallery.scss"
 
 const formatDate = (dateTime: Date) => {
     return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
 }
 
-function Gallery(): JSX.Element {
+function SpeciesGallery(): JSX.Element {
     const [sightings, setSightings] = useState<SightingType[]>([]);
     const loginContext = useContext(LoginContext);
     const jwt = loginContext.jwt;
@@ -61,4 +61,4 @@ function Gallery(): JSX.Element {
 
 }
 
-export default Gallery
+export default SpeciesGallery
