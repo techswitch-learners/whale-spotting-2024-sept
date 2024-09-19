@@ -5,32 +5,30 @@ import { SightingType } from '../../pages/Explore/Explore';
 import "./SightingsGallery.scss"
 
 const formatDate = (dateTime: Date) => {
-    return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
+  return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
 }
 
 function SightingsGallery(): JSX.Element {
-    const [sightings, setSightings] = useState<SightingType[]>([]);
-    const loginContext = useContext(LoginContext);
-    const jwt = loginContext.jwt;
+    const [sightings, setSightings] = useState<SightingType[]>([])
+    const loginContext = useContext(LoginContext)
+    const jwt = loginContext.jwt
 
-    useEffect(() => {
-        async function fetchSightings() {
-            try {
-
-                const response = await getSightings(jwt);
-                if (!response.ok) {
-                    throw new Error('Network response failed');
-                }
-                const result = await response.json();
-                setSightings(result.sightings);
-            }
-            catch (error) {
-                console.error('Error fetching sightings:', error);
-            }
+  useEffect(() => {
+    async function fetchSightings() {
+      try {
+        const response = await getSightings(jwt)
+        if (!response.ok) {
+          throw new Error("Network response failed")
         }
+        const result = await response.json()
+        setSightings(result.sightings)
+      } catch (error) {
+        console.error("Error fetching sightings:", error)
+      }
+    }
 
-        fetchSightings();
-    }, [jwt]);
+    fetchSightings()
+  }, [jwt])
 
     return (
         <div>
