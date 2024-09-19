@@ -80,6 +80,17 @@ export const getSightings = async (header: string) => {
   })
 }
 
+export async function getSightingById(header: string, id: number): Promise<Sighting> {
+  const response = await fetch(`http://localhost:5280/sightings/${id}`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response.json()
+}
+
 export async function fetchUserProfile(header: string): Promise<User> {
   const response = await fetch(`http://localhost:5280/users/profile`, {
     headers: {
