@@ -31,6 +31,7 @@ export interface Sighting {
   photoUrl: string
   description: string
   dateTime: string
+  isApproved: boolean
 }
 
 export const loginUser = async (username: string, password: string) => {
@@ -78,6 +79,17 @@ export const getSightings = async (header: string) => {
       Authorization: `Bearer ${header}`,
     },
   })
+}
+
+export async function getSightingById(header: string, id: number): Promise<Sighting> {
+  const response = await fetch(`http://localhost:5280/sightings/${id}`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response.json()
 }
 
 export async function fetchUserProfile(header: string): Promise<User> {
