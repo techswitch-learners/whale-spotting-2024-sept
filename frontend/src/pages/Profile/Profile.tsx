@@ -9,19 +9,18 @@ export function Profile(): JSX.Element {
   const [user, setUser] = useState<User | null>(null)
   const loginContext = useContext(LoginContext)
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const navigate = useNavigate();
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const navigate = useNavigate()
 
   const getConfirmDelete = (confirmation: boolean) => {
-    setShowDeleteModal(false);
+    setShowDeleteModal(false)
 
     if (confirmation) {
       deleteUserProfile(loginContext.jwt)
-        .then(response => {
-
+        .then((response) => {
           if (!response.ok) {
             return response.json().then((errorData: { errors: SetStateAction<{ [key: string]: string[] }> }) => {
-              throw new Error();
+              throw new Error()
             })
           }
           loginContext.logOut()
@@ -29,15 +28,15 @@ export function Profile(): JSX.Element {
           loginContext.saveJwtToContext("")
           navigate("/")
           return response.json()
-        }) 
-      .catch((error) => {});
+        })
+        .catch((error) => {})
     }
   }
 
   useEffect(() => {
     fetchUserProfile(loginContext.jwt).then((response) => setUser(response))
   }, [loginContext.jwt])
-  
+
   const userData = { firstName: user?.firstName, lastName: user?.lastName, aboutMe: user?.aboutMe }
 
   if (!user) {
@@ -106,12 +105,22 @@ export function Profile(): JSX.Element {
           </div>
           <div className="row g-0">
             <div className="col-6 p-2">
-              <button id="update-button" data-testid="update-button" className="btn btn-primary btn-md w-100" onClick={() => navigate("/updateprofile", { state: userData })}>
+              <button
+                id="update-button"
+                data-testid="update-button"
+                className="btn btn-primary btn-md w-100"
+                onClick={() => navigate("/updateprofile", { state: userData })}
+              >
                 Update
               </button>
             </div>
             <div className="col-6 p-2">
-              <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100" onClick={() => setShowDeleteModal(true)}>
+              <button
+                id="delete-button"
+                data-testid="delete-button"
+                className="btn btn-primary btn-md w-100"
+                onClick={() => setShowDeleteModal(true)}
+              >
                 Delete
               </button>
             </div>

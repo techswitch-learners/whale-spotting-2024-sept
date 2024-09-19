@@ -177,7 +177,7 @@ export async function createSighting(
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${header}`,
+      Authorization: `Bearer ${header}`,
     },
     body: JSON.stringify({
       speciesId,
