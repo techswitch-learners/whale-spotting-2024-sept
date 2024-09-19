@@ -35,7 +35,7 @@ function Gallery(): JSX.Element {
       <div className="banner">
         <h1>Sightings Gallery</h1>
       </div>
-      <div className="container">
+      <div className="gallery-container">
         {sightings.map((sighting) => (
           <div className="card" style={{ width: "20rem" }}>
             <img className="card-img-top" src={sighting.photoUrl} alt="Card cap" />
