@@ -102,6 +102,12 @@ public class Program
 
         var app = builder.Build();
 
+        using (var scope = app.Services.CreateScope())
+        {
+            var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
+            speciesSeeder.Seed();
+        }
+
         if (app.Environment.IsDevelopment())
         {
             using (var scope = app.Services.CreateScope())
@@ -109,9 +115,6 @@ public class Program
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                 await SampleUsers.CreateAdminAsync(userManager);
                 await SampleUsers.CreateUsersAsync(userManager);
-
-                var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
-                speciesSeeder.Seed();
 
                 var sightingsSeeder = scope.ServiceProvider.GetService<SeedSightings>();
                 sightingsSeeder.SeedSighting();
