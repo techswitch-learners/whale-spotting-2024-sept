@@ -22,7 +22,7 @@ const WhaleMap = (props: whaleMapProps) => {
   const whaleMarker = require("../../images/Onlywhale.png")
 
   return (
-    <div className="map-container">
+    <div className="container-fluid map-container my-4 px-0">
       <Map
         style={{ borderRadius: "20px" }}
         defaultZoom={3}
@@ -47,6 +47,7 @@ const WhaleMap = (props: whaleMapProps) => {
         {props.sightings.map((sighting) =>
           sighting.id === selectedSighting ? (
             <InfoWindow
+              headerContent={<h6>Sighting {sighting.id}</h6>}
               key={sighting.id}
               position={{
                 lat: sighting.latitude,
@@ -55,7 +56,6 @@ const WhaleMap = (props: whaleMapProps) => {
               onCloseClick={handleClose}
             >
               <div>
-                <h4>Sighting {sighting.id}</h4>
                 <p>Spotted by: {sighting.username}</p>
                 <p>Species: {sighting.speciesName}</p>
               </div>
