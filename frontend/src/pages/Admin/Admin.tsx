@@ -35,8 +35,8 @@ const Admin = () => {
             <thead>
               <tr>
                 <th scope="col">Sighting Id</th>
-                <th scope="col">User Id</th>
-                <th scope="col">Species Id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Species Name</th>
                 <th scope="col">Latitude</th>
                 <th scope="col">Longitude</th>
                 <th scope="col">Photo</th>
@@ -49,8 +49,8 @@ const Admin = () => {
               {sightings?.sightings.map((sighting) => (
                 <tr>
                   <th scope="row">{sighting.id}</th>
-                  <td>{sighting.userId}</td>
-                  <td>{sighting.speciesId}</td>
+                  <td>{sighting.username}</td>
+                  <td>{sighting.speciesName}</td>
                   <td>{sighting.latitude}</td>
                   <td>{sighting.longitude}</td>
                   <td>
