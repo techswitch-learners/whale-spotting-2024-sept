@@ -2,46 +2,46 @@
 @import "../../colour-variables.scss";
 
 .banner {
-    background-color: $whale-light-blue;
-    padding: 2vh;
-    margin-top: 2vh;
-    margin-bottom: 4vh;
+  background-color: $whale-light-blue;
+  padding: 2vh;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5vw
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5vw;
 }
 
 .card-username-species {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    padding-top: 2vh;
-    background-color: $whale-light-blue;
-    align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding-top: 2vh;
+  background-color: $whale-light-blue;
+  align-items: baseline;
 }
 
 .card-img-overlay {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    color: white;
-    font-style: italic;
-    font-size: x-small;
-    padding: 1vh 1.5vh 0 1.5vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  color: white;
+  font-style: italic;
+  font-size: x-small;
+  padding: 1vh 1.5vh 0 1.5vh;
 }
 
 .username {
-    color: $whale-main-blue;
+  color: $whale-main-blue;
 }
 
 .species-name {
-    font-size: x-small;
-    font-style: italic;
+  font-size: x-small;
+  font-style: italic;
 }

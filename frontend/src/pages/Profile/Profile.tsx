@@ -24,6 +24,8 @@ export function Profile(): JSX.Element {
   const formatDate = (dateTime: string) => {
     return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
   }
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const navigate = useNavigate()
 
   const getConfirmDelete = (confirmation: boolean) => {
     setShowDeleteModal(false)
@@ -157,6 +159,28 @@ export function Profile(): JSX.Element {
                   Delete
                 </button>
               </div>
+            </div>
+          </div>
+          <div className="row g-0">
+            <div className="col-6 p-2">
+              <button
+                id="update-button"
+                data-testid="update-button"
+                className="btn btn-primary btn-md w-100"
+                onClick={() => navigate("/updateprofile", { state: userData })}
+              >
+                Update
+              </button>
+            </div>
+            <div className="col-6 p-2">
+              <button
+                id="delete-button"
+                data-testid="delete-button"
+                className="btn btn-primary btn-md w-100"
+                onClick={() => setShowDeleteModal(true)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
