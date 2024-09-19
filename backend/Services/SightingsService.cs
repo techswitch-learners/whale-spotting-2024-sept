@@ -15,6 +15,8 @@ public interface ISightingsService
     public Task UpdateSighting(SightingsRequest sightingsRequest, int sightingId, int userId);
     public Task ApproveSighting(int sightingId);
     public SingleSightingResponse GetSingleSightingResponse(int sightingId);
+    public SightingListResponse GetUserApproved(int userId);
+    public SightingListResponse GetUserUnapproved(int userId);
 }
 
 public class SightingsService : ISightingsService
@@ -63,6 +65,30 @@ public class SightingsService : ISightingsService
             IsApproved = singlesighting.Result.IsApproved,
         };
         return sighting;
+    }
+
+    public SightingListResponse GetUserApproved(int userId)
+    {
+        List<Sighting> sightings = _context
+            .Sightings.Include(u => u.User)
+            .Include(p => p.Species)
+            .Where(s => s.IsApproved && s.UserId == userId)
+            .ToList();
+        SightingListResponse sightingListResponse = new SightingListResponse();
+        sightingListResponse.SetList(sightings);
+        return sightingListResponse;
+    }
+
+    public SightingListResponse GetUserUnapproved(int userId)
+    {
+        List<Sighting> sightings = _context
+            .Sightings.Include(u => u.User)
+            .Include(p => p.Species)
+            .Where(s => !s.IsApproved && s.UserId == userId)
+            .ToList();
+        SightingListResponse sightingListResponse = new SightingListResponse();
+        sightingListResponse.SetList(sightings);
+        return sightingListResponse;
     }
 
     public SightingListResponse GetApproved()
