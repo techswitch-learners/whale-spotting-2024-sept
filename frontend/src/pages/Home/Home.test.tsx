@@ -56,4 +56,21 @@ describe("Buttons go to correct pages", () => {
     const AddSightingHeading = await screen.findByRole("heading", { name: /add a sighting/i })
     expect(AddSightingHeading).toBeInTheDocument()
   })
+
+  test("go to explore page when explore button is clicked", async () => {
+    render(
+      <MemoryRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/addsighting" element={<AddSighting />} />
+          <Route path="/explore" element={<Explore />} />
+        </Routes>
+      </MemoryRouter>,
+    )
+
+    const button = screen.getByTestId("explore-button")
+    fireEvent.click(button)
+    const exploreHeading = await screen.findByRole("heading", { name: /Sightings Gallery/i })
+    expect(exploreHeading).toBeInTheDocument()
+  })
 })
