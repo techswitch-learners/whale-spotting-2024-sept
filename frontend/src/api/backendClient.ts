@@ -160,13 +160,13 @@ export async function createSighting(
   longitude: number,
   photoUrl: string,
   description: string,
-  dateTime: Date,
+  dateTime: string,
 ) {
   return await fetch(`http://localhost:5280/sightings/create`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${header}`,
+      Authorization: `Bearer ${header}`,
     },
     body: JSON.stringify({
       speciesId,

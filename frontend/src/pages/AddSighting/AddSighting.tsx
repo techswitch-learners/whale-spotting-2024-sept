@@ -13,7 +13,8 @@ export function AddSighting(): JSX.Element {
   const [longitude, setLongitude] = useState("0.0")
   const [photoUrl, setPhotoUrl] = useState("")
   const [description, setDescription] = useState("")
-  const [dateTime, setDateTime] = useState(new Date())
+  // const [dateTime, setDateTime] = useState(new Date())
+  const [dateTime, setDateTime] = useState("")
   const [speciesId, setSpeciesId] = useState(1)
   const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
@@ -29,7 +30,9 @@ export function AddSighting(): JSX.Element {
         parseFloat(longitude),
         photoUrl,
         description,
-        new Date(dateTime))
+        dateTime,
+      )
+      // new Date(dateTime))
 
       if (!response.ok) {
         setErrorMessage("Oh no! Something did not go swimmingly, please try again.")
@@ -123,8 +126,9 @@ export function AddSighting(): JSX.Element {
               type="datetime-local"
               id="dateTime"
               className="form-control"
-              value={dateTime.toDateString()}
-              onChange={(event) => setDateTime(new Date(event.target.value))}
+              value={dateTime}
+              // onChange={(event) => setDateTime(new Date(event.target.value))}
+              onChange={(event) => setDateTime(event.target.value)}
             />
           </div>
         </div>
