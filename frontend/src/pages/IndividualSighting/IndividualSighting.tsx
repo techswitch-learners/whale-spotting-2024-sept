@@ -103,11 +103,13 @@ export function IndividualSighting() {
                             Update
                         </button>
                     </div>
-                    <div className="col-6 p-2">
+                    {loginContext.isLoggedIn && (
+                        <div className="col-6 p-2">
                         <button id="delete-button" data-testid="delete-button" className="btn btn-primary btn-md w-100">
                             Delete
                         </button>
                     </div>
+                    )}
                 </div>
             </div>
         </div>
