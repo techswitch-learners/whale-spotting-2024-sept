@@ -2,37 +2,37 @@
 @import "../../colour-variables.scss";
 
 .banner-species {
-    padding: 2vh;
-    margin-top: 2vh;
-    margin-bottom: 4vh;
+  padding: 2vh;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5vw
+.species-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5vw;
 }
 
 .species-card-body {
-    display: flex;
-    flex: 1 1 auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    flex-direction: column;
-    justify-content: center;
-    background-color: $whale-light-blue;
+  display: flex;
+  flex: 1 1 auto;
+  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  flex-direction: column;
+  justify-content: center;
+  background-color: $whale-light-blue;
 }
 
 .species {
-    color: $whale-main-blue;
-    text-align: center;
-    padding-bottom: 0.5vw;
+  color: $whale-main-blue;
+  text-align: center;
+  padding-bottom: 0.5vw;
 }
 
 .total-sightings {
-    font-size: small;
-    font-style: italic;
-    color: darkblue;
-    text-align: center;
+  font-size: small;
+  font-style: italic;
+  color: darkblue;
+  text-align: center;
 }

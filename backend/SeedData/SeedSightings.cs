@@ -239,7 +239,19 @@ namespace WhaleSpotting.SeedData
                 Description = "",
                 DateTime = DateTime.Parse("18Sept2024 10:24:00").ToUniversalTime(),
                 IsApproved = true
-            }
+            },
+            new Sighting()
+            {
+                UserId = 1,
+                SpeciesId = 56,
+                Latitude = 51.48552F,
+                Longitude = -0.02120F,
+                PhotoUrl =
+                    "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2006/01/20/whale372.jpg?width=620&dpr=2&s=none",
+                Description = "Whale? In my Thames?",
+                DateTime = DateTime.Parse("20Jan2006 13:16:00").ToUniversalTime(),
+                IsApproved = true
+            },
         };
 
         public void SeedSighting()

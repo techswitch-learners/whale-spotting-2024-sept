@@ -471,7 +471,8 @@ namespace WhaleSpotting.SeedData
             {
                 SpeciesId = 50,
                 SpeciesName = "Irrawaddy Dolphin",
-                ExampleLink = "https://upload.wikimedia.org/wikipedia/commons/a/ae/Irrawaddy_dolphin-Orcaella_brevirostris_by_2eight.jpg",
+                ExampleLink =
+                    "https://upload.wikimedia.org/wikipedia/commons/a/ae/Irrawaddy_dolphin-Orcaella_brevirostris_by_2eight.jpg",
                 TailPictureLink = "https://www.inaturalist.org/observations/130431427",
                 WikiLink = "https://en.wikipedia.org/wiki/Irrawaddy_dolphin",
                 TotalSightings = 0
