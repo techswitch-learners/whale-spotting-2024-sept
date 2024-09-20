@@ -233,6 +233,33 @@ export async function createSighting(
   })
 }
 
+export const updateSighting = async (
+  header: string,
+  sightingId: number,
+  speciesId: number,
+  latitude: number,
+  longitude: number,
+  photoUrl: string,
+  description: string,
+  dateTime: Date,
+) => {
+  return await fetch(`http://localhost:5280/sightings/${sightingId}/update`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+    body: JSON.stringify({
+      speciesId,
+      latitude,
+      longitude,
+      photoUrl,
+      description,
+      dateTime,
+    }),
+  })
+}
+
 // to add the JWT token as a header to fetch requests which access protected endpoints do the following:
 // In the .tsx file where the fetch request is being called:
 // 1) import the login context to access the value of the JWT token
