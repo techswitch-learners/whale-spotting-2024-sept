@@ -7,7 +7,9 @@ export function LeaderBoard(): JSX.Element {
   const { jwt } = useContext(LoginContext)
   const [usersLeaderBoard, setUsersLeaderBoard] = useState<LeaderBoardTable | null>(null)
 
-  const logo = require("../../images/Whale3logo.png")
+  const whaleGold = require("../../images/Goldwhale.png")
+  const whaleSilver = require("../../images/Silverwhale.png")
+  const whaleBronze = require("../../images/Bronzewhale.png")
   const [error, setError] = useState("")
 
   if (usersLeaderBoard === null) {
@@ -17,7 +19,7 @@ export function LeaderBoard(): JSX.Element {
   }
 
   if (error) {
-    return <div>Unable to get Leader Board data</div>
+    return <div className="px-4">Unable to get Leaderboard data</div>
   }
 
   return (
@@ -36,20 +38,17 @@ export function LeaderBoard(): JSX.Element {
               <td>{user.totalPointsEarned}</td>
               {index === 0 && user.totalPointsEarned > 0 && (
                 <td>
-                  <img src={logo} alt="Whale Whale Whale logo" width="50" />
-                  <img src={logo} alt="Whale Whale Whale logo" width="50" />
-                  <img src={logo} alt="Whale Whale Whale logo" width="50" />
+                  <img src={whaleGold} alt="Whale with gold crown" width="50" />
                 </td>
               )}
               {index === 1 && user.totalPointsEarned > 0 && (
                 <td>
-                  <img src={logo} alt="Whale Whale Whale logo" width="50" />
-                  <img src={logo} alt="Whale Whale Whale logo" width="50" />
+                  <img src={whaleSilver} alt="Whale with silver crown" width="50" />
                 </td>
               )}
               {index === 2 && user.totalPointsEarned > 0 && (
                 <td>
-                  <img src={logo} alt="Whale Whale Whale logo" width="50" />
+                  <img src={whaleBronze} alt="Whale with bronze crown" width="50" />
                 </td>
               )}
               {index === 0 && user.totalPointsEarned === 0 && <td></td>}

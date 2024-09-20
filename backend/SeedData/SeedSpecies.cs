@@ -471,7 +471,8 @@ namespace WhaleSpotting.SeedData
             {
                 SpeciesId = 50,
                 SpeciesName = "Irrawaddy Dolphin",
-                ExampleLink = "https://www.inaturalist.org/observations/196347166",
+                ExampleLink =
+                    "https://upload.wikimedia.org/wikipedia/commons/a/ae/Irrawaddy_dolphin-Orcaella_brevirostris_by_2eight.jpg",
                 TailPictureLink = "https://www.inaturalist.org/observations/130431427",
                 WikiLink = "https://en.wikipedia.org/wiki/Irrawaddy_dolphin",
                 TotalSightings = 0
@@ -592,7 +593,7 @@ namespace WhaleSpotting.SeedData
             {
                 SpeciesId = 63,
                 SpeciesName = "Pantropical Spotted Dolphin",
-                ExampleLink = "hhttps://static.inaturalist.org/photos/237201239/large.jpg",
+                ExampleLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/61633355/large.jpg",
                 TailPictureLink = "https://inaturalist-open-data.s3.amazonaws.com/photos/190202648/large.jpeg",
                 WikiLink = "https://en.wikipedia.org/wiki/Pantropical_spotted_dolphin",
                 TotalSightings = 0

@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import { SightingType } from "../../pages/Explore/Explore"
-import "./Gallery.scss"
+import "./SightingsGallery.scss"
 import { Link } from "react-router-dom"
 
 const formatDate = (dateTime: Date) => {
   return new Date(dateTime).toLocaleString("en-GB", { timeZone: "UTC" })
 }
 
-function Gallery(): JSX.Element {
+function SightingsGallery(): JSX.Element {
   const [sightings, setSightings] = useState<SightingType[]>([])
   const loginContext = useContext(LoginContext)
   const jwt = loginContext.jwt
@@ -40,7 +40,12 @@ function Gallery(): JSX.Element {
         {sightings.map((sighting) => (
           <div className="card" style={{ width: "20rem" }}>
             <Link className="link" to={`/sightings/${sighting.id}`}>
-              <img className="card-img-top" src={sighting.photoUrl} alt="Card cap" />
+              <img
+                className="card-img-top"
+                src={sighting.photoUrl}
+                alt="Card cap"
+                style={{ maxHeight: "12rem", objectFit: "cover" }}
+              />
               <div className="card-username-species">
                 <h6 className="username">{sighting.username}</h6>
                 <p className="species-name">{sighting.speciesName}</p>
@@ -60,4 +65,4 @@ function Gallery(): JSX.Element {
   )
 }
 
-export default Gallery
+export default SightingsGallery

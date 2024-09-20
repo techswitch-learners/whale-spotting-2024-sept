@@ -10,11 +10,18 @@ export function IndividualSighting() {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const params = useParams()
   const loginContext = useContext(LoginContext)
+  const [error, setError] = useState("")
   const navigate = useNavigate()
 
   useEffect(() => {
-    getSightingById(loginContext.jwt, Number(params.id)).then((response) => setSighting(response))
+    getSightingById(loginContext.jwt, Number(params.id))
+      .then((response) => setSighting(response))
+      .catch((error) => setError(error.message))
   }, [loginContext.jwt, params.id])
+
+  if (error) {
+    return <div className="px-4">You are not authorized to view this page, please log in</div>
+  }
 
   if (!sighting) {
     return <div>Loading...</div>

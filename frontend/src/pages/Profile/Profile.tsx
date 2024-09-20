@@ -47,13 +47,19 @@ export function Profile(): JSX.Element {
   }
 
   useEffect(() => {
-    fetchUserProfile(loginContext.jwt).then((response) => setUser(response))
+    fetchUserProfile(loginContext.jwt)
+      .then((response) => setUser(response))
+      .catch((error) => setError(error.message))
   }, [loginContext.jwt])
+
+  if (error) {
+    return <div className="px-4">You are not authorized to view this page, please log in</div>
+  }
 
   const userData = { firstName: user?.firstName, lastName: user?.lastName, aboutMe: user?.aboutMe }
 
   if (!user) {
-    return <section>You are not authorized to view this page</section>
+    return <section>You are not authorized to view this page, please log in</section>
   }
 
   if (approvedSightings === null) {
