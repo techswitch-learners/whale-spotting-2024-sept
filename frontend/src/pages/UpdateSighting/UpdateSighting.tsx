@@ -42,9 +42,8 @@ export function UpdateSighting(): JSX.Element {
           return response.json().then((errorData) => {
             throw new Error(JSON.stringify(errorData.errors))
           })
-        } else {
-          navigate(`/sightings/${sightingData.id}`)
         }
+        navigate(`/sightings/${sightingData.id}`)
       })
       .then(() => {
         navigate(`/sightings/${sightingData.id}`)
@@ -63,12 +62,12 @@ export function UpdateSighting(): JSX.Element {
         <h1 className="title">Update Sighting no.{sightingData.id}</h1>
       </div>
       <div className="row justify-content-center">
-        <form className="form justify-content-center" onSubmit={trySightingUpdate}>
+        <form className="form container justify-content-center row" onSubmit={trySightingUpdate}>
           <div className="form-group row">
             <label htmlFor="species" className="col-sm-2 col-form-label">
               Species:
             </label>
-            <div className="col-sm-3">
+            <div className="col-sm-3 col-lg-6">
               <SpeciesDropdown getSpeciesIdFromDropdown={getSpeciesIdFromDropdown} />
             </div>
           </div>
@@ -76,7 +75,7 @@ export function UpdateSighting(): JSX.Element {
             <label htmlFor="latitude" className="col-sm-2 col-form-label">
               Latitude:
             </label>
-            <div className="col-sm-3">
+            <div className="col-sm-3 col-lg-6">
               <input
                 type="text"
                 id="latitude"
@@ -90,7 +89,7 @@ export function UpdateSighting(): JSX.Element {
             <label htmlFor="longitude" className="col-sm-2 col-form-label">
               Longitude:
             </label>
-            <div className="col-sm-3">
+            <div className="col-sm-3 col-lg-6">
               <input
                 type="text"
                 id="longitude"
@@ -104,7 +103,7 @@ export function UpdateSighting(): JSX.Element {
             <label htmlFor="photoUrl" className="col-sm-2 col-form-label">
               Photo URL:
             </label>
-            <div className="col-sm-3">
+            <div className="col-sm-3 col-lg-6">
               <input
                 type="url"
                 id="photoUrl"
@@ -118,7 +117,7 @@ export function UpdateSighting(): JSX.Element {
             <label htmlFor="description" className="col-sm-2 col-form-label">
               Description:
             </label>
-            <div className="col-sm-3">
+            <div className="col-sm-3 col-lg-6">
               <textarea
                 id="description"
                 className="form-control"
@@ -131,7 +130,7 @@ export function UpdateSighting(): JSX.Element {
             <label htmlFor="dateTime" className="col-sm-2 col-form-label">
               Date/Time:
             </label>
-            <div className="col-sm-3">
+            <div className="col-sm-3 col-lg-7">
               <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en-gb"}>
                 <DateTimePicker
                   defaultValue={dayjs()}
