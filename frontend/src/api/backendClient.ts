@@ -187,6 +187,17 @@ export async function deleteUserProfile(header: string) {
   return await response
 }
 
+export async function deleteSighting(header: string, sightingId: number) {
+  const response = await fetch(`http://localhost:5280/sightings/${sightingId}/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${header}`,
+    },
+  })
+  return await response
+}
+
 export async function createSighting(
   header: string,
   speciesId: number,
