@@ -92,6 +92,15 @@ export async function getSightingById(header: string, id: number): Promise<Sight
   return await response.json()
 }
 
+export const getSpecies = async () => {
+  return await fetch(`http://localhost:5280/species`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+}
+
 export async function fetchUserProfile(header: string): Promise<User> {
   const response = await fetch(`http://localhost:5280/users/profile`, {
     headers: {

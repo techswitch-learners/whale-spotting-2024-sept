@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { LoginContext } from "../../Components/LoginManager/LoginManager"
 import { getSightings } from "../../api/backendClient"
 import "./Explore.scss"
-import Gallery from "../../Components/Gallery/Gallery"
+import SightingsGallery from "../../Components/SightingsGallery/SightingsGallery"
 import WhaleMap from "../../Components/WhaleMap/WhaleMap"
 import { APIProvider } from "@vis.gl/react-google-maps"
 
@@ -46,7 +46,7 @@ function Explore(): JSX.Element {
       <APIProvider apiKey={apiKey}>
         <WhaleMap sightings={sightings} />
       </APIProvider>
-      <Gallery />
+      <SightingsGallery />
     </>
   )
 }
