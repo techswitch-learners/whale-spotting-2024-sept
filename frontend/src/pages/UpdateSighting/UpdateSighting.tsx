@@ -130,7 +130,7 @@ export function UpdateSighting(): JSX.Element {
             <label htmlFor="dateTime" className="col-sm-2 col-form-label">
               Date/Time:
             </label>
-            <div className="col-sm-3 col-lg-7">
+            <div className="col-sm-3 col-lg-6">
               <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en-gb"}>
                 <DateTimePicker
                   defaultValue={dayjs()}
@@ -140,7 +140,7 @@ export function UpdateSighting(): JSX.Element {
               </LocalizationProvider>
             </div>
           </div>
-          <div className="form-group row justify-content-center">
+          <div>
             <div className="col-sm-10 my-3">
               <button className="btn btn-outline-success px-4" style={{ width: "200px" }} onClick={trySightingUpdate}>
                 Update
