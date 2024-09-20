@@ -85,7 +85,6 @@ export const getSpecies = async () => {
     method: "get",
     headers: {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${header}`,
     },
   })
 }
