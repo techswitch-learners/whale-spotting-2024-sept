@@ -17,7 +17,7 @@ export function LeaderBoard(): JSX.Element {
   }
 
   if (error) {
-    return <div>Unable to get Leader Board data</div>
+    return <div className="px-4">Unable to get Leaderboard data</div>
   }
 
   return (
