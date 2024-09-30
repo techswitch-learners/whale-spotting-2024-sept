@@ -34,7 +34,7 @@ public class AdminController(ISightingsService sightingsService, IUserService us
         {
             User user = await _userService.FindByName(username);
             if (user is null) {
-                return BadRequest("User does not exist");
+                return BadRequest($"User {username} does not exist");
             }
 
             await _userService.Delete(user);
