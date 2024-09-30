@@ -24,4 +24,5 @@ public class AdminController(ISightingsService sightingsService) : Controller
             return BadRequest(e.Message);
         }
     }
+
 }
