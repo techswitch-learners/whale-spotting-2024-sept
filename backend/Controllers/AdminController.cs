@@ -30,9 +30,10 @@ public class AdminController(ISightingsService sightingsService, IUserService us
     [HttpGet("users")]
     public async Task<IActionResult> GetAllUsers()
     {
-        try{
-            await _userService.GetAllUsers();
-            return Ok();
+        try
+        {
+            var users = await _userService.GetAllUsers();
+            return Ok(users);
         }
         catch (Exception e)
         {
