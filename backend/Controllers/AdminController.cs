@@ -29,7 +29,7 @@ public class AdminController(ISightingsService sightingsService, IUserService us
         }
     }
 
-            [HttpGet("user/username={username}")]
+    [HttpGet("user/username={username}")]
     public async Task<IActionResult> FindByName([FromRoute] string username){
         User? matchingUser = _userService.FindByName(username).Result;
         if (matchingUser == null)
