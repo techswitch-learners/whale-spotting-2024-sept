@@ -23,6 +23,21 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </div>
+      <div className="description">
+        <p>
+          Welcome to Whale Whale Whale — your one-stop platform for tracking, sharing, and exploring the incredible
+          world of cetaceans!
+        </p>
+        <p>
+          Create an account to log your sightings, from playful dolphins to majestic whales, and connect with a
+          community of marine enthusiasts.
+        </p>
+        <p>
+          Discover detailed information on various species, browse through user-submitted sightings around the world,
+          and contribute to building a global picture of these magnificent creatures.
+        </p>
+        <p>Dive in and help us celebrate and protect our ocean giants!</p>
+      </div>
     </>
   )
 }
