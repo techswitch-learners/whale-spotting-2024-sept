@@ -13,7 +13,7 @@ namespace WhaleSpotting.Controllers;
 public class AdminController(ISightingsService sightingsService, IUserService userService) : Controller
 {
     private readonly ISightingsService _sightingsService = sightingsService;
-     private readonly IUserService _userService = userService;
+    private readonly IUserService _userService = userService;
 
     [HttpPut("approve/sighting={sightingId}")]
     public async Task<IActionResult> ApproveSighting([FromRoute] int sightingId)
@@ -39,4 +39,24 @@ public class AdminController(ISightingsService sightingsService, IUserService us
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName});
     }
 
+    [HttpDelete("users/delete/{username}")]
+    public async Task<IActionResult> DeleteUser([FromRoute] string username)
+    {
+        try
+        {
+            User? user = await _userService.FindByName(username);
+
+            if (user is null)
+            {
+                return BadRequest($"User {username} does not exist");
+            }
+
+            await _userService.Delete(user);
+            return Ok($"User {username} has been deleted successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
