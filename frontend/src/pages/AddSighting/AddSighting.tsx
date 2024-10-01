@@ -103,6 +103,7 @@ export function AddSighting(): JSX.Element {
                 type="url"
                 id="photoUrl"
                 className="form-control"
+                required
                 value={photoUrl}
                 onChange={(event) => setPhotoUrl(event.target.value)}
               />
