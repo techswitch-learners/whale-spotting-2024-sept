@@ -30,11 +30,9 @@ const Home: React.FC = () => {
         </p>
         <p>
           Create an account to log your sightings, from playful dolphins to majestic whales, and connect with a
-          community of marine enthusiasts.
-        </p>
-        <p>
-          Discover detailed information on various species, browse through user-submitted sightings around the world,
-          and contribute to building a global picture of these magnificent creatures.
+          community of marine enthusiasts. Discover detailed information on various species, browse through
+          user-submitted sightings around the world, and contribute to building a global picture of these magnificent
+          creatures.
         </p>
         <p>Dive in and help us celebrate and protect our ocean giants!</p>
       </div>
