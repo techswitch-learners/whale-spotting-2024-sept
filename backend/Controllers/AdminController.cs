@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WhaleSpotting.Models.Data;
+using WhaleSpotting.Models.Response;
 using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
@@ -25,6 +27,17 @@ public class AdminController(ISightingsService sightingsService, IUserService us
         {
             return BadRequest(e.Message);
         }
+    }
+
+    [HttpGet("user/username={username}")]
+    public async Task<IActionResult> FindByName([FromRoute] string username)
+    {
+        User? matchingUser = _userService.FindByName(username).Result;
+        if (matchingUser == null)
+        {
+            return NotFound();
+        }
+        return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName });
     }
 
     [HttpGet("users")]
