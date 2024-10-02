@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WhaleSpotting.Services;
 using WhaleSpotting.Models.Data;
 using WhaleSpotting.Models.Response;
-
+using WhaleSpotting.Services;
 
 namespace WhaleSpotting.Controllers;
 
@@ -13,6 +12,7 @@ namespace WhaleSpotting.Controllers;
 public class AdminController(ISightingsService sightingsService, IUserService userService) : Controller
 {
     private readonly ISightingsService _sightingsService = sightingsService;
+
     private readonly IUserService _userService = userService;
 
     [HttpPut("approve/sighting={sightingId}")]
@@ -30,13 +30,14 @@ public class AdminController(ISightingsService sightingsService, IUserService us
     }
 
     [HttpGet("user/username={username}")]
-    public async Task<IActionResult> FindByName([FromRoute] string username){
+    public async Task<IActionResult> FindByName([FromRoute] string username)
+    {
         User? matchingUser = _userService.FindByName(username).Result;
         if (matchingUser == null)
         {
             return NotFound();
         }
-        return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName});
+        return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName });
     }
 
     [HttpDelete("users/delete/{username}")]
@@ -53,6 +54,20 @@ public class AdminController(ISightingsService sightingsService, IUserService us
 
             await _userService.Delete(user);
             return Ok($"User {username} has been deleted successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("users")]
+    public async Task<IActionResult> GetAllUsers()
+    {
+        try
+        {
+            var users = await _userService.GetAllUsers();
+            return Ok(users);
         }
         catch (Exception e)
         {
