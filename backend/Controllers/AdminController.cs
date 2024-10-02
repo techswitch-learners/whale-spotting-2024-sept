@@ -40,6 +40,27 @@ public class AdminController(ISightingsService sightingsService, IUserService us
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName });
     }
 
+    [HttpDelete("users/delete/{username}")]
+    public async Task<IActionResult> DeleteUser([FromRoute] string username)
+    {
+        try
+        {
+            User? user = await _userService.FindByName(username);
+
+            if (user is null)
+            {
+                return BadRequest($"User {username} does not exist");
+            }
+
+            await _userService.Delete(user);
+            return Ok($"User {username} has been deleted successfully");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
     [HttpGet("users")]
     public async Task<IActionResult> GetAllUsers()
     {
