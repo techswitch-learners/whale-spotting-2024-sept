@@ -52,6 +52,22 @@ export function AddSighting(): JSX.Element {
     setSpeciesId(speciesIdFromDropdown)
   }
 
+  function getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(String(position.coords.latitude))
+          setLongitude(String(position.coords.longitude))
+        },
+        (error) => {
+          console.error("Error getting user location:", error)
+        },
+      )
+    } else {
+      console.error("Geolocation is not supported by this browser.")
+    }
+  }
+
   return (
     <div className="add-a-sighting-page container justify-content-center">
       <h1 className="title pt-4">Add a Sighting</h1>
@@ -65,6 +81,16 @@ export function AddSighting(): JSX.Element {
             <div className="col-lg-7 col-sm-3">
               <SpeciesDropdown getSpeciesIdFromDropdown={getSpeciesIdFromDropdown} />
             </div>
+          </div>
+          <div className="col-lg-7 col-sm-3">
+            <button
+              id="location-button"
+              data-testid="location-button"
+              className="btn btn-primary btn-md w-50"
+              onClick={() => getUserLocation()}
+            >
+              Get My Location
+            </button>
           </div>
           <div className="form-group row justify-content-center pb-4">
             <label htmlFor="latitude" className="col-lg-3 col-sm-2 col-form-label">
