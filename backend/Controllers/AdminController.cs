@@ -49,7 +49,7 @@ public class AdminController(ISightingsService sightingsService, IUserService us
 
             if (user is null)
             {
-                return BadRequest($"User {username} does not exist");
+                return NotFound($"User {username} does not exist");
             }
 
             await _userService.Delete(user);
