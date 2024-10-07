@@ -104,6 +104,7 @@ public class UserController(IUserService userService) : Controller
                 new UpdateUserResponse
                 {
                     Id = user.Id,
+                    UserName = user.UserName,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     AboutMe = user.AboutMe

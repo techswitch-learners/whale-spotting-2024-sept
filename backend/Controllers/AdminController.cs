@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Data;
+using WhaleSpotting.Models.Request;
 using WhaleSpotting.Models.Response;
 using WhaleSpotting.Services;
 
@@ -38,6 +39,45 @@ public class AdminController(ISightingsService sightingsService, IUserService us
             return NotFound();
         }
         return Ok(new UserResponse { Id = matchingUser.Id, UserName = matchingUser.UserName });
+    }
+
+    [HttpPut("users/update/{username}")]
+    public async Task<IActionResult> UpdateUser(string username, UpdateUserRequest userRequest)
+    {
+        User? user = _userService.FindByName(username).Result;
+        var errorResponse = new ErrorResponse();
+        var generalErrors = new List<string>();
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        if (userRequest.FirstName != null)
+        {
+            user.FirstName = userRequest.FirstName;
+        }
+        if (userRequest.LastName != null)
+        {
+            user.LastName = userRequest.LastName;
+        }
+        if (userRequest.AboutMe != null)
+        {
+            user.AboutMe = userRequest.AboutMe;
+        }
+
+        await _userService.Update(user);
+
+        return Ok(
+            new UpdateUserResponse
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                AboutMe = user.AboutMe
+            }
+        );
     }
 
     [HttpDelete("users/delete/{username}")]
