@@ -42,6 +42,15 @@
   display: none;
 }
 
+.description {
+  display: flex;
+  flex-direction: column;
+  background-color: $whale-light-blue;
+  color: $whale-main-blue;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   .background-container {
     display: grid;
