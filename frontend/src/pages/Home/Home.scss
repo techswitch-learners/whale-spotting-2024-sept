@@ -47,8 +47,8 @@
   flex-direction: column;
   background-color: $whale-light-blue;
   color: $whale-main-blue;
-  align-items: center;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 @media (max-width: 767px) {

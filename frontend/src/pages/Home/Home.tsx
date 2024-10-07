@@ -28,7 +28,7 @@ const Home: React.FC = () => {
           Welcome to Whale Whale Whale — your one-stop platform for tracking, sharing, and exploring the incredible
           world of cetaceans!
         </p>
-        <p>
+        <p className="long-para">
           Create an account to log your sightings, from playful dolphins to majestic whales, and connect with a
           community of marine enthusiasts. Discover detailed information on various species, browse through
           user-submitted sightings around the world, and contribute to building a global picture of these magnificent
