@@ -126,3 +126,16 @@ You can run the app without the API key, but the map will appear in 'development
 2. In your project on the Cloud Console, go to 'Map styles' and create a new style (you don't need to change any settings, just save it)
 3. Once you have saved a map style, you will get a Map style ID
 4. create a new .env file in the frontend folder, following the .env.template file, and put in your API key and the Map style ID
+
+## using email service
+
+1. sign-up for emailjs service : https://dashboard.emailjs.com/sign-up
+2. Create a service with the provider and get service id
+3. Create a email template and get the template id
+4. get the public key
+5. in the .env (frontend root dir) add the following variables
+   REACT_APP_EMAIL_SERVICE_ID=<service id (point 3)>
+   REACT_APP_EMAIL_TEMPLATE_ID=<template id (point 4)>
+   REACT_APP_EMAIL_PUBLIC_KEY=<public key (point 5)>
+6. install package in whale-spotting root directory : npm install --save @emailjs/browser
+7. The email will be sent to the user on success sign-up

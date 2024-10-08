@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { registerUser } from "../api/backendClient"
+import { SendEmail } from "../Components/Mailer/SendEmail"
 
 export function CreateUser(): JSX.Element {
   const [firstname, setFirstName] = useState("")
@@ -22,8 +23,14 @@ export function CreateUser(): JSX.Element {
             setError(errorData.errors)
             throw new Error()
           })
+        } else {
+          const message = "Welcome to Whales Spotting. You have successfully signed-up"
+          const returnMsg = SendEmail({ username, message, userEmail: email })
+          if (returnMsg !== "success") {
+            throw new Error(returnMsg)
+          }
+          return response.json()
         }
-        return response.json()
       })
       .then((data) => {
         navigate("/")
