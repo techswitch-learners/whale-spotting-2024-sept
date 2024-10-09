@@ -93,7 +93,7 @@ export function AddSighting(): JSX.Element {
           </div>
           <div className="form-group row justify-content-center pb-4">
             <label htmlFor="areaLocation" className="col-lg-3 col-sm-2 col-form-label">
-              Get Lat & Long from AreaLocation:
+              Get Lat & Long from Area/Location:
             </label>
             <div className="col-lg-7 col-sm-3">
               <AreaLocationDropdown getLatFromDropdown={getLatFromDropdown} getLongFromDropdown={getLongFromDropdown} />
