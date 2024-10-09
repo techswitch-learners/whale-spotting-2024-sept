@@ -9,8 +9,8 @@ public class WhaleSpottingContext(DbContextOptions<WhaleSpottingContext> options
     : IdentityDbContext<User, Role, int>(options)
 {
     public DbSet<Sighting> Sightings { get; set; }
-
     public DbSet<Species> Species { get; set; }
+    public DbSet<AreaLocation> AreaLocation { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

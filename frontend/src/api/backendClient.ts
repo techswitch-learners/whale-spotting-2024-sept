@@ -101,6 +101,15 @@ export const getSpecies = async () => {
   })
 }
 
+export const getAreaLocation = async () => {
+  return await fetch(`http://localhost:5280/arealocation`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+}
+
 export async function fetchUserProfile(header: string): Promise<User> {
   const response = await fetch(`http://localhost:5280/users/profile`, {
     headers: {
