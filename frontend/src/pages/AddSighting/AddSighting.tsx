@@ -10,6 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DateTimePicker } from "@mui/x-date-pickers"
 import dayjs, { Dayjs } from "dayjs"
 import "dayjs/locale/en-gb"
+import { AreaLocationDropdown } from "../../Components/AreaLocationDropDown/AreaLocationDropDown"
 
 export function AddSighting(): JSX.Element {
   const loginContext = useContext(LoginContext)
@@ -52,6 +53,14 @@ export function AddSighting(): JSX.Element {
     setSpeciesId(speciesIdFromDropdown)
   }
 
+  function getLatFromDropdown(latFromDropdown: number) {
+    setLatitude(String(latFromDropdown))
+  }
+
+  function getLongFromDropdown(longFromDropDown: number) {
+    setLongitude(String(longFromDropDown))
+  }
+
   function getUserLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -80,6 +89,14 @@ export function AddSighting(): JSX.Element {
             </label>
             <div className="col-lg-7 col-sm-3">
               <SpeciesDropdown getSpeciesIdFromDropdown={getSpeciesIdFromDropdown} />
+            </div>
+          </div>
+          <div className="form-group row justify-content-center pb-4">
+            <label htmlFor="areaLocation" className="col-lg-3 col-sm-2 col-form-label">
+              Get Lat & Long from Area/Location:
+            </label>
+            <div className="col-lg-7 col-sm-3">
+              <AreaLocationDropdown getLatFromDropdown={getLatFromDropdown} getLongFromDropdown={getLongFromDropdown} />
             </div>
           </div>
           <div className="col-lg-7 col-sm-3">

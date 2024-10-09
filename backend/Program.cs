@@ -46,6 +46,9 @@ public class Program
         builder.Services.AddTransient<SeedSpecies>();
         builder.Services.AddTransient<IUserService, UserService>();
 
+        builder.Services.AddTransient<SeedAreaLocation>();
+        builder.Services.AddTransient<IAreaLocationService, AreaLocationService>();
+
         builder.Services.AddTransient<SeedSightings>();
         builder.Services.AddTransient<ISpeciesService, SpeciesService>();
 
@@ -106,6 +109,8 @@ public class Program
         {
             var speciesSeeder = scope.ServiceProvider.GetService<SeedSpecies>();
             speciesSeeder.Seed();
+            var areaLocationSeeder = scope.ServiceProvider.GetService<SeedAreaLocation>();
+            areaLocationSeeder.AreaLocationSeed();
         }
 
         if (app.Environment.IsDevelopment())
